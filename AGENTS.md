@@ -21,7 +21,7 @@ Correct stale playbook examples, but leave role-specific option details in the r
 
 ## Changelog
 
-Use `CHANGELOG.md` for new or removed services, shared playbook behavior changes,
+Use `CHANGELOG.md` for removed services, shared playbook behavior changes,
 or upgrades requiring concrete action by the system administrator running this playbook.
 Examples include a manual backup, data migration or inventory change that the role does not handle.
 For a role bump, upstream application behavior alone does not warrant a playbook entry, even
@@ -31,6 +31,8 @@ State who is affected and what they need to do when adding an entry, and explain
 this scope. For a role bump, say whether role validation already gives affected users an
 actionable error.
 
+Skip entries for routine service additions: document them in `docs/supported-services.md` and
+the component's `README.md` instead. Adding a service alone does not warrant a changelog entry.
 Skip entries for routine role bumps and for one role's renamed or removed variables or formats
 when the affected role's `tasks/validate_config.yml` gives users an actionable error.
 Correct stale service docs or examples. An upstream “breaking change” label alone does not
