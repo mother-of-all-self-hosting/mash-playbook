@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://progressiv.radicle.garden/zttNpUS7xCeDnn2e4No2dUvZv7L7.git
-  version: v3.7.2-0
+  version: v3.7.3-0
   name: joplin_server

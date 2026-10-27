@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://progressiv.radicle.garden/z292aD8q3r8xqhJvLe2zv1b24gu7a.git
-  version: v2.0.1-0
+  version: v2.0.2-0
   name: apprise

@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://progressiv.radicle.garden/z3rwhJ9rQ82H6GXg7ZCt3UNpStbaW.git
-  version: v2.37.1-0
+  version: v2.37.2-0
   name: audiobookshelf

@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://progressiv.radicle.garden/z23UDsbsiGGq9B8M8TSNWB4MLk3vX.git
-  version: v1.102.1-0
+  version: v1.103.0-0
   name: svix
