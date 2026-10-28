@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-autobrr.git
-  version: v1.88.0-0
+  version: v1.89.0-0
   name: autobrr
