@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-netbox.git
-  version: v4.7.3-5.1.1-0
+  version: v4.7.4-5.1.1-0
   name: netbox
