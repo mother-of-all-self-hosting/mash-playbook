@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server.git
-  version: v3.19.0-2
+  version: v3.20.0-0
   name: woodpecker_ci_server
