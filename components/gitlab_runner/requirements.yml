@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitlab-runner.git
-  version: v19.5.1-0
+  version: v19.5.2-0
   name: gitlab_runner
