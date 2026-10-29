@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-omnitools.git
-  version: v0.7.0-2
+  version: v0.7.0-3
   name: omnitools
