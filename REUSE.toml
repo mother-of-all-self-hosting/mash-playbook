@@ -15,12 +15,12 @@ path = [
     ".gitignore",
     ".pre-commit-config.yaml",
     ".yamllint",
-    "VERSIONS.md",
     "ansible.cfg",
+    "components/*/requirements.yml",
     "flake.lock",
     "flake.nix",
     "releases.opml",
-    "components/*/requirements.yml"
+    "VERSIONS.md"
 ]
 SPDX-FileCopyrightText = "NONE"
 SPDX-License-Identifier = "CC0-1.0"
