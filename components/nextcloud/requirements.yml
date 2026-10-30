@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud.git
-  version: v35.0.2-4
+  version: v35.0.2-6
   name: nextcloud
