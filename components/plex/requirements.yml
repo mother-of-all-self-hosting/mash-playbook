@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-plex.git
-  version: v1.43.4-7
+  version: v1.43.5-0
   name: plex
