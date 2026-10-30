@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-forgejo-runner.git
-  version: v13.2.0-0
+  version: v13.2.1-0
   name: forgejo_runner
