@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-backup_borg.git
-  version: v1.4.5-2.2.0-0
+  version: v1.4.5-2.2.0-1
   name: backup_borg
