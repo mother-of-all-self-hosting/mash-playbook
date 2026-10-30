@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wazuh.git
-  version: v4.14.9-0
+  version: v4.14.9-1
   name: wazuh
