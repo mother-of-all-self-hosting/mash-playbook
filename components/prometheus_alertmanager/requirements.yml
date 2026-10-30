@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-alertmanager.git
-  version: v0.34.1-2
+  version: v0.34.2-0
   name: prometheus_alertmanager
