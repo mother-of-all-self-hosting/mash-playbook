@@ -38,6 +38,10 @@ mash_playbook_service_base_directory_name_prefix: "{{ '' if mash_playbook_identi
 # Controls the base path where all services will be installed
 mash_playbook_base_path: "/{{ mash_playbook_identifier }}"
 mash_playbook_base_path_mode: "750"
+# Owned by root: whoever owns it could rename any service's directory (even a root-owned one) and put another in its place.
+# The group lets the mash user reach the services' directories.
+mash_playbook_base_path_uid: 0
+mash_playbook_base_path_gid: "{{ mash_playbook_gid }}"
 
 # The architecture that your server runs.
 # Recognized values by us are 'amd64', 'arm32' and 'arm64'.
