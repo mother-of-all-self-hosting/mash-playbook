@@ -12,7 +12,6 @@ woodpecker_ci_agent_identifier: "{{ mash_playbook_service_identifier_prefix }}wo
 
 woodpecker_ci_agent_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}woodpecker-ci-agent"
 
-woodpecker_ci_agent_uid: "{{ mash_playbook_uid }}"
 woodpecker_ci_agent_gid: "{{ mash_playbook_gid }}"
 
 woodpecker_ci_agent_systemd_required_services_list_auto: |
