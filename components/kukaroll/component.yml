@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: 2026 Slavi Pantaleev
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+activation_prefix: kukaroll_
+
+# Runs right before the service manager (9010): when this run (re)starts services, the role pauses deploys first, so that none works on a project meanwhile.
+# The service manager then resumes them by starting the deploys target.
+setup:
+  priority: 9005
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ kukaroll_identifier }}-receiver.service"
+        priority: 2000
+        restart_necessary: "{{ kukaroll_restart_necessary | bool }}"
+        groups: [mash, kukaroll]
+        when: "{{ kukaroll_enabled }}"
+      # The role stops it to pause deploys; starting it resumes them.
+      - name: "{{ kukaroll_identifier }}-deploys.target"
+        priority: 3000
+        restart_necessary: false
+        groups: "{{ mash_playbook_kukaroll_deploys_service_manager_groups }}"
+        when: "{{ kukaroll_enabled }}"

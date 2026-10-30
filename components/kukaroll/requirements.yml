@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: 2026 Slavi Pantaleev
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-kukaroll.git
+  version: v2026.10.30.0-0
+  name: kukaroll

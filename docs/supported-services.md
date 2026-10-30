@@ -138,6 +138,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Karakeep](https://karakeep.app/) | Bookmark manager to collect, organize and archive webpages | [Link](../components/karakeep/README.md) |
 | [Keycloak](https://www.keycloak.org/) | An identity and access management solution | [Link](../components/keycloak/README.md) |
 | [keyoxide-web](https://codeberg.org/keyoxide/keyoxide-web) | Web client for [Keyoxide](https://keyoxide.org/), a decentralized tool to create and verify decentralized online identities | [Link](../components/keyoxide/README.md) |
+| [kukaroll](https://github.com/devture/kukaroll) | A "git push to deploy" tool for projects checked out on the server | [Link](../components/kukaroll/README.md) |
 | [Kutt](https://kutt.to/) | Modern URL shortener with support for custom domains | [Link](../components/kutt/README.md) |
 | [Label Studio](https://labelstud.io/) | Data labeling tool that supports multiple projects, users, and data types in one platform | [Link](../components/labelstudio/README.md) |
 | [Lago](https://www.getlago.com/) | Metering and usage-based billing | [Link](../components/lago/README.md) |
