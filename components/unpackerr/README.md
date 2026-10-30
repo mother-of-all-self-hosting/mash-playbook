@@ -32,6 +32,12 @@ For details about configuring the [Ansible role for Unpackerr](https://github.co
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-unpackerr/blob/main/docs/configuring-unpackerr.md) online
 - 📁 `roles/galaxy/unpackerr/docs/configuring-unpackerr.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
 
+## Dependencies
+
+This service requires the following other services for its web UI:
+
+- [Traefik](../traefik/README.md) reverse-proxy server
+
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../../docs/installing.md) process:
@@ -45,12 +51,16 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 unpackerr_enabled: true
 
+unpackerr_hostname: unpackerr.example.com
+
 ########################################################################
 #                                                                      #
 # /unpackerr                                                           #
 #                                                                      #
 ########################################################################
 ```
+
+If you do not need the web UI, set `unpackerr_webserver_enabled: false` instead of `unpackerr_hostname`. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-unpackerr/blob/main/docs/configuring-unpackerr.md#running-unpackerr-without-the-web-ui) on the role's documentation for details.
 
 Unpackerr does nothing until it is given access to the download directory and at least one Starr app or folder to watch. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-unpackerr/blob/main/docs/configuring-unpackerr.md#mount-the-download-directory) on the role's documentation for how to mount the download directory into Unpackerr at the same path as the Starr apps see it at.
 
@@ -62,7 +72,11 @@ Unpackerr still needs the URL and the API key of each Starr app. Refer to [this 
 
 ## Usage
 
-After running the command for installation, Unpackerr starts working in the background, as it has no web UI. Whenever a Starr app it is connected to lists a completed download containing archives, Unpackerr extracts them, so that the Starr app can import the extracted files.
+After running the command for installation, the web UI becomes available at the URL specified with `unpackerr_hostname`. With the configuration above, it is hosted at `https://unpackerr.example.com`.
+
+Unpackerr generates a password for the `admin` user on its first start, and logs it once. To find it, run `journalctl -u mash-unpackerr | grep 'Generated temporary UI password'` on the server. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-unpackerr/blob/main/docs/configuring-unpackerr.md#logging-in-to-the-web-ui) on the role's documentation for details.
+
+Unpackerr works in the background. Whenever a Starr app it is connected to lists a completed download containing archives, Unpackerr extracts them, so that the Starr app can import the extracted files.
 
 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-unpackerr/blob/main/docs/configuring-unpackerr.md#usage) on the role's documentation for details about the usage.
 

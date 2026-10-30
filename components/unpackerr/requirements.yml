@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-unpackerr.git
-  version: v0.16.1-2
+  version: v1.0.1-0
   name: unpackerr

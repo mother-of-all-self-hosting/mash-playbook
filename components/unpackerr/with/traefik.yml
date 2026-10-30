@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 spatterlight
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+unpackerr_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+unpackerr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
