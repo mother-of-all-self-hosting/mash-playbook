@@ -33,3 +33,16 @@
   block:
     - name: Include Docker daemon cleanup tasks
       ansible.builtin.include_tasks: "{{ role_path }}/tasks/docker_daemon_options_file_cleanup.yml"
+
+- name: Move Woodpecker CI paths out of their shared parent directory
+  when: mash_playbook_migration_woodpecker_ci_paths_migration_enabled | bool
+  tags:
+    - setup-all
+    - install-all
+    - setup-woodpecker-ci-server
+    - install-woodpecker-ci-server
+    - setup-woodpecker-ci-agent
+    - install-woodpecker-ci-agent
+  block:
+    - name: Include Woodpecker CI paths migration tasks
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/woodpecker_ci_paths_migration.yml"

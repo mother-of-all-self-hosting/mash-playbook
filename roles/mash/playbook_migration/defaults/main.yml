@@ -13,3 +13,12 @@
 # Related to: https://github.com/geerlingguy/ansible-role-docker/pull/436
 mash_playbook_migration_docker_trusted_gpg_d_migration_enabled: true
 mash_playbook_migration_docker_trusted_gpg_d_migration_repository_path: "/etc/apt/sources.list.d/docker.list"
+
+# Controls if Woodpecker CI's directories are moved out of their shared parent directory (`woodpecker-ci/server` -> `woodpecker-ci-server`, `woodpecker-ci/agent` -> `woodpecker-ci-agent`).
+# The shared parent was created implicitly and owned by the mash user, who could therefore rename the root-owned agent directory and put another in its place.
+mash_playbook_migration_woodpecker_ci_paths_migration_enabled: true
+mash_playbook_migration_woodpecker_ci_paths_old_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}woodpecker-ci"
+mash_playbook_migration_woodpecker_ci_paths_server_identifier: "{{ woodpecker_ci_server_identifier | default(mash_playbook_service_identifier_prefix + 'woodpecker-ci-server') }}"
+mash_playbook_migration_woodpecker_ci_paths_server_base_path: "{{ woodpecker_ci_server_base_path | default(mash_playbook_base_path + '/' + mash_playbook_service_base_directory_name_prefix + 'woodpecker-ci-server') }}"
+mash_playbook_migration_woodpecker_ci_paths_agent_identifier: "{{ woodpecker_ci_agent_identifier | default(mash_playbook_service_identifier_prefix + 'woodpecker-ci-agent') }}"
+mash_playbook_migration_woodpecker_ci_paths_agent_base_path: "{{ woodpecker_ci_agent_base_path | default(mash_playbook_base_path + '/' + mash_playbook_service_base_directory_name_prefix + 'woodpecker-ci-agent') }}"

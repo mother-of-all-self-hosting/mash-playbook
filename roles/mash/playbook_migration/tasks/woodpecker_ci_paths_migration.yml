@@ -1,0 +1,88 @@
+# SPDX-FileCopyrightText: 2026 Slavi Pantaleev
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# Woodpecker CI's server and agent used to live in a shared parent directory (`woodpecker-ci/server` and `woodpecker-ci/agent`).
+# That parent was created implicitly and owned by the mash user, who could rename the root-owned agent directory and put another in its place.
+# The server's directory is moved to its new place. The agent's directory only contains files that its role recreates, so it is deleted.
+# A base path still pointing inside the old parent (set in vars.yml) is left alone.
+
+- name: Check the old Woodpecker CI parent path
+  ansible.builtin.stat:
+    path: "{{ mash_playbook_migration_woodpecker_ci_paths_old_path }}"
+  register: mash_playbook_migration_woodpecker_ci_paths_old_parent_stat
+
+- name: Migrate the old Woodpecker CI paths
+  when: mash_playbook_migration_woodpecker_ci_paths_old_parent_stat.stat.exists
+  block:
+    - name: Check the old Woodpecker CI paths
+      ansible.builtin.stat:
+        path: "{{ mash_playbook_migration_woodpecker_ci_paths_old_path }}/{{ item }}"
+      register: mash_playbook_migration_woodpecker_ci_paths_old_stats
+      with_items:
+        - server
+        - agent
+
+    - name: Check the new Woodpecker CI server path
+      ansible.builtin.stat:
+        path: "{{ mash_playbook_migration_woodpecker_ci_paths_server_base_path }}"
+      register: mash_playbook_migration_woodpecker_ci_paths_server_new_stat
+
+    - name: Determine which old Woodpecker CI paths to migrate
+      ansible.builtin.set_fact:
+        mash_playbook_migration_woodpecker_ci_paths_server_migrate: >-
+          {{
+            mash_playbook_migration_woodpecker_ci_paths_old_stats.results[0].stat.exists
+            and mash_playbook_migration_woodpecker_ci_paths_server_base_path != (mash_playbook_migration_woodpecker_ci_paths_old_path + '/server')
+          }}
+        mash_playbook_migration_woodpecker_ci_paths_agent_migrate: >-
+          {{
+            mash_playbook_migration_woodpecker_ci_paths_old_stats.results[1].stat.exists
+            and mash_playbook_migration_woodpecker_ci_paths_agent_base_path != (mash_playbook_migration_woodpecker_ci_paths_old_path + '/agent')
+          }}
+
+    - name: Fail if both the old and the new Woodpecker CI server paths exist
+      when: mash_playbook_migration_woodpecker_ci_paths_server_migrate | bool and mash_playbook_migration_woodpecker_ci_paths_server_new_stat.stat.exists
+      ansible.builtin.fail:
+        msg: >-
+          Both `{{ mash_playbook_migration_woodpecker_ci_paths_old_path }}/server` (old) and `{{ mash_playbook_migration_woodpecker_ci_paths_server_base_path }}` (new) exist.
+          Keep the one with your data, delete the other, and run the playbook again.
+          To skip this migration, set `mash_playbook_migration_woodpecker_ci_paths_migration_enabled: false`.
+
+    - name: Ensure Woodpecker CI services are stopped before moving their paths
+      when: mash_playbook_migration_woodpecker_ci_paths_server_migrate | bool or mash_playbook_migration_woodpecker_ci_paths_agent_migrate | bool
+      ansible.builtin.systemd_service:
+        name: "{{ item }}.service"
+        state: stopped
+      register: mash_playbook_migration_woodpecker_ci_paths_stop_result
+      failed_when: "mash_playbook_migration_woodpecker_ci_paths_stop_result is failed and 'Could not find the requested service' not in mash_playbook_migration_woodpecker_ci_paths_stop_result.msg | default('')"
+      with_items:
+        - "{{ mash_playbook_migration_woodpecker_ci_paths_agent_identifier }}"
+        - "{{ mash_playbook_migration_woodpecker_ci_paths_server_identifier }}"
+
+    - name: Ensure the Woodpecker CI server path is moved
+      when: mash_playbook_migration_woodpecker_ci_paths_server_migrate | bool
+      ansible.builtin.command:
+        cmd: mv "{{ mash_playbook_migration_woodpecker_ci_paths_old_path }}/server" "{{ mash_playbook_migration_woodpecker_ci_paths_server_base_path }}"
+        creates: "{{ mash_playbook_migration_woodpecker_ci_paths_server_base_path }}"
+
+    - name: Ensure the old Woodpecker CI agent path is deleted
+      when: mash_playbook_migration_woodpecker_ci_paths_agent_migrate | bool
+      ansible.builtin.file:
+        path: "{{ mash_playbook_migration_woodpecker_ci_paths_old_path }}/agent"
+        state: absent
+
+    - name: Find what is left in the old Woodpecker CI path
+      ansible.builtin.find:
+        paths: "{{ mash_playbook_migration_woodpecker_ci_paths_old_path }}"
+        file_type: any
+        hidden: true
+      register: mash_playbook_migration_woodpecker_ci_paths_leftovers
+
+    - name: Ensure the old Woodpecker CI path is deleted if empty
+      when: mash_playbook_migration_woodpecker_ci_paths_leftovers.matched == 0
+      ansible.builtin.file:
+        path: "{{ mash_playbook_migration_woodpecker_ci_paths_old_path }}"
+        state: absent
