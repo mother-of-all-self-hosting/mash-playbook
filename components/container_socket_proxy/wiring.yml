@@ -10,7 +10,6 @@ container_socket_proxy_identifier: "{{ mash_playbook_service_identifier_prefix }
 
 container_socket_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}container-socket-proxy"
 
-container_socket_proxy_uid: "{{ mash_playbook_uid }}"
 container_socket_proxy_gid: "{{ mash_playbook_gid }}"
 
 # Socket proxy permissions (`container_socket_proxy_write_access_enabled` and `container_socket_proxy_api_*_enabled`)
