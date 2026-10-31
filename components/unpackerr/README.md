@@ -34,9 +34,9 @@ For details about configuring the [Ansible role for Unpackerr](https://github.co
 
 ## Dependencies
 
-This service requires the following other services for its web UI:
+This service can use the following other services:
 
-- [Traefik](../traefik/README.md) reverse-proxy server
+- [Traefik](../traefik/README.md) reverse-proxy server, for serving the web UI (optional)
 
 ## Configuration
 
