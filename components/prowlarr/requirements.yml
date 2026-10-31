@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prowlarr.git
-  version: v2.6.5-2
+  version: v2.7.0-0
   name: prowlarr
