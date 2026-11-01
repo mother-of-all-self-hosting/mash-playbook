@@ -12,8 +12,9 @@ pdfding_identifier: "{{ mash_playbook_service_identifier_prefix }}pdfding"
 
 pdfding_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}pdfding"
 
-pdfding_uid: "{{ mash_playbook_uid }}"
-pdfding_gid: "{{ mash_playbook_gid }}"
+# Run as root only
+pdfding_uid: "0"
+pdfding_gid: "0"
 
 pdfding_systemd_required_services_list_auto: |
   {{
