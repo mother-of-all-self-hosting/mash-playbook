@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-kukaroll.git
-  version: v2026.10.30.0-0
+  version: v2026.10.30.0-1
   name: kukaroll
