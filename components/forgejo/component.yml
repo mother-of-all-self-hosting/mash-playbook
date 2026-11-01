@@ -36,7 +36,7 @@ inject:
       - name: "{{ forgejo_database_name }}"
         username: "{{ forgejo_database_postgres_username }}"
         password: "{{ forgejo_database_postgres_password }}"
-        when: "{{ forgejo_enabled and (forgejo_database_postgres_hostname == postgres_connection_hostname or forgejo_database_postgres_socket_enabled) and forgejo_database_type == 'postgres' }}"
+        when: "{{ forgejo_enabled and (forgejo_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and forgejo_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or forgejo_database_postgres_socket_enabled) and forgejo_database_type == 'postgres' }}"
   traefik:
     entrypoints:
       - name: "{{ forgejo_container_labels_traefik_tcp_entrypoints }}"

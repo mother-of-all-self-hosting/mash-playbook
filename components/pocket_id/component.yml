@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -21,4 +21,4 @@ inject:
       - name: "{{ pocket_id_database_name }}"
         username: "{{ pocket_id_database_username }}"
         password: "{{ pocket_id_database_password }}"
-        when: "{{ pocket_id_enabled and (pocket_id_database_hostname == postgres_connection_hostname or pocket_id_database_socket_enabled) and pocket_id_database_type == 'postgres' }}"
+        when: "{{ pocket_id_enabled and (pocket_id_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and pocket_id_database_hostname == pgbouncer_connection_hostname | default('')) or pocket_id_database_socket_enabled) and pocket_id_database_type == 'postgres' }}"

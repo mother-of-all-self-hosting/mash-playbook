@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
 # SPDX-FileCopyrightText: 2024 Julian-Samuel Gebühr
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -27,4 +28,4 @@ inject:
       - name: "{{ paperless_database_name }}"
         username: "{{ paperless_database_postgres_username }}"
         password: "{{ paperless_database_postgres_password }}"
-        when: "{{ paperless_enabled and (paperless_database_postgres_hostname == postgres_connection_hostname or paperless_database_postgres_socket_enabled) and paperless_database_type == 'postgres' }}"
+        when: "{{ paperless_enabled and (paperless_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and paperless_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or paperless_database_postgres_socket_enabled) and paperless_database_type == 'postgres' }}"

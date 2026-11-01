@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -21,4 +22,4 @@ inject:
       - name: "{{ oxitraffic_database_name }}"
         username: "{{ oxitraffic_database_username }}"
         password: "{{ oxitraffic_database_password }}"
-        when: "{{ oxitraffic_enabled and (oxitraffic_database_hostname == postgres_connection_hostname or oxitraffic_database_socket_enabled) }}"
+        when: "{{ oxitraffic_enabled and (oxitraffic_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and oxitraffic_database_hostname == pgbouncer_connection_hostname | default('')) or oxitraffic_database_socket_enabled) }}"

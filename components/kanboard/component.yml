@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -27,4 +27,4 @@ inject:
       - name: "{{ kanboard_database_name }}"
         username: "{{ kanboard_database_postgres_username }}"
         password: "{{ kanboard_database_postgres_password }}"
-        when: "{{ kanboard_enabled and (kanboard_database_postgres_hostname == postgres_connection_hostname or kanboard_database_postgres_socket_enabled) and kanboard_database_type == 'postgres' }}"
+        when: "{{ kanboard_enabled and (kanboard_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and kanboard_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or kanboard_database_postgres_socket_enabled) and kanboard_database_type == 'postgres' }}"

@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -27,7 +27,7 @@ inject:
       - name: "{{ mumble_database_name }}"
         username: "{{ mumble_database_postgres_username }}"
         password: "{{ mumble_database_postgres_password }}"
-        when: "{{ mumble_enabled and mumble_database_postgres_hostname == postgres_connection_hostname and mumble_database_type == 'postgres' }}"
+        when: "{{ mumble_enabled and (mumble_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and mumble_database_postgres_hostname == pgbouncer_connection_hostname | default(''))) and mumble_database_type == 'postgres' }}"
   traefik:
     certificate_domains:
       - hostname: "{{ mumble_hostname }}"

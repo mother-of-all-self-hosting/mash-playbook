@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -21,4 +21,4 @@ inject:
       - name: "{{ ghostfolio_database_name }}"
         username: "{{ ghostfolio_database_username }}"
         password: "{{ ghostfolio_database_password }}"
-        when: "{{ ghostfolio_enabled and (ghostfolio_database_hostname == postgres_connection_hostname or ghostfolio_database_socket_enabled) }}"
+        when: "{{ ghostfolio_enabled and (ghostfolio_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and ghostfolio_database_hostname == pgbouncer_connection_hostname | default('')) or ghostfolio_database_socket_enabled) }}"

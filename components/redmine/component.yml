@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
 # SPDX-FileCopyrightText: 2023 aine-etke
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -37,4 +38,4 @@ inject:
       - name: "{{ redmine_database_name }}"
         username: "{{ redmine_database_postgres_username }}"
         password: "{{ redmine_database_postgres_password }}"
-        when: "{{ redmine_enabled and (redmine_database_postgres_hostname == postgres_connection_hostname or redmine_database_postgres_socket_enabled) and redmine_database_type == 'postgres' }}"
+        when: "{{ redmine_enabled and (redmine_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and redmine_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or redmine_database_postgres_socket_enabled) and redmine_database_type == 'postgres' }}"

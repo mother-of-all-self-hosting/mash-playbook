@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -35,7 +35,7 @@ inject:
       - name: "{{ gitea_database_name }}"
         username: "{{ gitea_database_postgres_username }}"
         password: "{{ gitea_database_postgres_password }}"
-        when: "{{ gitea_enabled and (gitea_database_postgres_hostname == postgres_connection_hostname or gitea_database_postgres_socket_enabled) and gitea_database_type == 'postgres' }}"
+        when: "{{ gitea_enabled and (gitea_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and gitea_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or gitea_database_postgres_socket_enabled) and gitea_database_type == 'postgres' }}"
   traefik:
     entrypoints:
       - name: "{{ gitea_container_labels_traefik_tcp_entrypoints }}"

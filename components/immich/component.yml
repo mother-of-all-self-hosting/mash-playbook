@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -27,4 +28,4 @@ inject:
         username: "{{ immich_database_username }}"
         password: "{{ immich_database_password }}"
         additional_sql_queries: "{{ [('\\c ' ~ immich_database_name)] + immich_database_preparation_sql_queries }}"
-        when: "{{ immich_enabled and immich_server_enabled and immich_database_hostname == postgres_identifier }}"
+        when: "{{ immich_enabled and immich_server_enabled and (immich_database_hostname == postgres_identifier or (pgbouncer_enabled | default(false) and immich_database_hostname == pgbouncer_connection_hostname | default(''))) }}"

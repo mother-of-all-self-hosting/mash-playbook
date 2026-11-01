@@ -27,4 +27,4 @@ inject:
       - name: "{{ authelia_database_name }}"
         username: "{{ authelia_database_postgres_username }}"
         password: "{{ authelia_database_postgres_password }}"
-        when: "{{ authelia_enabled and (authelia_database_postgres_hostname == postgres_connection_hostname or authelia_database_postgres_socket_enabled) and authelia_database_type == 'postgres' }}"
+        when: "{{ authelia_enabled and (authelia_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and authelia_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or authelia_database_postgres_socket_enabled) and authelia_database_type == 'postgres' }}"
