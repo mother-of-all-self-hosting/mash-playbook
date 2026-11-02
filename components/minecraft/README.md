@@ -24,15 +24,6 @@ For details about configuring the [Ansible role for Minecraft Server](https://gi
 
 ## Exposing plugin web interfaces (BlueMap, Dynmap, …)
 
-Some plugins (e.g. BlueMap, [Dynmap](https://github.com/webbukkit/dynmap)) run a web server inside the Minecraft container. To route such an interface through [Traefik](../traefik/README.md), list it under `minecraft_web_interfaces`:
+Plugins such as [BlueMap](https://bluemap.bluecolored.de/) and [Dynmap](https://github.com/webbukkit/dynmap) can run a web server inside the Minecraft container. Configure them in `minecraft_web_interfaces`; the playbook joins the container to the Traefik network automatically when the list is not empty.
 
-```yaml
-minecraft_web_interfaces:
-  - name: bluemap
-    hostname: bluemap.example.com
-    port: 8100
-```
-
-Each entry needs a `name` (used to build the Traefik router name), the `hostname` to serve it on, and the `port` it listens on inside the container. The Minecraft container is joined to the Traefik network and gets a router per interface, so multiple plugins can be exposed from the same container.
-
-This requires [Traefik](../traefik/README.md) to be configured as the reverse-proxy. The interface is only reachable over the container network — no host port is published.
+Refer to the role's documentation for the configuration details: [Exposing plugin web interfaces through Traefik](https://github.com/mother-of-all-self-hosting/ansible-role-minecraft/blob/main/docs/configuring-minecraft.md#exposing-plugin-web-interfaces-through-traefik-optional).
