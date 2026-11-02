@@ -1,4 +1,8 @@
+# SPDX-FileCopyrightText: 2026 MASH project contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
-minecraft_web_interfaces_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-minecraft_web_interfaces_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+minecraft_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+minecraft_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
