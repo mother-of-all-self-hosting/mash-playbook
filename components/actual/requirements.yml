@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://progressiv.radicle.garden/z2chD7Kt74JwEMafxTooxN7MaeYtK.git
-  version: v26.9.0-0
+  version: v26.11.0-0
   name: actual
