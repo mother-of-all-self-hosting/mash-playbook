@@ -185,6 +185,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Notfellchen](https://codeberg.org/moanos/notfellchen) | List animals available for adoption to increase their chance of finding a forever-home | [Link](../components/notfellchen/README.md) |
 | [ntfy](https://ntfy.sh/) | HTTP-based pub-sub notification service to send you push notifications from any computer | [Link](../components/ntfy/README.md) |
 | [OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) | A reverse proxy and static file server that provides authentication using OpenID Connect Providers | [Link](../components/oauth2_proxy/README.md) |
+| [obfs4 bridge](https://community.torproject.org/relay/setup/bridge/) | Help users connect to the [Tor](https://torproject.org/) network in places where Tor is blocked | [Link](../components/obfs4_bridge/README.md) |
 | [Ollama](https://ollama.com/) | Server for running large language models on your own hardware | [Link](../components/ollama/README.md) |
 | [OmniTools](https://github.com/iib0011/omni-tools) | Web app offering a variety of online tools to simplify everyday tasks | [Link](../components/omnitools/README.md) |
 | [Onion Service with C Tor](https://community.torproject.org/onion-services/) | Run Onion Service with [C Tor](https://gitlab.torproject.org/tpo/core/tor) | [Link](../components/onion_service_tor/README.md) |
