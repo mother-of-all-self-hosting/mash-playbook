@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z2zadyxdG33vwpHEHDWFpRH6qtacQ.git
+  version: v0.26-0
+  name: obfs4_bridge
