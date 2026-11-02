@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-versatiles.git
-  version: v5.4.1-0
+  version: v5.6.0-0
   name: versatiles
