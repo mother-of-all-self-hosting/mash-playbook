@@ -266,6 +266,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) | A server agent to help you collect metrics from your stacks, sensors, and systems | [Link](../components/telegraf/README.md) |
 | [Termix](https://docs.termix.site/) | Server management platform with SSH terminal | [Link](../components/termix/README.md) |
 | [The Lounge](https://thelounge.chat/) | Web IRC client with modern features, which keeps a persistent connection to IRC servers | [Link](../components/thelounge/README.md) |
+| [tinc](https://www.tinc-vpn.org/) | Mesh VPN daemon | [Link](../components/tinc/README.md) |
 | [Tinyauth](https://tinyauth.app/) | Authentication middleware that adds a login screen or OAuth with providers to Docker services | [Link](../components/tinyauth/README.md) |
 | [Traefik](https://doc.traefik.io/traefik/) | A container-aware reverse-proxy server | [Link](../components/traefik/README.md) |
 | [traefik-certs-dumper](https://github.com/ldez/traefik-certs-dumper) | Dump ACME data from Traefik to certificates | [Link](../components/traefik_certs_dumper/README.md) |
