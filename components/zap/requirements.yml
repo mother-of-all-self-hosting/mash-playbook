@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/littlecedar/ansible-role-zap.git
+  version: v0.1.0
+  name: zap

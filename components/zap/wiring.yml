@@ -1,0 +1,11 @@
+zap_enabled: false
+
+zap_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}zap"
+
+zap_image: ghcr.io/zaproxy/zaproxy:stable
+
+zap_bind_address: "127.0.0.1"
+
+zap_port: 8080
+
+zap_api_key: ""

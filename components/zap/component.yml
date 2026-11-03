@@ -1,0 +1,15 @@
+# SPDX-FileCopyrightText: 2026 Zachary Hickman
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+activation_prefix: zap_
+
+setup:
+  entry:
+    - when: zap_enabled | bool
+      role: galaxy/zap
+      tags:
+        - setup-all
+        - setup-zap
