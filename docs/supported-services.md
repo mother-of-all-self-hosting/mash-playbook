@@ -55,7 +55,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Borg UI](https://github.com/karanhudia/borg-ui) | Unofficial web interface for BorgBackup | [Link](../components/borg_ui/README.md) |
 | [Calibre-Web](https://github.com/janeczku/calibre-web) | Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database | [Link](../components/calibre_web/README.md) |
 | [Calibre-Web Automated](https://github.com/crocodilestick/Calibre-Web-Automated) | Web application based on [Calibre-Web](https://github.com/janeczku/calibre-web) with additional features and automation | [Link](../components/calibre_web_automated/README.md) |
-| [Cap Standalone](https://capjs.js.org/guide/standalone/) | Backend of Cap, a POW Captcha | [Link](../components/cap/README.md) |
+| [Cap Standalone](https://trycap.dev/guide/standalone/) | Backend of Cap, a POW Captcha | [Link](../components/cap/README.md) |
 | [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | Website change detection and restock monitoring service | [Link](../components/changedetection/README.md) |
 | [ChiefOnboarding](https://docs.chiefonboarding.com) | Employee onboarding platform | [Link](../components/chiefonboarding/README.md) |
 | [Cinny](https://github.com/ajbura/cinny) | Web client for [Matrix](https://matrix.org/) | [Link](../components/cinny/README.md) |
