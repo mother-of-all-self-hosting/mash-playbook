@@ -83,4 +83,3 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 ## Related services
 
 - [Plex Media Server](../plex/README.md) — A personal media server
-- [Seerr](../seerr/README.md) — A media request and discovery manager
