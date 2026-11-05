@@ -62,7 +62,7 @@ tautulli_hostname: tautulli.example.com
 
 ### Connecting to Plex Media Server
 
-If [Plex Media Server](../plex/README.md) is enabled as well, the playbook wires Tautulli to it automatically: Tautulli joins Plex Media Server's container network and starts along with it.
+If [Plex Media Server](../plex/README.md) is enabled as well, the playbook wires Tautulli to it automatically: Tautulli joins Plex Media Server's container network, and starting Tautulli starts Plex Media Server too.
 
 Tautulli's log viewer can also show the logs of Plex Media Server, if its data directory is mounted into Tautulli. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-tautulli/blob/main/docs/configuring-tautulli.md#mounting-plex-media-server-logs-optional) on the role's documentation for details.
 
