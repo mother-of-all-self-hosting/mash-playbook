@@ -232,6 +232,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Radicle node](https://radicle.network/nodes/seed.radicle.dev/rad%3Az3gqcJUoA1n9HaHKufZs5FCSGazv5) | Network daemon for the [Radicle](https://radicle.dev/) network | [Link](../components/radicle_node/README.md) |
 | [ReactFlux](https://github.com/electh/ReactFlux) | Third-party web frontend for Miniflux | [Link](../components/reactflux/README.md) |
 | [Readeck](https://readeck.org) | A bookmark manager and a read-later tool combined in one | [Link](../components/readeck/README.md) |
+| [Recyclarr](https://recyclarr.dev/) | A tool to sync the recommended settings of the TRaSH Guides to Sonarr and Radarr | [Link](../components/recyclarr/README.md) |
 | [Redis](https://redis.io/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker | [Link](../components/redis/README.md) |
 | [Redlib](https://github.com/redlib-org/redlib) | Frontend for Reddit | [Link](../components/redlib/README.md) |
 | [Redmine](https://redmine.org/) | A flexible project management web application | [Link](../components/redmine/README.md) |

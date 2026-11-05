@@ -66,7 +66,7 @@ Unpackerr does nothing until it is given access to the download directory and at
 
 ### Connecting to Sonarr, Radarr and Lidarr
 
-If [Sonarr](../sonarr/README.md), [Radarr](../radarr/README.md) or [Lidarr](../lidarr/README.md) is enabled as well, the playbook wires Unpackerr to it automatically: Unpackerr joins its container network and starts along with it.
+If [Sonarr](../sonarr/README.md), [Radarr](../radarr/README.md) or [Lidarr](../lidarr/README.md) is enabled as well, the playbook wires Unpackerr to it automatically: Unpackerr joins its container network, and starting Unpackerr starts it too.
 
 Unpackerr still needs the URL and the API key of each Starr app. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-unpackerr/blob/main/docs/configuring-unpackerr.md#connecting-unpackerr-to-the-starr-apps) on the role's documentation for details.
 
