@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+tinyauth_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+tinyauth_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+tinyauth_database_password: "{{ (mash_playbook_generic_secret_key + ':db.tinyauth') | hash('sha512') | to_uuid }}"
+tinyauth_database_sslmode: "{{ 'disable' if postgres_enabled and (tinyauth_database_hostname == postgres_connection_hostname or tinyauth_database_socket_enabled) else 'prefer' }}"
+tinyauth_database_socket_path_host: "{{ postgres_run_path }}"
