@@ -45,6 +45,21 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 recyclarr_enabled: true
 
+# The Sonarr and Radarr instances to sync, with their URLs and API keys
+recyclarr_config_sonarr:
+  sonarr:
+    base_url: "http://{{ sonarr_identifier }}:{{ sonarr_container_http_port }}"
+    api_key: YOUR_SONARR_API_KEY_HERE
+    quality_definition:
+      type: series
+
+recyclarr_config_radarr:
+  radarr:
+    base_url: "http://{{ radarr_identifier }}:{{ radarr_container_http_port }}"
+    api_key: YOUR_RADARR_API_KEY_HERE
+    quality_definition:
+      type: movie
+
 ########################################################################
 #                                                                      #
 # /recyclarr                                                           #
@@ -52,13 +67,13 @@ recyclarr_enabled: true
 ########################################################################
 ```
 
-Recyclarr also needs at least one Sonarr or Radarr instance to sync to, with its URL and API key. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-recyclarr/blob/main/docs/configuring-recyclarr.md#configuring-sonarr-and-radarr-instances) on the role's documentation for how to configure them.
+Keep at least one of `recyclarr_config_sonarr` and `recyclarr_config_radarr`. The example only syncs the quality sizes of the TRaSH Guides. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-recyclarr/blob/main/docs/configuring-recyclarr.md#configuring-sonarr-and-radarr-instances) on the role's documentation for where to find the API keys and what else an instance can sync.
 
 ### Connecting to Sonarr and Radarr
 
-If [Sonarr](../sonarr/README.md) or [Radarr](../radarr/README.md) is enabled as well, the playbook wires Recyclarr to it automatically: Recyclarr joins its container network and starts along with it.
+If [Sonarr](../sonarr/README.md) or [Radarr](../radarr/README.md) is enabled as well, the playbook wires Recyclarr to it automatically: Recyclarr joins its container network, and starting Recyclarr starts it too.
 
-Use `http://mash-sonarr:8989` and `http://mash-radarr:7878` as their `base_url`. If a path prefix is set for Sonarr or Radarr, append it to that URL.
+The `base_url` values above reach them by their container names. If a path prefix is set for Sonarr or Radarr, append it to that URL. For an instance on another server, use its URL instead.
 
 ## Usage
 
