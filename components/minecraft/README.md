@@ -21,3 +21,9 @@ For details about configuring the [Ansible role for Minecraft Server](https://gi
 
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-minecraft/blob/main/docs/configuring-minecraft.md) online
 - 📁 `roles/galaxy/minecraft/docs/configuring-minecraft.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
+
+## Exposing plugin web interfaces (BlueMap, Dynmap, …)
+
+Plugins such as [BlueMap](https://bluemap.bluecolored.de/) and [Dynmap](https://github.com/webbukkit/dynmap) can run a web server inside the Minecraft container. Configure them in `minecraft_web_interfaces`; the playbook joins the container to the Traefik network automatically when the list is not empty.
+
+Refer to the role's documentation for the configuration details: [Exposing plugin web interfaces through Traefik](https://github.com/mother-of-all-self-hosting/ansible-role-minecraft/blob/main/docs/configuring-minecraft.md#exposing-plugin-web-interfaces-through-traefik-optional).
