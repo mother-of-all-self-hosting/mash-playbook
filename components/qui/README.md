@@ -62,7 +62,7 @@ qui_hostname: qui.example.com
 
 ### Connecting to qBittorrent
 
-If [qBittorrent](../qbittorrent/README.md) is enabled as well, the playbook wires qui to it automatically: qui joins qBittorrent's container network and starts along with it.
+If [qBittorrent](../qbittorrent/README.md) is enabled as well, the playbook wires qui to it automatically: qui joins qBittorrent's container network, and starting qui starts qBittorrent too.
 
 qui's Local Filesystem Access features additionally need qBittorrent's download directory mounted into qui. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-qui/blob/main/docs/configuring-qui.md#enabling-local-filesystem-access-optional) on the role's documentation for details.
 
