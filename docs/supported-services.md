@@ -262,6 +262,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Syncthing](https://syncthing.net/) | A continuous file synchronization program which synchronizes files between two or more computers in real time | [Link](../components/syncthing/README.md) |
 | [Tandoor](https://docs.tandoor.dev/) | The recipe manager that allows you to manage your ever growing collection of digital recipes | [Link](../components/tandoor/README.md) |
 | [Tasks.md](https://hub.docker.com/r/baldissaramatheus/tasks.md) | Markdown file-based task management board | [Link](../components/tasksmd/README.md) |
+| [Tautulli](https://tautulli.com/) | A monitoring and tracking tool for Plex Media Server | [Link](../components/tautulli/README.md) |
 | [Teable](https://github.com/teableio/teable) | Database management platform with spreadsheet-like interface | [Link](../components/teable/README.md) |
 | [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) | A server agent to help you collect metrics from your stacks, sensors, and systems | [Link](../components/telegraf/README.md) |
 | [Termix](https://docs.termix.site/) | Server management platform with SSH terminal | [Link](../components/termix/README.md) |

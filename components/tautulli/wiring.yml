@@ -1,0 +1,31 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 spatterlight
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+tautulli_enabled: false
+
+tautulli_identifier: "{{ mash_playbook_service_identifier_prefix }}tautulli"
+
+tautulli_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}tautulli"
+
+tautulli_uid: "{{ mash_playbook_uid }}"
+tautulli_gid: "{{ mash_playbook_gid }}"
+
+tautulli_systemd_wanted_services_list_auto: |
+  {{
+    ([plex_identifier ~ '.service'] if plex_enabled | default(false) else [])
+  }}
+
+tautulli_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([plex_container_network] if plex_enabled | default(false) and tautulli_container_network != plex_container_network else [])
+  }}
+
+tautulli_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+tautulli_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
