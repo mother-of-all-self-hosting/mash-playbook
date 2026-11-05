@@ -240,6 +240,21 @@ reitti_systemd_required_services_list_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
+### Integrating with Immich (optional)
+
+Reitti can be integrated with [Immich](../immich/README.md).
+
+If Reitti and Immich do not share a network (like Traefik), you can connect the Reitti container network to Immich by adding the following configuration to your `vars.yml` file:
+
+```yaml
+immich_container_additional_networks_custom:
+  - "{{ reitti_container_network }}"
+```
+
+On the settings UI, specify `http://mash-immich:2283` to the Immich Server URL.
+
+Refer to [this page](https://www.dedicatedcode.com/projects/reitti/latest/configurations/photo-integration/) on the official documentation for details about how to set it up.
+
 ### Usage
 
 After running the command for installation, the Reitti instance becomes available at the URL specified with `reitti_hostname`. With the configuration above, the service is hosted at `https://reitti.example.com`.
