@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -18,12 +18,16 @@ radicle_httpd_gid: "{{ radicle_node_gid }}"
 
 radicle_httpd_systemd_required_services_list_auto: |
   {{
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) and radicle_search_enabled | default(false) else [])
+    +
     ([radicle_node_identifier ~ '.service'] if radicle_node_enabled else [])
   }}
 
 radicle_httpd_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and radicle_search_enabled | default(false) and radicle_httpd_container_network != meilisearch_container_network else [])
     +
     ([radicle_node_container_network] if radicle_node_enabled and radicle_httpd_container_network != radicle_node_container_network else [])
   }}

@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+activation_prefix: radicle_search_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ radicle_search_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ radicle_search_restart_necessary | bool }}"
+        groups: [mash, radicle, radicle-search]
+        when: "{{ radicle_search_enabled }}"
