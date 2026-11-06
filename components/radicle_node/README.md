@@ -90,4 +90,5 @@ Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/
 - [GitLab](../gitlab/README.md) — Complete DevOps platform (Git hosting service, CI/CD, etc.)
 - [Radicle Explorer](../radicle_explorer/README.md) — Radicle user interface for the web browser
 - [Radicle HTTP Daemon](../radicle_httpd/README.md) — Gateway between the Radicle protocol and the HTTP protocol
+- [radicle-search](../radicle_search/README.md) — Indexing daemon for Radicle
 - [Woodpecker CI](../woodpecker_ci_server/README.md) — Extensible Continuous Integration (CI) engine

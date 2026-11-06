@@ -73,3 +73,4 @@ Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/
 
 - [Radicle Explorer](../radicle_explorer/README.md) — Radicle user interface for the web browser
 - [Radicle node](../radicle_node/README.md) — Network daemon for the Radicle network
+- [radicle-search](../radicle_search/README.md) — Indexing daemon for Radicle
