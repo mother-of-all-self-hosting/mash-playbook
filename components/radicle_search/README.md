@@ -70,4 +70,3 @@ Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/
 
 - [Radicle HTTP Daemon](../radicle_httpd/README.md) — Gateway between the Radicle protocol and the HTTP protocol
 - [Radicle node](../radicle_node/README.md) — Network daemon for the Radicle network
-- [radicle-search](../radicle_search/README.md) — Indexing daemon for Radicle
