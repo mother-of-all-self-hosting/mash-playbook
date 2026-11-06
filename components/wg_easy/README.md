@@ -99,4 +99,3 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 ## Related services
 
 - [AdGuard Home](../adguard_home/README.md) — A network-wide DNS software for blocking ads & tracking
-- [Pi-hole](../pihole/README.md) — A DNS sinkhole which blocks ads and trackers network-wide

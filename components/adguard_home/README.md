@@ -102,4 +102,3 @@ Adguard Home does not currently support being set up with a non-`root` account (
 ## Related services
 
 - [Pi-hole](../pihole/README.md) — A DNS sinkhole which blocks ads and trackers network-wide
-- [WireGuard Easy](../wg_easy/README.md) — The easiest way to run WireGuard VPN + Web-based Admin UI
