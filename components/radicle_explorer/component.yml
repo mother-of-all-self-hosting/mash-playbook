@@ -14,5 +14,5 @@ inject:
       - name: "{{ radicle_explorer_identifier }}.service"
         priority: 2000
         restart_necessary: "{{ radicle_explorer_restart_necessary | bool }}"
-        groups: [mash, radicle-explorer]
+        groups: [mash, radicle, radicle-explorer]
         when: "{{ radicle_explorer_enabled }}"

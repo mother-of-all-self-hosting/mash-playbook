@@ -14,5 +14,5 @@ inject:
       - name: "{{ radicle_httpd_identifier }}.service"
         priority: 2000
         restart_necessary: "{{ radicle_httpd_restart_necessary | bool }}"
-        groups: [mash, radicle-httpd]
+        groups: [mash, radicle, radicle-httpd]
         when: "{{ radicle_httpd_enabled }}"

@@ -14,5 +14,5 @@ inject:
       - name: "{{ radicle_node_identifier }}.service"
         priority: 2000
         restart_necessary: "{{ radicle_node_restart_necessary | bool }}"
-        groups: [mash, radicle-node]
+        groups: [mash, radicle, radicle-node]
         when: "{{ radicle_node_enabled }}"
