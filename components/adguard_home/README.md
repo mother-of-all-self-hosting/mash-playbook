@@ -98,3 +98,8 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 ## Troubleshooting and workaround
 
 Adguard Home does not currently support being set up with a non-`root` account (<https://github.com/AdguardTeam/AdGuardHome/issues/4714>). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home/blob/main/docs/configuring-adguard-home.md#workaround-for-the-issue-related-non-root-account) on the role's documentation for the workaround.
+
+## Related services
+
+- [Pi-hole](../pihole/README.md) — A DNS sinkhole which blocks ads and trackers network-wide
+- [WireGuard Easy](../wg_easy/README.md) — The easiest way to run WireGuard VPN + Web-based Admin UI
