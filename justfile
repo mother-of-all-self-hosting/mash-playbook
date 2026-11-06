@@ -203,6 +203,10 @@ run +extra_args: _prepare-files (_install-roles "--quiet")
 run-tags tags *extra_args:
     {{ just_executable() }} --justfile {{ justfile() }} run --tags={{ tags }} {{ extra_args }}
 
+# Lists the tags available in the playbook
+list-tags: _prepare-files (_install-roles "--quiet")
+    ansible-playbook -i {{ inventory }} setup.yml --list-tags
+
 # Starts all services
 start-all *extra_args: (run-tags "start-all" extra_args)
 
