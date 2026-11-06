@@ -204,6 +204,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [PeerTube](https://joinpeertube.org/) | ActivityPub federated video platform | [Link](../components/peertube/README.md) |
 | [pgAdmin](https://www.pgadmin.org/) | Web-based Postgres database server administration software | [Link](../components/pgadmin/README.md) |
 | [phpMyAdmin](https://www.phpmyadmin.net/) | Web-based MySQL or MariaDB database server administration software | [Link](../components/phpmyadmin/README.md) |
+| [Pi-hole](https://pi-hole.net/) | A DNS sinkhole which blocks ads and trackers network-wide | [Link](../components/pihole/README.md) |
 | [PinePods](https://www.pinepods.online/) | Multi-user podcast management system | [Link](../components/pinepods/README.md) |
 | [Plausible Analytics](https://plausible.io/) | Intuitive and lightweight web analytics | [Link](../components/plausible/README.md) |
 | [Pocket ID](https://pocket-id.org/) | OIDC provider for passkey-only authentication | [Link](../components/pocket_id/README.md) |

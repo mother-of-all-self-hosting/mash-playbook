@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-pihole.git
+  version: v2026.10.1-0
+  name: pihole
