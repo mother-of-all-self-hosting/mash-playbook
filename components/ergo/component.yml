@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -27,7 +27,7 @@ inject:
       - name: "{{ ergo_database_name_history }}"
         username: "{{ ergo_database_postgres_username }}"
         password: "{{ ergo_database_postgres_password }}"
-        when: "{{ ergo_enabled and (ergo_database_postgres_hostname == postgres_connection_hostname or ergo_database_postgres_socket_enabled) and ergo_config_datastore_enabled and ergo_database_type == 'postgres' }}"
+        when: "{{ ergo_enabled and (ergo_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and ergo_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or ergo_database_postgres_socket_enabled) and ergo_config_datastore_enabled and ergo_database_type == 'postgres' }}"
   traefik:
     entrypoints:
       - name: "{{ ergo_container_labels_traefik_entrypoints }}"

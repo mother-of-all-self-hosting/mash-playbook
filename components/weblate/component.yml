@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -21,4 +21,4 @@ inject:
       - name: "{{ weblate_database_name }}"
         username: "{{ weblate_database_username }}"
         password: "{{ weblate_database_password }}"
-        when: "{{ weblate_enabled and (weblate_database_hostname == postgres_connection_hostname or weblate_database_socket_enabled) }}"
+        when: "{{ weblate_enabled and (weblate_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and weblate_database_hostname == pgbouncer_connection_hostname | default('')) or weblate_database_socket_enabled) }}"

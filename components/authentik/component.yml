@@ -35,4 +35,4 @@ inject:
       - name: "{{ authentik_database_name }}"
         username: "{{ authentik_database_username }}"
         password: "{{ authentik_database_password }}"
-        when: "{{ authentik_enabled and authentik_database_hostname == postgres_connection_hostname }}"
+        when: "{{ authentik_enabled and (authentik_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and authentik_database_hostname == pgbouncer_connection_hostname | default(''))) }}"

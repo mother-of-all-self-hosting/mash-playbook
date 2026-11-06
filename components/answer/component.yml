@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -27,4 +27,4 @@ inject:
       - name: "{{ answer_database_name }}"
         username: "{{ answer_database_postgres_username }}"
         password: "{{ answer_database_postgres_password }}"
-        when: "{{ answer_enabled and (answer_database_postgres_hostname == postgres_connection_hostname or answer_database_postgres_socket_enabled) and answer_database_type == 'postgres' }}"
+        when: "{{ answer_enabled and (answer_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and answer_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or answer_database_postgres_socket_enabled) and answer_database_type == 'postgres' }}"

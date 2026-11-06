@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
 # SPDX-FileCopyrightText: 2024 IUCCA
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -29,4 +30,4 @@ inject:
       - name: "{{ tandoor_database_name }}"
         username: "{{ tandoor_database_username }}"
         password: "{{ tandoor_database_password }}"
-        when: "{{ tandoor_enabled and tandoor_database_hostname == postgres_connection_hostname and tandoor_database_type == 'postgres' }}"
+        when: "{{ tandoor_enabled and (tandoor_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and tandoor_database_hostname == pgbouncer_connection_hostname | default(''))) and tandoor_database_type == 'postgres' }}"

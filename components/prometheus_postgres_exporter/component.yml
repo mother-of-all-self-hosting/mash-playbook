@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -20,4 +21,4 @@ inject:
       - name: "{{ prometheus_postgres_exporter_database_name }}"
         username: "{{ prometheus_postgres_exporter_database_username }}"
         password: "{{ prometheus_postgres_exporter_database_password }}"
-        when: "{{ prometheus_postgres_exporter_enabled and prometheus_postgres_exporter_database_hostname == postgres_connection_hostname }}"
+        when: "{{ prometheus_postgres_exporter_enabled and (prometheus_postgres_exporter_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and prometheus_postgres_exporter_database_hostname == pgbouncer_connection_hostname | default(''))) }}"
