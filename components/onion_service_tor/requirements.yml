@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://progressiv.radicle.garden/znw3BPXrSbPWcARpYbk3yGy4iGQ4.git
-  version: v0.0.0-4
+  version: v0.0.0-5
   name: onion_service_tor
