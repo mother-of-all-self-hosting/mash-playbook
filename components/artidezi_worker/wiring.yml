@@ -1,0 +1,15 @@
+# SPDX-FileCopyrightText: 2026 Slavi Pantaleev
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+artidezi_worker_enabled: false
+
+artidezi_worker_identifier: "{{ mash_playbook_service_identifier_prefix }}artidezi-worker"
+
+artidezi_worker_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}artidezi-worker"
+
+artidezi_worker_uid: "{{ mash_playbook_uid }}"
+artidezi_worker_gid: "{{ mash_playbook_gid }}"

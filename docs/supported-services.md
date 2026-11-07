@@ -37,6 +37,8 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [APISIX](https://apisix.apache.org/docs/apisix/getting-started/README/) | An API Gateway, Ingress Controller, etc | [Link](../components/apisix/README.md) |
 | [Apprise API](https://github.com/caronc/apprise-api) | Lightweight REST framework that wraps the [Apprise](https://github.com/caronc/apprise) Notification Library | [Link](../components/apprise/README.md) |
 | [Appsmith](https://www.appsmith.com/) | Platform for building and deploying custom internal tools and applications without writing code | [Link](../components/appsmith/README.md) |
+| [ArtiDezi](https://github.com/devture/artidezi) orchestrator | The trusted server of ArtiDezi, a self-hosted maintenance agent | [Link](../components/artidezi_orchestrator/README.md) |
+| [ArtiDezi](https://github.com/devture/artidezi) worker | Runs coding agents for an ArtiDezi orchestrator | [Link](../components/artidezi_worker/README.md) |
 | [asciinema server](https://github.com/asciinema/asciinema-server) | Server-side component of the [asciinema](https://docs.asciinema.org/) system, a suite of tools for recording, streaming, and sharing terminal sessions) | [Link](../components/asciinema_server/README.md) |
 | [Atuin server](https://docs.atuin.sh/self-hosting/server-setup/) | Data synchronization server for [Atuin](https://atuin.sh/) | [Link](../components/atuin/README.md) |
 | [audiobookshelf](https://www.audiobookshelf.org/) | Audiobook and podcast server | [Link](../components/audiobookshelf/README.md) |

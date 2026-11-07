@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2026 Slavi Pantaleev
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+artidezi_orchestrator_enabled: false
+
+artidezi_orchestrator_identifier: "{{ mash_playbook_service_identifier_prefix }}artidezi-orchestrator"
+
+artidezi_orchestrator_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}artidezi-orchestrator"
+
+artidezi_orchestrator_uid: "{{ mash_playbook_uid }}"
+artidezi_orchestrator_gid: "{{ mash_playbook_gid }}"
+
+artidezi_orchestrator_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+artidezi_orchestrator_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+artidezi_orchestrator_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
