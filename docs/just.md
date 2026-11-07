@@ -26,6 +26,7 @@ Here are some examples of shortcuts:
 | `just install-service miniflux`                | Run `just run --tags=install-miniflux,start-group --extra-vars=group=miniflux` with even less typing           |
 | `just list-services-all`                       | List all services supported by the playbook, with their descriptions                                           |
 | `just list-services-own`                       | List only the services in use by your inventory                                                                |
+| `just list-tags`                               | List the [playbook tags](playbook-tags.md) of the services in use by your inventory, one per line              |
 | `just start-all`                               | (Re-)starts all services                                                                                       |
 | `just stop-group postgres`                     | Stop only the Postgres service                                                                                 |
 
