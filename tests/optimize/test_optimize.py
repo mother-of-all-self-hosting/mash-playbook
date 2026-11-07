@@ -74,8 +74,6 @@ class Playbook:
         shutil.copy(REPO / "bin" / "install-roles.py", root / "bin" / "install-roles.py")
         shutil.copy(REPO / "bin" / "ansible-python.sh", root / "bin" / "ansible-python.sh")
         shutil.copytree(REPO / "components", root / "components")
-        (root / "docs").mkdir()
-        shutil.copy(REPO / "docs" / "supported-services.md", root / "docs" / "supported-services.md")
         self.inventory = root / "inventory"
 
     def write(self, relative_path, content, base=None):
@@ -416,15 +414,10 @@ class TestListServices(OptimizeTestCase):
         self.assertIn("gitea", services)
         self.assertNotIn("nextcloud", services)
 
-    def test_descriptions_are_plain_text(self):
+    def test_descriptions(self):
         self.standard_inventory()
         services = self.listed("list-services-all")
-        self.assertRegex(services["anki"], r"^anki\S* +Data synchronization server for Anki$")
-
-    def test_missing_descriptions_are_tolerated(self):
-        self.standard_inventory()
-        (self.pb.root / "docs" / "supported-services.md").unlink()
-        self.assertEqual(self.listed("list-services-own")["miniflux"], "miniflux")
+        self.assertRegex(services["anki"], r"^anki +Data synchronization server for Anki$")
 
     def test_nothing_is_written(self):
         self.standard_inventory()

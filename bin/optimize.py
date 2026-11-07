@@ -19,7 +19,6 @@
 
 import argparse
 import os
-import re
 import sys
 
 try:
@@ -349,24 +348,10 @@ def is_component_in_use(manifest, used_variable_names):
 
 # --- Listing services -----------------------------------------------------------------------------
 
-SUPPORTED_SERVICES_ROW = re.compile(r"^\|[^|]*\|(.*)\|[^|]*\.\./components/([^/]+)/README\.md[^|]*\|\s*$", re.MULTILINE)
-MARKDOWN_LINK = re.compile(r"\[([^\]]*)\]\([^)]*\)")
-
-
-def load_service_descriptions(path):
-    """Returns the descriptions (component name -> text) in docs/supported-services.md, if available."""
-    if not os.path.isfile(path):
-        return {}
-    return {
-        name: MARKDOWN_LINK.sub(r"\1", description).strip()
-        for description, name in SUPPORTED_SERVICES_ROW.findall(read_file(path))
-    }
-
-
-def print_services(components, names, descriptions):
+def print_services(components, names):
     # Components which run no service of their own (e.g. `docker`, `swap`) are not for `just install-service`
     services = {
-        name.replace("_", "-"): descriptions.get(name, "")
+        name.replace("_", "-"): components[name]["manifest"].get("description", "")
         for name in names
         if ((components[name]["manifest"].get("inject") or {}).get("systemd_service_manager") or {}).get("services")
     }
@@ -578,8 +563,7 @@ else:
     names = [name for name in sorted(components) if is_component_in_use(components[name]["manifest"], used_variable_names)]
 
 if args.list_services:
-    docs_path = os.path.join(os.path.dirname(args.components_path), "docs")
-    print_services(components, names, load_service_descriptions(os.path.join(docs_path, "supported-services.md")))
+    print_services(components, names)
     sys.exit(0)
 
 group_vars_files = generate_group_vars(components, names)
