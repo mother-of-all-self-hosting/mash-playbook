@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 2026-11-07
+
+### Components need a description
+
+This affects you only if your inventory has [components of its own](docs/extending-the-playbook.md) (e.g. in `inventory/components/`). If it has none, nothing changes for you.
+
+Each component's `component.yml` now needs a brief `description`, which `just list-services-all` and `just list-services-own` show. Until yours have one, the playbook stops with an error naming the file. Add it to each of your components:
+
+```yaml
+description: What this component does, in a few words
+```
+
 ## 2026-10-30
 
 ### Woodpecker CI's directories moved

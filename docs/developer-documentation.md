@@ -144,6 +144,9 @@ Components can also live in the inventory, to extend the playbook without changi
 <summary>Click here to display the details</summary>
 
 ```yaml
+# A brief description, as `just list-services-all` shows it
+description: What YOUR-SERVICE does, in a few words
+
 # The component is in use when the inventory sets any variable starting with this prefix (`''`: always in use)
 activation_prefix: YOUR-SERVICE_
 

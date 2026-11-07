@@ -678,6 +678,7 @@ class TestComponents(OptimizeTestCase):
         manifest = "miniflux/component.yml"
         cases = {
             "unknown key": lambda: self.edit_yaml(manifest, lambda data: data.update(no_such_field=True)),
+            "needs a `description`": lambda: self.edit_yaml(manifest, lambda data: data.pop("description")),
             "is not a component": lambda: self.edit_yaml(
                 manifest, lambda data: data["inject"].update(no_such_component={"services": []})
             ),
@@ -729,6 +730,7 @@ class TestInventoryComponents(OptimizeTestCase):
 
     HOOKS_COMPONENT = textwrap.dedent("""\
         activation_prefix: hooks_
+        description: Hooks
         setup:
           - priority: 200
             entry:
@@ -742,6 +744,7 @@ class TestInventoryComponents(OptimizeTestCase):
 
     NOTES_COMPONENT = textwrap.dedent("""\
         activation_prefix: notes_
+        description: Notes
         inject:
           systemd_service_manager:
             services:
@@ -955,7 +958,7 @@ class TestRoleInstallation(OptimizeTestCase):
         self.assertEqual(result.stderr, "")
 
     def test_roles_of_inventory_components(self):
-        self.pb.write("components/notes/component.yml", "activation_prefix: notes_\n")
+        self.pb.write("components/notes/component.yml", "activation_prefix: notes_\ndescription: Notes\n")
         self.pb.write("components/notes/requirements.yml", "- src: git+https://example.com/notes.git\n  version: v1.0.0\n  name: notes\n")
         self.pb.write("host_vars/a/vars.yml", "mash_playbook_generic_secret_key: x\nminiflux_enabled: true\nnotes_enabled: true\n")
         self.assertSucceeded(self.pb.just("roles", env=self.env))

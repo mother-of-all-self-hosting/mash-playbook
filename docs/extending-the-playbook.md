@@ -38,6 +38,7 @@ inventory/
 
 ```yaml
 # component.yml
+description: Runs my own tasks after all services are set up
 activation_prefix: hooks_
 
 setup:

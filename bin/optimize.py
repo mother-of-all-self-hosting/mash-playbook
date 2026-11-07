@@ -273,6 +273,8 @@ def validate_components(components):
             fail("{0} contains unknown keys: {1}".format(manifest_path, ", ".join(unknown)))
         if not isinstance(manifest.get("activation_prefix"), str):
             fail("{0} needs an `activation_prefix` (`''` for components which are always in use)".format(manifest_path))
+        if not isinstance(manifest.get("description"), str) or not manifest["description"].strip():
+            fail("{0} needs a `description` (a brief one, as `just list-services-all` shows it)".format(manifest_path))
 
         requirements_path = os.path.join(path, "requirements.yml")
         if os.path.exists(requirements_path):
@@ -351,13 +353,13 @@ def is_component_in_use(manifest, used_variable_names):
 def print_services(components, names):
     # Components which run no service of their own (e.g. `docker`, `swap`) are not for `just install-service`
     services = {
-        name.replace("_", "-"): components[name]["manifest"].get("description", "")
+        name.replace("_", "-"): components[name]["manifest"]["description"]
         for name in names
         if ((components[name]["manifest"].get("inject") or {}).get("systemd_service_manager") or {}).get("services")
     }
     width = max(map(len, services), default=0)
     for service, description in sorted(services.items()):
-        print("{0}  {1}".format(service.ljust(width), description).rstrip())
+        print("{0}  {1}".format(service.ljust(width), description))
 
 
 # --- Generating files -----------------------------------------------------------------------------
