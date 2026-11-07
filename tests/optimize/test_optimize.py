@@ -74,6 +74,8 @@ class Playbook:
         shutil.copy(REPO / "bin" / "install-roles.py", root / "bin" / "install-roles.py")
         shutil.copy(REPO / "bin" / "ansible-python.sh", root / "bin" / "ansible-python.sh")
         shutil.copytree(REPO / "components", root / "components")
+        (root / "docs").mkdir()
+        shutil.copy(REPO / "docs" / "supported-services.md", root / "docs" / "supported-services.md")
         self.inventory = root / "inventory"
 
     def write(self, relative_path, content, base=None):
@@ -390,6 +392,58 @@ class TestInventoryChanges(OptimizeTestCase):
         (self.pb.root / "run" / "setup.yml.srchash").write_text("0123\n")
         self.assertSucceeded(self.pb.just("_prepare-files"))
         self.assertEqual(list((self.pb.root / "run").glob("*.srchash")), [])
+
+
+class TestListServices(OptimizeTestCase):
+    def listed(self, recipe):
+        result = self.pb.just(recipe)
+        self.assertSucceeded(result)
+        return {line.split()[0]: line for line in result.stdout.splitlines()}
+
+    def test_all_services(self):
+        self.standard_inventory()
+        services = self.listed("list-services-all")
+        self.assertIn("nextcloud", services)
+        self.assertIn("prometheus-node-exporter", services)
+        # Components which run no service of their own
+        self.assertNotIn("docker", services)
+        self.assertNotIn("swap", services)
+
+    def test_own_services(self):
+        self.standard_inventory()
+        services = self.listed("list-services-own")
+        self.assertIn("miniflux", services)
+        self.assertIn("gitea", services)
+        self.assertNotIn("nextcloud", services)
+
+    def test_descriptions_are_plain_text(self):
+        self.standard_inventory()
+        services = self.listed("list-services-all")
+        self.assertRegex(services["anki"], r"^anki\S* +Data synchronization server for Anki$")
+
+    def test_missing_descriptions_are_tolerated(self):
+        self.standard_inventory()
+        (self.pb.root / "docs" / "supported-services.md").unlink()
+        self.assertEqual(self.listed("list-services-own")["miniflux"], "miniflux")
+
+    def test_nothing_is_written(self):
+        self.standard_inventory()
+        self.listed("list-services-all")
+        self.listed("list-services-own")
+        self.assertFalse((self.pb.root / "requirements.yml").exists())
+        self.assertFalse((self.pb.root / "setup.yml").exists())
+        self.assertFalse((self.pb.root / "group_vars" / "mash_servers").exists())
+
+    def test_services_work_with_install_service(self):
+        # `just install-service SERVICE` also starts the service group named SERVICE
+        for path in sorted((self.pb.root / "components").glob("*/component.yml")):
+            inject = yaml.safe_load(path.read_text()).get("inject") or {}
+            for_service_manager = inject.get("systemd_service_manager") or {}
+            if not for_service_manager.get("services"):
+                continue
+            service = path.parent.name.replace("_", "-")
+            groups = [entry.get("groups") or [] for entry in for_service_manager["services"]]
+            self.assertTrue(any(service in entry for entry in groups), "{0} has no {1} group".format(path, service))
 
 
 class TestVariableFileContents(OptimizeTestCase):

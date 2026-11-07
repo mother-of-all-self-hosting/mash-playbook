@@ -156,6 +156,12 @@ install-service service *extra_args:
     --tags=install-{{ service }},start-group \
     --extra-vars=group={{ service }} {{ extra_args }}
 
+# Lists all services supported by the playbook
+list-services-all: (_optimize-files "--all-components" "--list-services")
+
+# Lists the services in use by your inventory
+list-services-own: (_optimize-files "--list-services")
+
 # Runs the playbook with --tags=setup-all,start and optional arguments
 setup-all *extra_args: (run-tags "setup-all,start" extra_args)
 

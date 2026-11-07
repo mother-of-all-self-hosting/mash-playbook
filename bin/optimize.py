@@ -14,9 +14,12 @@
 # structure of components.
 #
 # With --check, all components are validated and nothing is written.
+#
+# With --list-services, the services of these components are printed and nothing is written.
 
 import argparse
 import os
+import re
 import sys
 
 try:
@@ -46,6 +49,11 @@ parser.add_argument(
     action="store_true",
     help="Only validate all components, without writing anything",
 )
+parser.add_argument(
+    "--list-services",
+    action="store_true",
+    help="Only print the services (which `just install-service` takes) of the components, without writing anything",
+)
 parser.add_argument("--dst-requirements-yml-path", help="Path to the requirements.yml file to generate")
 parser.add_argument("--dst-setup-yml-path", help="Path to the setup.yml file to generate")
 parser.add_argument("--dst-group-vars-path", help="Path to the group_vars/mash_servers directory to generate")
@@ -53,9 +61,10 @@ parser.add_argument("--dst-group-vars-path", help="Path to the group_vars/mash_s
 args = parser.parse_args()
 
 if not args.check:
-    for name in ("dst_requirements_yml_path", "dst_setup_yml_path", "dst_group_vars_path"):
-        if getattr(args, name) is None:
-            parser.error("--{0} is required (unless --check is used)".format(name.replace("_", "-")))
+    if not args.list_services:
+        for name in ("dst_requirements_yml_path", "dst_setup_yml_path", "dst_group_vars_path"):
+            if getattr(args, name) is None:
+                parser.error("--{0} is required (unless --check or --list-services is used)".format(name.replace("_", "-")))
     if not args.all_components and (args.inventory_path is None or args.playbook_path is None):
         parser.error("--inventory-path and --playbook-path are required (unless --all-components or --check is used)")
 
@@ -338,6 +347,34 @@ def is_component_in_use(manifest, used_variable_names):
     return prefix == "" or any(variable_name.startswith(prefix) for variable_name in used_variable_names)
 
 
+# --- Listing services -----------------------------------------------------------------------------
+
+SUPPORTED_SERVICES_ROW = re.compile(r"^\|[^|]*\|(.*)\|[^|]*\.\./components/([^/]+)/README\.md[^|]*\|\s*$", re.MULTILINE)
+MARKDOWN_LINK = re.compile(r"\[([^\]]*)\]\([^)]*\)")
+
+
+def load_service_descriptions(path):
+    """Returns the descriptions (component name -> text) in docs/supported-services.md, if available."""
+    if not os.path.isfile(path):
+        return {}
+    return {
+        name: MARKDOWN_LINK.sub(r"\1", description).strip()
+        for description, name in SUPPORTED_SERVICES_ROW.findall(read_file(path))
+    }
+
+
+def print_services(components, names, descriptions):
+    # Components which run no service of their own (e.g. `docker`, `swap`) are not for `just install-service`
+    services = {
+        name.replace("_", "-"): descriptions.get(name, "")
+        for name in names
+        if ((components[name]["manifest"].get("inject") or {}).get("systemd_service_manager") or {}).get("services")
+    }
+    width = max(map(len, services), default=0)
+    for service, description in sorted(services.items()):
+        print("{0}  {1}".format(service.ljust(width), description).rstrip())
+
+
 # --- Generating files -----------------------------------------------------------------------------
 
 SETUP_YML_HEADER = """---
@@ -539,6 +576,11 @@ else:
     vars_file_paths += find_vars_file_paths(args.playbook_path, skipped_path=args.dst_group_vars_path)
     used_variable_names = load_combined_variable_names_from_files(vars_file_paths)
     names = [name for name in sorted(components) if is_component_in_use(components[name]["manifest"], used_variable_names)]
+
+if args.list_services:
+    docs_path = os.path.join(os.path.dirname(args.components_path), "docs")
+    print_services(components, names, load_service_descriptions(os.path.join(docs_path, "supported-services.md")))
+    sys.exit(0)
 
 group_vars_files = generate_group_vars(components, names)
 check_duplicate_variables(group_vars_files)
