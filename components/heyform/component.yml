@@ -5,6 +5,7 @@
 
 ---
 
+description: Form builder that lets you create, customize, and automate forms
 activation_prefix: heyform_
 
 # Entries added to other components' lists, while those components are in use

@@ -4,6 +4,7 @@
 
 ---
 
+description: A lightweight Exim SMTP mail relay server
 activation_prefix: exim_relay_
 
 setup:

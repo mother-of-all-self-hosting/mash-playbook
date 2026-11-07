@@ -4,6 +4,7 @@
 
 ---
 
+description: Intuitive and lightweight web analytics
 activation_prefix: plausible_
 
 # Entries added to other components' lists, while those components are in use

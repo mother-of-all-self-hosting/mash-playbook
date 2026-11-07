@@ -5,6 +5,7 @@
 
 ---
 
+description: Send and receive messages in real-time per WebSocket
 activation_prefix: gotify_
 
 # Entries added to other components' lists, while those components are in use

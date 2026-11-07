@@ -5,6 +5,7 @@
 
 ---
 
+description: Server monitoring hub with historical data and alerts
 activation_prefix: beszel_hub_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: Share files that expire after a set number of downloads or days
 activation_prefix: gokapi_
 
 # Entries added to other components' lists, while those components are in use

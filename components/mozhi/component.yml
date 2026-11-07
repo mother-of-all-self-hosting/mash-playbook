@@ -5,6 +5,7 @@
 
 ---
 
+description: Frontend for translation engines
 activation_prefix: mozhi_
 
 # Entries added to other components' lists, while those components are in use

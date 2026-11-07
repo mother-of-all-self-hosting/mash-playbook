@@ -5,6 +5,7 @@
 
 ---
 
+description: PostgreSQL, MySQL, MariaDB, and MongoDB database backup
 activation_prefix: databasus_
 
 # Entries added to other components' lists, while those components are in use

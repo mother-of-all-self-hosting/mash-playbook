@@ -5,6 +5,7 @@
 
 ---
 
+description: Local-first personal finance tool
 activation_prefix: actual_
 
 # Entries added to other components' lists, while those components are in use

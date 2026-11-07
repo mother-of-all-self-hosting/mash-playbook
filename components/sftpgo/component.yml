@@ -5,6 +5,7 @@
 
 ---
 
+description: File transfer server for SFTP, HTTP/S, FTP/S and WebDAV
 activation_prefix: sftpgo_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: Frontend for SoundCloud
 activation_prefix: soundcloak_
 
 # Entries added to other components' lists, while those components are in use

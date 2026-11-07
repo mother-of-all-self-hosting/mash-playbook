@@ -4,6 +4,7 @@
 
 ---
 
+description: A time-series database
 activation_prefix: influxdb_
 
 # Entries added to other components' lists, while those components are in use

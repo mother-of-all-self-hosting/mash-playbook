@@ -5,6 +5,7 @@
 
 ---
 
+description: Modern URL shortener with support for custom domains
 activation_prefix: kutt_
 
 # Entries added to other components' lists, while those components are in use

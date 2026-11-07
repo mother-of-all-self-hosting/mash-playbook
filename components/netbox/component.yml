@@ -4,6 +4,7 @@
 
 ---
 
+description: IP address (IPAM) and data center infrastructure (DCIM) management
 activation_prefix: netbox_
 
 # Entries added to other components' lists, while those components are in use

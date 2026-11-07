@@ -5,6 +5,7 @@
 
 ---
 
+description: A proxy server to bypass Cloudflare protection
 activation_prefix: flaresolverr_
 
 # Entries added to other components' lists, while those components are in use

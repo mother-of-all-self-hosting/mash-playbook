@@ -5,6 +5,7 @@
 
 ---
 
+description: A smart PVR for newsgroup and BitTorrent users
 activation_prefix: sonarr_
 
 # Entries added to other components' lists, while those components are in use

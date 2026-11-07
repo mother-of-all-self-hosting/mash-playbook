@@ -5,6 +5,7 @@
 
 ---
 
+description: Feedback portal for feature requests and suggestions
 activation_prefix: fider_
 
 # Entries added to other components' lists, while those components are in use

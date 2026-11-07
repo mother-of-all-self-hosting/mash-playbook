@@ -5,6 +5,7 @@
 
 ---
 
+description: Message-broker which supports AMQP, STOMP, MQTT, etc.
 activation_prefix: rabbitmq_
 
 # Entries added to other components' lists, while those components are in use

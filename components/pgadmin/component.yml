@@ -5,6 +5,7 @@
 
 ---
 
+description: Web-based Postgres database server administration software
 activation_prefix: pgadmin_
 
 # Entries added to other components' lists, while those components are in use

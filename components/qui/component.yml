@@ -5,6 +5,7 @@
 
 ---
 
+description: A fast, modern web interface for qBittorrent
 activation_prefix: qui_
 
 # Entries added to other components' lists, while those components are in use

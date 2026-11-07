@@ -5,6 +5,7 @@
 
 ---
 
+description: Web server, reverse proxy, load balancer and HTTP cache
 activation_prefix: nginx_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: An API for your favorite Torrent trackers
 activation_prefix: jackett_
 
 # Entries added to other components' lists, while those components are in use

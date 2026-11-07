@@ -5,6 +5,7 @@
 
 ---
 
+description: Self-hosted web interface for AI models
 activation_prefix: open_webui_
 
 # Entries added to other components' lists, while those components are in use

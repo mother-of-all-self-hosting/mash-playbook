@@ -5,6 +5,7 @@
 
 ---
 
+description: Live video and web chat server
 activation_prefix: owncast_
 
 # Entries added to other components' lists, while those components are in use

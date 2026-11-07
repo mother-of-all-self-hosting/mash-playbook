@@ -4,6 +4,7 @@
 
 ---
 
+description: High performance photo and video management solution
 activation_prefix: immich_
 
 # Entries added to other components' lists, while those components are in use

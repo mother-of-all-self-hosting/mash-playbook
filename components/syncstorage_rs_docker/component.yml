@@ -5,6 +5,7 @@
 
 ---
 
+description: Mozilla Sync Storage server for Firefox Sync
 activation_prefix: syncstorage_rs_docker_
 
 # Entries added to other components' lists, while those components are in use

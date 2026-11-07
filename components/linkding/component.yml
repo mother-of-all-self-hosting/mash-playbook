@@ -5,6 +5,7 @@
 
 ---
 
+description: Bookmark manager designed to be minimal and fast
 activation_prefix: linkding_
 
 # Entries added to other components' lists, while those components are in use

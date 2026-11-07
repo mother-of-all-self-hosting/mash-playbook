@@ -4,6 +4,7 @@
 
 ---
 
+description: Agent which runs the pipelines of a Woodpecker CI server
 activation_prefix: woodpecker_ci_agent_
 
 # Entries added to other components' lists, while those components are in use

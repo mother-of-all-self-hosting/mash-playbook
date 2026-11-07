@@ -5,6 +5,7 @@
 
 ---
 
+description: Data synchronization server for Atuin
 activation_prefix: atuin_
 
 # Entries added to other components' lists, while those components are in use

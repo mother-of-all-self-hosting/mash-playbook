@@ -5,6 +5,7 @@
 
 ---
 
+description: An open source password manager for teams
 activation_prefix: passbolt_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: A DNS sinkhole which blocks ads and trackers network-wide
 activation_prefix: pihole_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: Dynamic DNS entries updater
 activation_prefix: ddclient_
 
 # Entries added to other components' lists, while those components are in use

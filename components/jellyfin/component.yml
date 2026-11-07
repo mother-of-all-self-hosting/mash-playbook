@@ -5,6 +5,7 @@
 
 ---
 
+description: A personal media server
 activation_prefix: jellyfin_
 
 # Entries added to other components' lists, while those components are in use

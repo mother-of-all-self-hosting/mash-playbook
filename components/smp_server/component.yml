@@ -5,6 +5,7 @@
 
 ---
 
+description: Relay server used to pass messages in SimpleX network
 activation_prefix: smp_server_
 
 # Entries added to other components' lists, while those components are in use

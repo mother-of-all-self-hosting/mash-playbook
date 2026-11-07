@@ -4,6 +4,7 @@
 
 ---
 
+description: Web-based tool for visualizing your Prometheus metrics (time-series)
 activation_prefix: grafana_
 
 # Entries added to other components' lists, while those components are in use

@@ -4,6 +4,7 @@
 
 ---
 
+description: ActivityPub federated server for creating and sharing events
 activation_prefix: mobilizon_
 
 # Entries added to other components' lists, while those components are in use

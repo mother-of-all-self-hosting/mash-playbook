@@ -5,6 +5,7 @@
 
 ---
 
+description: Minimalistic wiki powered by Python, Markdown and Git
 activation_prefix: otterwiki_
 
 # Entries added to other components' lists, while those components are in use

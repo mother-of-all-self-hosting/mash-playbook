@@ -4,6 +4,7 @@
 
 ---
 
+description: Subsonic-API compatible music server
 activation_prefix: navidrome_
 
 # Entries added to other components' lists, while those components are in use

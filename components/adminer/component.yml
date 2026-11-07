@@ -5,6 +5,7 @@
 
 ---
 
+description: Full-featured database server administration software
 activation_prefix: adminer_
 
 # Entries added to other components' lists, while those components are in use

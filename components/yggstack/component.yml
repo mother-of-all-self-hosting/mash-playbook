@@ -5,6 +5,7 @@
 
 ---
 
+description: SOCKS5 proxy server and TCP port forwarder for Yggdrasil Network
 activation_prefix: yggstack_
 
 # Entries added to other components' lists, while those components are in use

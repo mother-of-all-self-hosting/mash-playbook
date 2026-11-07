@@ -5,6 +5,7 @@
 
 ---
 
+description: Database management platform with spreadsheet-like interface
 activation_prefix: teable_
 
 # Entries added to other components' lists, while those components are in use

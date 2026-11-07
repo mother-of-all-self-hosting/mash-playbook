@@ -4,6 +4,7 @@
 
 ---
 
+description: Relational database server, a fork of MySQL
 activation_prefix: mariadb_
 
 # Lists other components can add entries to (via `inject`).

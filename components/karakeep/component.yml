@@ -5,6 +5,7 @@
 
 ---
 
+description: Bookmark manager to collect, organize and archive webpages
 activation_prefix: karakeep_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: Radicle user interface for the web browser
 activation_prefix: radicle_explorer_
 
 # Entries added to other components' lists, while those components are in use

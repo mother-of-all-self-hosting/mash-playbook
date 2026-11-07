@@ -5,6 +5,7 @@
 
 ---
 
+description: Web application to mix and play ambient soundtracks
 activation_prefix: moodist_
 
 # Entries added to other components' lists, while those components are in use

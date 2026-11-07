@@ -4,6 +4,7 @@
 
 ---
 
+description: An alternative to Trello, Notion, and Asana
 activation_prefix: focalboard_
 
 # Entries added to other components' lists, while those components are in use

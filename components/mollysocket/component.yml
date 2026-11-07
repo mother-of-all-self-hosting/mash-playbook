@@ -5,6 +5,7 @@
 
 ---
 
+description: Signal notification receiver via UnifiedPush for Molly
 activation_prefix: mollysocket_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: Third-party web frontend for Miniflux
 activation_prefix: reactflux_
 
 # Entries added to other components' lists, while those components are in use

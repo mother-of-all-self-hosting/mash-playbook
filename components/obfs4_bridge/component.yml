@@ -5,6 +5,7 @@
 
 ---
 
+description: Help users connect to the Tor network in places where Tor is blocked
 activation_prefix: obfs4_bridge_
 
 # Entries added to other components' lists, while those components are in use

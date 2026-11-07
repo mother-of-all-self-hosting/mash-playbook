@@ -5,6 +5,7 @@
 
 ---
 
+description: Vector tile generator & server from OpenStreetMap
 activation_prefix: versatiles_
 
 # Entries added to other components' lists, while those components are in use

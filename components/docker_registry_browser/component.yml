@@ -4,6 +4,7 @@
 
 ---
 
+description: Web interface for the Docker Registry HTTP API V2
 activation_prefix: docker_registry_browser_
 
 # Entries added to other components' lists, while those components are in use

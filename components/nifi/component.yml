@@ -5,6 +5,7 @@
 
 ---
 
+description: System to process and distribute data
 activation_prefix: nifi_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: Your Own URL Shortener, on your server
 activation_prefix: yourls_
 
 # Entries added to other components' lists, while those components are in use

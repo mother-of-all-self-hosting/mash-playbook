@@ -5,6 +5,7 @@
 
 ---
 
+description: Modular IRC server
 activation_prefix: inspircd_
 
 # Entries added to other components' lists, while those components are in use

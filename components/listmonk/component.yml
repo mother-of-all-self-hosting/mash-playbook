@@ -5,6 +5,7 @@
 
 ---
 
+description: One-way mailing list and newsletter manager
 activation_prefix: listmonk_
 
 # Entries added to other components' lists, while those components are in use

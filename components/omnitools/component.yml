@@ -6,6 +6,7 @@
 
 ---
 
+description: Web app offering a variety of online tools to simplify everyday tasks
 activation_prefix: omnitools_
 
 # Entries added to other components' lists, while those components are in use

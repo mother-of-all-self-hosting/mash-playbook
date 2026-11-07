@@ -5,6 +5,7 @@
 
 ---
 
+description: Cocktail recipe manager for your home bar
 activation_prefix: barassistant_
 
 # Entries added to other components' lists, while those components are in use

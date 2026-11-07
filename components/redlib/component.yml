@@ -5,6 +5,7 @@
 
 ---
 
+description: Frontend for Reddit
 activation_prefix: redlib_
 
 # Entries added to other components' lists, while those components are in use

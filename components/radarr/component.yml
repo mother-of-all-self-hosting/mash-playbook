@@ -5,6 +5,7 @@
 
 ---
 
+description: A movie organizer/manager for Usenet and BitTorrent users
 activation_prefix: radarr_
 
 # Entries added to other components' lists, while those components are in use

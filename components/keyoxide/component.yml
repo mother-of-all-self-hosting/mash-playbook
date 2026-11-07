@@ -5,6 +5,7 @@
 
 ---
 
+description: Web client for Keyoxide, a decentralized identity verification tool
 activation_prefix: keyoxide_
 
 # Entries added to other components' lists, while those components are in use

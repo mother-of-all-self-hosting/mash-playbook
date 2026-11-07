@@ -4,6 +4,7 @@
 
 ---
 
+description: Online office suite which integrates with Nextcloud, etc.
 activation_prefix: collabora_online_
 
 # Entries added to other components' lists, while those components are in use

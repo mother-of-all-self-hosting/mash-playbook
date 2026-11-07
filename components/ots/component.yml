@@ -5,6 +5,7 @@
 
 ---
 
+description: One-Time-Secret sharing platform
 activation_prefix: ots_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: An indexer manager/proxy for Usenet and BitTorrent users
 activation_prefix: prowlarr_
 
 # Entries added to other components' lists, while those components are in use

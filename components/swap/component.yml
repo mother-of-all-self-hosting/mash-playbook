@@ -5,6 +5,7 @@
 
 ---
 
+description: A swap file for the server
 activation_prefix: system_swap_
 
 setup:

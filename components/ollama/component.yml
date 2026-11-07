@@ -5,6 +5,7 @@
 
 ---
 
+description: Server for running large language models on your own hardware
 activation_prefix: ollama_
 
 # Entries added to other components' lists, while those components are in use

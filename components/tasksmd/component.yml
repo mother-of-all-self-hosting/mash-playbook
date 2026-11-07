@@ -5,6 +5,7 @@
 
 ---
 
+description: Markdown file-based task management board
 activation_prefix: tasksmd_
 
 # Entries added to other components' lists, while those components are in use

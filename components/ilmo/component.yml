@@ -4,6 +4,7 @@
 
 ---
 
+description: A library management tool
 activation_prefix: ilmo_
 
 # Entries added to other components' lists, while those components are in use

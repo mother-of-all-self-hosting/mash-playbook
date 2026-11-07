@@ -4,6 +4,7 @@
 
 ---
 
+description: Platform for building internal tools without writing code
 activation_prefix: appsmith_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: A fully-featured, standalone, Matrix rooms search service
 activation_prefix: mrs_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: Web-based software for invoicing
 activation_prefix: solidinvoice_
 
 # Entries added to other components' lists, while those components are in use

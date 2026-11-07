@@ -5,6 +5,7 @@
 
 ---
 
+description: Workflow automation for technical people
 activation_prefix: n8n_
 
 # Entries added to other components' lists, while those components are in use

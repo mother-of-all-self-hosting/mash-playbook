@@ -4,6 +4,7 @@
 
 ---
 
+description: File hosting and collaboration platform
 activation_prefix: nextcloud_
 
 # Entries added to other components' lists, while those components are in use

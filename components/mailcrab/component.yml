@@ -5,6 +5,7 @@
 
 ---
 
+description: SMTP test server for development
 activation_prefix: mailcrab_
 
 # Entries added to other components' lists, while those components are in use

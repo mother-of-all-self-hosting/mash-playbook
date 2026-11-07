@@ -5,6 +5,7 @@
 
 ---
 
+description: Security platform for SIEM, threat detection and compliance
 activation_prefix: wazuh_
 
 # Entries added to other components' lists, while those components are in use

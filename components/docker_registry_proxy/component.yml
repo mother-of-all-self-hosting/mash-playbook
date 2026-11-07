@@ -5,6 +5,7 @@
 
 ---
 
+description: Pass-through Docker registry proxy with metadata caching
 activation_prefix: docker_registry_proxy_
 
 # Entries added to other components' lists, while those components are in use

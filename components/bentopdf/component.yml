@@ -5,6 +5,7 @@
 
 ---
 
+description: Client-side PDF editor and converter
 activation_prefix: bentopdf_
 
 # Entries added to other components' lists, while those components are in use

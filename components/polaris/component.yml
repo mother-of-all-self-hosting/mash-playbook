@@ -5,6 +5,7 @@
 
 ---
 
+description: Music streaming server with a player
 activation_prefix: polaris_
 
 # Entries added to other components' lists, while those components are in use

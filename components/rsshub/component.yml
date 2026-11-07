@@ -5,6 +5,7 @@
 
 ---
 
+description: RSS feed generator for websites
 activation_prefix: rsshub_
 
 # Entries added to other components' lists, while those components are in use

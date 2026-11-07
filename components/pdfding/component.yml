@@ -5,6 +5,7 @@
 
 ---
 
+description: PDF manager, viewer and editor
 activation_prefix: pdfding_
 
 # Entries added to other components' lists, while those components are in use

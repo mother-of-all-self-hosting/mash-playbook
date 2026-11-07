@@ -5,6 +5,7 @@
 
 ---
 
+description: Automatically clean up Docker resources on a schedule
 activation_prefix: prunemate_
 
 # Entries added to other components' lists, while those components are in use

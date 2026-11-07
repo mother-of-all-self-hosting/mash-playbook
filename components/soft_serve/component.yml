@@ -5,6 +5,7 @@
 
 ---
 
+description: Git server for the command line
 activation_prefix: soft_serve_
 
 # Entries added to other components' lists, while those components are in use

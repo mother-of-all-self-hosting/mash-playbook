@@ -5,6 +5,7 @@
 
 ---
 
+description: Frontend for GitHub
 activation_prefix: gothub_
 
 # Entries added to other components' lists, while those components are in use

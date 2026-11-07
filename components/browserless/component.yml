@@ -5,6 +5,7 @@
 
 ---
 
+description: Deploy headless browsers in Docker
 activation_prefix: browserless_
 
 # Entries added to other components' lists, while those components are in use

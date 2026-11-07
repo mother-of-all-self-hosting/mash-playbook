@@ -5,6 +5,7 @@
 
 ---
 
+description: Website change detection and restock monitoring service
 activation_prefix: changedetection_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: Flow chart and diagrams editor
 activation_prefix: mermaid_
 
 # Entries added to other components' lists, while those components are in use

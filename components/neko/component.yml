@@ -5,6 +5,7 @@
 
 ---
 
+description: A virtual browser or even desktop environment
 activation_prefix: neko_
 
 # Entries added to other components' lists, while those components are in use

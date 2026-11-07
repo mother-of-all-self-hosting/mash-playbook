@@ -4,6 +4,7 @@
 
 ---
 
+description: Auxiliary file/directory management on your server via Ansible
 activation_prefix: aux_
 
 setup:

@@ -4,6 +4,7 @@
 
 ---
 
+description: Java edition server for Minecraft, a popular voxel-based sandbox game
 activation_prefix: minecraft_
 
 # Entries added to other components' lists, while those components are in use

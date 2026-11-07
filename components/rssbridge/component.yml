@@ -5,6 +5,7 @@
 
 ---
 
+description: RSS feed generator for websites that do not have one
 activation_prefix: rssbridge_
 
 # Entries added to other components' lists, while those components are in use

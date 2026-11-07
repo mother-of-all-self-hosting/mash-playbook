@@ -5,6 +5,7 @@
 
 ---
 
+description: Server agent for collecting metrics
 activation_prefix: telegraf_
 
 # Entries added to other components' lists, while those components are in use

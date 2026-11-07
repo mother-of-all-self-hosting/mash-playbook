@@ -4,6 +4,7 @@
 
 ---
 
+description: A PostgreSQL metric exporter for Prometheus
 activation_prefix: prometheus_postgres_exporter_
 
 # Entries added to other components' lists, while those components are in use

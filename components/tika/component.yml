@@ -5,6 +5,7 @@
 
 ---
 
+description: Detects and extracts metadata and text from many file types
 activation_prefix: tika_
 
 # Entries added to other components' lists, while those components are in use

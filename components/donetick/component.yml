@@ -5,6 +5,7 @@
 
 ---
 
+description: Tasks and chores manager
 activation_prefix: donetick_
 
 # Entries added to other components' lists, while those components are in use

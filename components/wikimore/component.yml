@@ -5,6 +5,7 @@
 
 ---
 
+description: Frontend for Wikipedia projects
 activation_prefix: wikimore_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: Official server for FMD (FindMyDevice)
 activation_prefix: fmd_server_
 
 # Entries added to other components' lists, while those components are in use

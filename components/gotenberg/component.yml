@@ -5,6 +5,7 @@
 
 ---
 
+description: Docker-based API for converting documents to PDF
 activation_prefix: gotenberg_
 
 # Entries added to other components' lists, while those components are in use

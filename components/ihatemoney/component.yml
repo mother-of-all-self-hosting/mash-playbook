@@ -5,6 +5,7 @@
 
 ---
 
+description: Shared budget manager
 activation_prefix: ihatemoney_
 
 # Entries added to other components' lists, while those components are in use

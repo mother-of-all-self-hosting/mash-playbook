@@ -5,6 +5,7 @@
 
 ---
 
+description: Syncs the recommended TRaSH Guides settings to Sonarr and Radarr
 activation_prefix: recyclarr_
 
 # Entries added to other components' lists, while those components are in use

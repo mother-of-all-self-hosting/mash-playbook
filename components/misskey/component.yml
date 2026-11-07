@@ -5,6 +5,7 @@
 
 ---
 
+description: ActivityPub federated microblogging platform
 activation_prefix: misskey_
 
 # Entries added to other components' lists, while those components are in use

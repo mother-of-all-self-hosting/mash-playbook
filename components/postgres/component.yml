@@ -4,6 +4,7 @@
 
 ---
 
+description: A powerful object-relational database system
 activation_prefix: postgres_
 
 setup:

@@ -5,6 +5,7 @@
 
 ---
 
+description: Digital document signing and processing
 activation_prefix: docuseal_
 
 # Entries added to other components' lists, while those components are in use

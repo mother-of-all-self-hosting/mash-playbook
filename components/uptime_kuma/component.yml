@@ -4,6 +4,7 @@
 
 ---
 
+description: Uptime monitoring tool
 activation_prefix: uptime_kuma_
 
 # Entries added to other components' lists, while those components are in use

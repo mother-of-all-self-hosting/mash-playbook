@@ -4,6 +4,7 @@
 
 ---
 
+description: WireGuard VPN with a web-based admin UI
 activation_prefix: wg_easy_
 
 # Entries added to other components' lists, while those components are in use

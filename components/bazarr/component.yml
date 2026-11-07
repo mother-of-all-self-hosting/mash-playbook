@@ -5,6 +5,7 @@
 
 ---
 
+description: Subtitle manager and downloader for Sonarr and Radarr
 activation_prefix: bazarr_
 
 # Entries added to other components' lists, while those components are in use

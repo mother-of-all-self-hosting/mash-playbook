@@ -4,6 +4,7 @@
 
 ---
 
+description: A Tailscale-compatible control server for managing Tailscale devices
 activation_prefix: headscale_
 
 # Entries added to other components' lists, while those components are in use

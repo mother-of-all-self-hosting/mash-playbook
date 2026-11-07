@@ -5,6 +5,7 @@
 
 ---
 
+description: Status page deployment service
 activation_prefix: statusnook_
 
 # Entries added to other components' lists, while those components are in use

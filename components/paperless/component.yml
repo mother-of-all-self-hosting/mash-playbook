@@ -5,6 +5,7 @@
 
 ---
 
+description: Document management system with a searchable online archive
 activation_prefix: paperless_
 
 # Entries added to other components' lists, while those components are in use

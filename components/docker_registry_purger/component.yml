@@ -4,6 +4,7 @@
 
 ---
 
+description: Purges old tags from a private Distribution registry
 activation_prefix: docker_registry_purger_
 
 # Entries added to other components' lists, while those components are in use

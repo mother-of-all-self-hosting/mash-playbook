@@ -5,6 +5,7 @@
 
 ---
 
+description: Collaborative text editor
 activation_prefix: etherpad_
 
 # Entries added to other components' lists, while those components are in use

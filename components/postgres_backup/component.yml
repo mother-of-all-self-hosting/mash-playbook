@@ -4,6 +4,7 @@
 
 ---
 
+description: Periodic PostgreSQL backups to the local filesystem
 activation_prefix: postgres_backup_
 
 # Entries added to other components' lists, while those components are in use

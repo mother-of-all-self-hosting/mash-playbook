@@ -5,6 +5,7 @@
 
 ---
 
+description: Document-oriented NoSQL database which uses JSON to store data
 activation_prefix: couchdb_
 
 # Entries added to other components' lists, while those components are in use

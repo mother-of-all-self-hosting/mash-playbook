@@ -5,6 +5,7 @@
 
 ---
 
+description: Web content management system
 activation_prefix: wordpress_
 
 # Entries added to other components' lists, while those components are in use

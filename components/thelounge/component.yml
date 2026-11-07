@@ -5,6 +5,7 @@
 
 ---
 
+description: Web IRC client which stays connected to IRC servers
 activation_prefix: thelounge_
 
 # Entries added to other components' lists, while those components are in use

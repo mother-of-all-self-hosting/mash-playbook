@@ -5,6 +5,7 @@
 
 ---
 
+description: Run Onion Service with C Tor
 activation_prefix: onion_service_tor_
 
 # Entries added to other components' lists, while those components are in use

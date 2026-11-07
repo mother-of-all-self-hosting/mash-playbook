@@ -5,6 +5,7 @@
 
 ---
 
+description: Web app for encryption, encoding, compression and data analysis
 activation_prefix: cyberchef_
 
 # Entries added to other components' lists, while those components are in use

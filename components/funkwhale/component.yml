@@ -5,6 +5,7 @@
 
 ---
 
+description: ActivityPub federated streaming server for listening and sharing music
 activation_prefix: funkwhale_
 
 # Entries added to other components' lists, while those components are in use

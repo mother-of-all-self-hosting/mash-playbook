@@ -5,6 +5,7 @@
 
 ---
 
+description: Distributed web search engine on a P2P network
 activation_prefix: yacy_
 
 # Entries added to other components' lists, while those components are in use

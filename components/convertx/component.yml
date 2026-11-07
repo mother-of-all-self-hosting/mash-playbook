@@ -5,6 +5,7 @@
 
 ---
 
+description: Online file converter for images, video, documents, etc.
 activation_prefix: convertx_
 
 # Entries added to other components' lists, while those components are in use

@@ -4,6 +4,7 @@
 
 ---
 
+description: CalDAV and CardDAV server for contacts and calendars
 activation_prefix: radicale_
 
 # Entries added to other components' lists, while those components are in use

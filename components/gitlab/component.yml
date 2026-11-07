@@ -5,6 +5,7 @@
 
 ---
 
+description: Complete DevOps platform (Git hosting service, CI/CD, etc.)
 activation_prefix: gitlab_
 
 # Entries added to other components' lists, while those components are in use

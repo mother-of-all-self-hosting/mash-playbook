@@ -5,6 +5,7 @@
 
 ---
 
+description: Web-based file manager
 activation_prefix: filebrowser_
 
 # Entries added to other components' lists, while those components are in use

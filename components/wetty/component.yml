@@ -5,6 +5,7 @@
 
 ---
 
+description: An SSH terminal over HTTP/HTTPS
 activation_prefix: wetty_
 
 # Entries added to other components' lists, while those components are in use

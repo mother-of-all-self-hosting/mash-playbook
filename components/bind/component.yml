@@ -4,6 +4,7 @@
 
 ---
 
+description: A full-featured DNS server
 activation_prefix: bind_
 
 # Entries added to other components' lists, while those components are in use

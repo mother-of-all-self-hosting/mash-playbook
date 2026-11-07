@@ -5,6 +5,7 @@
 
 ---
 
+description: Dashboard for your applications and services
 activation_prefix: homarr_
 
 # Entries added to other components' lists, while those components are in use

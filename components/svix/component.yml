@@ -5,6 +5,7 @@
 
 ---
 
+description: Webhook service
 activation_prefix: svix_server_
 
 # Entries added to other components' lists, while those components are in use

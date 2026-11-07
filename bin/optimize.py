@@ -213,7 +213,7 @@ def fail(message):
 
 # --- Loading and validating components ------------------------------------------------------------
 
-COMPONENT_KEYS = {"activation_prefix", "setup", "accepts", "inject"}
+COMPONENT_KEYS = {"description", "activation_prefix", "setup", "accepts", "inject"}
 SETUP_KEYS = {"priority", "entry"}
 ACCEPTS_KEYS = {"description", "into", "required_keys"}
 COMPONENT_FILES = {"component.yml", "README.md", "requirements.yml", "wiring.yml", "assets", "with", "roles"}

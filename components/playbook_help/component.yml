@@ -4,6 +4,7 @@
 
 ---
 
+description: Common helper variables for the playbook
 activation_prefix: ''  # Always in use
 
 setup:

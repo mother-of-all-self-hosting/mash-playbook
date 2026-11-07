@@ -5,6 +5,7 @@
 
 ---
 
+description: Audiobook and podcast server
 activation_prefix: audiobookshelf_
 
 # Entries added to other components' lists, while those components are in use

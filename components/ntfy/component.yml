@@ -5,6 +5,7 @@
 
 ---
 
+description: HTTP-based pub-sub push notification service
 activation_prefix: ntfy_
 
 # Entries added to other components' lists, while those components are in use

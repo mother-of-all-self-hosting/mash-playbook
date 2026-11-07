@@ -5,6 +5,7 @@
 
 ---
 
+description: HTTP server implementing restic's REST backend API
 activation_prefix: restserver_
 
 # Entries added to other components' lists, while those components are in use

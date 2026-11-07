@@ -5,6 +5,7 @@
 
 ---
 
+description: Collaborative bookmark manager
 activation_prefix: linkwarden_
 
 # Entries added to other components' lists, while those components are in use

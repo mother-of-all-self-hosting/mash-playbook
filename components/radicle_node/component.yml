@@ -5,6 +5,7 @@
 
 ---
 
+description: Network daemon for the Radicle network
 activation_prefix: radicle_node_
 
 # Entries added to other components' lists, while those components are in use

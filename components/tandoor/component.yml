@@ -5,6 +5,7 @@
 
 ---
 
+description: Recipe manager
 activation_prefix: tandoor_
 
 # Entries added to other components' lists, while those components are in use

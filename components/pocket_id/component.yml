@@ -5,6 +5,7 @@
 
 ---
 
+description: OIDC provider for passkey-only authentication
 activation_prefix: pocket_id_
 
 # Entries added to other components' lists, while those components are in use

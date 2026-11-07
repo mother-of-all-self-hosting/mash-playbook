@@ -4,6 +4,7 @@
 
 ---
 
+description: Container image distribution registry
 activation_prefix: docker_registry_enabled
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: Lists animals available for adoption
 activation_prefix: notfellchen_
 
 # Entries added to other components' lists, while those components are in use

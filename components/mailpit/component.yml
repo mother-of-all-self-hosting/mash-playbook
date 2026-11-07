@@ -5,6 +5,7 @@
 
 ---
 
+description: Email testing tool & API
 activation_prefix: mailpit_
 
 # Entries added to other components' lists, while those components are in use

@@ -6,6 +6,7 @@
 
 ---
 
+description: Software forge (Git hosting service, etc.)
 activation_prefix: forgejo_
 
 # Entries added to other components' lists, while those components are in use

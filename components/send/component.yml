@@ -5,6 +5,7 @@
 
 ---
 
+description: Fork of Firefox Send for sharing encrypted files
 activation_prefix: send_
 
 # Entries added to other components' lists, while those components are in use

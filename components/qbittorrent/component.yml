@@ -5,6 +5,7 @@
 
 ---
 
+description: A BitTorrent client
 activation_prefix: qbittorrent_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: Configuration of the server's SSH daemon and authorized keys
 activation_prefix: system_security_ssh_
 
 setup:

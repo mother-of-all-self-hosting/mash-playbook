@@ -5,6 +5,7 @@
 
 ---
 
+description: Music collection manager for Usenet and BitTorrent users
 activation_prefix: lidarr_
 
 # Entries added to other components' lists, while those components are in use

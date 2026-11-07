@@ -5,6 +5,7 @@
 
 ---
 
+description: Web-based MySQL or MariaDB database server administration software
 activation_prefix: phpmyadmin_
 
 # Entries added to other components' lists, while those components are in use

@@ -4,6 +4,7 @@
 
 ---
 
+description: Reverse proxy providing authentication via OpenID Connect providers
 activation_prefix: oauth2_proxy_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: Collaboration server for Excalidraw instance
 activation_prefix: excalidraw_room_
 
 # Entries added to other components' lists, while those components are in use

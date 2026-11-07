@@ -5,6 +5,7 @@
 
 ---
 
+description: Virtual whiteboard for sketching hand-drawn like diagrams
 activation_prefix: excalidraw_
 
 # Entries added to other components' lists, while those components are in use

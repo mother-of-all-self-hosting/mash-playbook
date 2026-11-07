@@ -5,6 +5,7 @@
 
 ---
 
+description: Realtime collaborative markdown notes on all platforms
 activation_prefix: codimd_
 
 # Entries added to other components' lists, while those components are in use

@@ -4,6 +4,7 @@
 
 ---
 
+description: Base for roles which run Docker containers under systemd
 activation_prefix: ''  # Always in use
 
 setup:

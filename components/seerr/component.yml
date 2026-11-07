@@ -5,6 +5,7 @@
 
 ---
 
+description: A media request and discovery manager
 activation_prefix: seerr_
 
 # Entries added to other components' lists, while those components are in use

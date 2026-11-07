@@ -5,6 +5,7 @@
 
 ---
 
+description: Authentication middleware adding a login screen to Docker services
 activation_prefix: tinyauth_
 
 # Entries added to other components' lists, while those components are in use

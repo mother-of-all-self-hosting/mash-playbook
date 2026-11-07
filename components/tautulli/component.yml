@@ -5,6 +5,7 @@
 
 ---
 
+description: A monitoring and tracking tool for Plex Media Server
 activation_prefix: tautulli_
 
 # Entries added to other components' lists, while those components are in use

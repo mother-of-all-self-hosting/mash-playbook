@@ -4,6 +4,7 @@
 
 ---
 
+description: Key-value datastore optimized for caching and realtime workloads
 activation_prefix: valkey_
 
 # Entries added to other components' lists, while those components are in use

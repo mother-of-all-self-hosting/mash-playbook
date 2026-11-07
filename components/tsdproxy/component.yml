@@ -5,6 +5,7 @@
 
 ---
 
+description: A proxy for virtual services in Tailscale
 activation_prefix: tsdproxy_
 
 # Entries added to other components' lists, while those components are in use

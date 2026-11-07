@@ -4,6 +4,7 @@
 
 ---
 
+description: End-to-end encrypted platform for managing secrets and configs
 activation_prefix: infisical_
 
 # Entries added to other components' lists, while those components are in use

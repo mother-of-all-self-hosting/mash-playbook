@@ -5,6 +5,7 @@
 
 ---
 
+description: Handles alerts sent by the Prometheus server
 activation_prefix: prometheus_alertmanager_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: To-do app
 activation_prefix: vikunja_
 
 # Entries added to other components' lists, while those components are in use

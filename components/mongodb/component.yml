@@ -4,6 +4,7 @@
 
 ---
 
+description: Source-available document-oriented (NoSQL) database
 activation_prefix: mongodb_
 
 # Lists other components can add entries to (via `inject`).

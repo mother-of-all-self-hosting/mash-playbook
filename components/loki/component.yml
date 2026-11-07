@@ -4,6 +4,7 @@
 
 ---
 
+description: Scalable log aggregation system
 activation_prefix: loki_
 
 # Entries added to other components' lists, while those components are in use

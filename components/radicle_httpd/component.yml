@@ -5,6 +5,7 @@
 
 ---
 
+description: Gateway between the Radicle protocol and the HTTP protocol
 activation_prefix: radicle_httpd_
 
 # Entries added to other components' lists, while those components are in use

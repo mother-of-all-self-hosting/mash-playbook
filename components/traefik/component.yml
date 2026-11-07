@@ -4,6 +4,7 @@
 
 ---
 
+description: A container-aware reverse-proxy server
 activation_prefix: mash_
 
 setup:

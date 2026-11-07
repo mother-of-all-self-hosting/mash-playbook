@@ -5,6 +5,7 @@
 
 ---
 
+description: Dashboard for web applications
 activation_prefix: heimdall_
 
 # Entries added to other components' lists, while those components are in use

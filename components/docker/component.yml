@@ -4,6 +4,7 @@
 
 ---
 
+description: Docker, the container runtime which runs the services
 activation_prefix: mash_playbook_docker_installation_enabled
 
 setup:

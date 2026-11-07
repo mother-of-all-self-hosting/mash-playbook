@@ -4,6 +4,7 @@
 
 ---
 
+description: Cron job monitoring solution
 activation_prefix: healthchecks_
 
 # Entries added to other components' lists, while those components are in use

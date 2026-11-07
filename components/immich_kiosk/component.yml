@@ -5,6 +5,7 @@
 
 ---
 
+description: Slideshow for displaying Immich pictures and videos
 activation_prefix: immich_kiosk_
 
 # Entries added to other components' lists, while those components are in use

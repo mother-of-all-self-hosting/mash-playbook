@@ -5,6 +5,7 @@
 
 ---
 
+description: Lightweight REST framework that wraps the Apprise Notification Library
 activation_prefix: apprise_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,7 @@
 
 ---
 
+description: Deduplicating backup program with compression and encryption
 activation_prefix: backup_borg_
 
 # Entries added to other components' lists, while those components are in use

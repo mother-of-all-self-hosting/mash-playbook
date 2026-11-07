@@ -5,6 +5,7 @@
 
 ---
 
+description: Web-based regular expression (regex) tester and debugger
 activation_prefix: openregex_
 
 # Entries added to other components' lists, while those components are in use

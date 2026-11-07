@@ -5,6 +5,7 @@
 
 ---
 
+description: Typo-tolerant fulltext search engine
 activation_prefix: typesense_
 
 # Entries added to other components' lists, while those components are in use

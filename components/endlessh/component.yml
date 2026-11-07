@@ -6,6 +6,7 @@
 
 ---
 
+description: A Golang implementation of Endlessh, an SSH tarpit
 activation_prefix: endlessh_
 
 # Entries added to other components' lists, while those components are in use
