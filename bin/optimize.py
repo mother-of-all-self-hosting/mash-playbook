@@ -212,7 +212,9 @@ def fail(message):
 
 # --- Loading and validating components ------------------------------------------------------------
 
-COMPONENT_KEYS = {"description", "activation_prefix", "setup", "accepts", "inject"}
+COMPONENT_KEYS = {"description", "docs", "activation_prefix", "setup", "accepts", "inject"}
+DOCS_KEYS = {"name", "url", "section"}
+DOCS_SECTIONS = ("foss", "system", "non-free")
 SETUP_KEYS = {"priority", "entry"}
 ACCEPTS_KEYS = {"description", "into", "required_keys"}
 COMPONENT_FILES = {"component.yml", "README.md", "requirements.yml", "wiring.yml", "assets", "with", "roles"}
@@ -275,6 +277,8 @@ def validate_components(components):
             fail("{0} needs an `activation_prefix` (`''` for components which are always in use)".format(manifest_path))
         if not isinstance(manifest.get("description"), str) or not manifest["description"].strip():
             fail("{0} needs a `description` (a brief one, as `just list-services-all` shows it)".format(manifest_path))
+        if "docs" in manifest:
+            validate_docs(manifest_path, manifest["docs"], path)
 
         requirements_path = os.path.join(path, "requirements.yml")
         if os.path.exists(requirements_path):
@@ -340,6 +344,20 @@ def validate_components(components):
                     if missing:
                         fail("{0}: an entry for {1}.{2} lacks {3}".format(
                             manifest_path, provider, list_name, ", ".join(sorted(missing))))
+
+
+def validate_docs(manifest_path, docs, path):
+    """Checks a component's row in docs/supported-services.md (components without `docs` have none)."""
+    if not isinstance(docs, dict) or set(docs) - DOCS_KEYS:
+        fail("{0}: `docs` may only contain {1}".format(manifest_path, ", ".join(sorted(DOCS_KEYS))))
+    if not isinstance(docs.get("name"), str) or not docs["name"].strip():
+        fail("{0}: `docs` needs a `name`".format(manifest_path))
+    if not isinstance(docs.get("url", ""), str):
+        fail("{0}: `docs.url` must be a URL".format(manifest_path))
+    if docs.get("section") not in DOCS_SECTIONS:
+        fail("{0}: `docs.section` must be one of: {1}".format(manifest_path, ", ".join(DOCS_SECTIONS)))
+    if not os.path.isfile(os.path.join(path, "README.md")):
+        fail("{0}: `docs` lists the component, but it has no README.md to link to".format(manifest_path))
 
 
 def is_component_in_use(manifest, used_variable_names):

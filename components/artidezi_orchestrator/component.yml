@@ -5,6 +5,10 @@
 ---
 
 description: The trusted server of ArtiDezi, a self-hosted maintenance agent
+docs:
+  name: ArtiDezi orchestrator
+  url: https://github.com/devture/artidezi
+  section: foss
 activation_prefix: artidezi_orchestrator_
 
 # Entries added to other components' lists, while those components are in use

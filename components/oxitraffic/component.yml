@@ -6,6 +6,10 @@
 ---
 
 description: Simple and privacy respecting website traffic tracker
+docs:
+  name: OxiTraffic
+  url: https://codeberg.org/mo8it/oxitraffic
+  section: foss
 activation_prefix: oxitraffic_
 
 # Entries added to other components' lists, while those components are in use

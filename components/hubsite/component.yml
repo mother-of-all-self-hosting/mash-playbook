@@ -6,6 +6,10 @@
 ---
 
 description: A simple, static site that shows an overview of the available services
+docs:
+  name: Hubsite
+  url: https://github.com/moan0s/hubsite
+  section: foss
 activation_prefix: hubsite_
 
 # Lists other components can add entries to (via `inject`).

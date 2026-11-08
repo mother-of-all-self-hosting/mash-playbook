@@ -5,6 +5,10 @@
 ---
 
 description: Lightweight Bitwarden-compatible password manager server
+docs:
+  name: Vaultwarden
+  url: https://github.com/dani-garcia/vaultwarden
+  section: foss
 activation_prefix: vaultwarden_
 
 # Entries added to other components' lists, while those components are in use

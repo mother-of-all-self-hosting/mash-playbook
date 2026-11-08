@@ -6,6 +6,10 @@
 ---
 
 description: Recipe manager
+docs:
+  name: Tandoor
+  url: https://docs.tandoor.dev/
+  section: foss
 activation_prefix: tandoor_
 
 # Entries added to other components' lists, while those components are in use

@@ -6,6 +6,10 @@
 ---
 
 description: A flexible project management web application
+docs:
+  name: Redmine
+  url: https://redmine.org/
+  section: foss
 activation_prefix: redmine_
 
 # Entries added to other components' lists, while those components are in use

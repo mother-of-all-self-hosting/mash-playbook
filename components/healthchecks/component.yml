@@ -5,6 +5,10 @@
 ---
 
 description: Cron job monitoring solution
+docs:
+  name: Healthchecks
+  url: https://healthchecks.io/
+  section: foss
 activation_prefix: healthchecks_
 
 # Entries added to other components' lists, while those components are in use

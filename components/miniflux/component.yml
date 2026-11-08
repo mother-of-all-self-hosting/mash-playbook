@@ -5,6 +5,10 @@
 ---
 
 description: Minimalist and opinionated feed reader
+docs:
+  name: Miniflux
+  url: https://miniflux.app/
+  section: foss
 activation_prefix: miniflux_
 
 # Entries added to other components' lists, while those components are in use

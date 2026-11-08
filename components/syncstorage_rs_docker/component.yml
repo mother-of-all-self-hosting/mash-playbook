@@ -6,6 +6,10 @@
 ---
 
 description: Mozilla Sync Storage server for Firefox Sync
+docs:
+  name: syncstorage-rs
+  url: https://github.com/mozilla-services/syncstorage-rs
+  section: foss
 activation_prefix: syncstorage_rs_docker_
 
 # Entries added to other components' lists, while those components are in use

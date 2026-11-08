@@ -6,6 +6,10 @@
 ---
 
 description: HTTP-based pub-sub push notification service
+docs:
+  name: ntfy
+  url: https://ntfy.sh/
+  section: foss
 activation_prefix: ntfy_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,10 @@
 ---
 
 description: Metrics collection and alerting monitoring solution
+docs:
+  name: Prometheus
+  url: https://prometheus.io/
+  section: foss
 activation_prefix: prometheus_enabled
 
 # Entries added to other components' lists, while those components are in use

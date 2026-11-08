@@ -6,6 +6,10 @@
 ---
 
 description: Data labeling tool for multiple projects, users and data types
+docs:
+  name: Label Studio
+  url: https://labelstud.io/
+  section: foss
 activation_prefix: labelstudio_
 
 # Entries added to other components' lists, while those components are in use

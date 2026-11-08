@@ -6,6 +6,10 @@
 ---
 
 description: Popular wiki software
+docs:
+  name: MediaWiki
+  url: https://www.mediawiki.org
+  section: foss
 activation_prefix: mediawiki_
 
 # Entries added to other components' lists, while those components are in use

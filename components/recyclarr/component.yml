@@ -6,6 +6,10 @@
 ---
 
 description: Syncs the recommended TRaSH Guides settings to Sonarr and Radarr
+docs:
+  name: Recyclarr
+  url: https://recyclarr.dev/
+  section: foss
 activation_prefix: recyclarr_
 
 # Entries added to other components' lists, while those components are in use

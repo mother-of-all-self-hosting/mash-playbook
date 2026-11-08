@@ -5,6 +5,10 @@
 ---
 
 description: IP address (IPAM) and data center infrastructure (DCIM) management
+docs:
+  name: NetBox
+  url: https://docs.netbox.dev/en/stable/
+  section: foss
 activation_prefix: netbox_
 
 # Entries added to other components' lists, while those components are in use

@@ -6,6 +6,10 @@
 ---
 
 description: Git server for the command line
+docs:
+  name: Soft Serve
+  url: https://github.com/charmbracelet/soft-serve
+  section: foss
 activation_prefix: soft_serve_
 
 # Entries added to other components' lists, while those components are in use

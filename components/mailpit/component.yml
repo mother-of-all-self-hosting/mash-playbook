@@ -6,6 +6,10 @@
 ---
 
 description: Email testing tool & API
+docs:
+  name: Mailpit
+  url: https://mailpit.axllent.org/
+  section: foss
 activation_prefix: mailpit_
 
 # Entries added to other components' lists, while those components are in use

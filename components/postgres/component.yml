@@ -5,6 +5,10 @@
 ---
 
 description: A powerful object-relational database system
+docs:
+  name: Postgres
+  url: https://www.postgresql.org
+  section: foss
 activation_prefix: postgres_
 
 setup:

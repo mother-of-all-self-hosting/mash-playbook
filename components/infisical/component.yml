@@ -5,6 +5,10 @@
 ---
 
 description: End-to-end encrypted platform for managing secrets and configs
+docs:
+  name: Infisical
+  url: https://infisical.com/
+  section: foss
 activation_prefix: infisical_
 
 # Entries added to other components' lists, while those components are in use

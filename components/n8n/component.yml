@@ -6,6 +6,10 @@
 ---
 
 description: Workflow automation for technical people
+docs:
+  name: n8n
+  url: https://n8n.io/
+  section: non-free
 activation_prefix: n8n_
 
 # Entries added to other components' lists, while those components are in use

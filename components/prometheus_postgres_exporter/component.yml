@@ -5,6 +5,10 @@
 ---
 
 description: A PostgreSQL metric exporter for Prometheus
+docs:
+  name: Prometheus Postgres Exporter
+  url: https://github.com/prometheus-community/postgres_exporter
+  section: foss
 activation_prefix: prometheus_postgres_exporter_
 
 # Entries added to other components' lists, while those components are in use

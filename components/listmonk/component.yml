@@ -6,6 +6,10 @@
 ---
 
 description: One-way mailing list and newsletter manager
+docs:
+  name: listmonk
+  url: https://listmonk.app
+  section: foss
 activation_prefix: listmonk_
 
 # Entries added to other components' lists, while those components are in use

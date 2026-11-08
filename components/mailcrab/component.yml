@@ -6,6 +6,10 @@
 ---
 
 description: SMTP test server for development
+docs:
+  name: MailCrab
+  url: https://github.com/tweedegolf/mailcrab
+  section: foss
 activation_prefix: mailcrab_
 
 # Entries added to other components' lists, while those components are in use

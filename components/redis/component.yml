@@ -5,6 +5,10 @@
 ---
 
 description: In-memory data store used as a database, cache and message broker
+docs:
+  name: Redis
+  url: https://redis.io/
+  section: foss
 activation_prefix: redis_
 
 # Entries added to other components' lists, while those components are in use

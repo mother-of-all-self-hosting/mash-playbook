@@ -5,6 +5,10 @@
 ---
 
 description: High performance photo and video management solution
+docs:
+  name: Immich
+  url: https://github.com/immich-app/immich
+  section: foss
 activation_prefix: immich_
 
 # Entries added to other components' lists, while those components are in use

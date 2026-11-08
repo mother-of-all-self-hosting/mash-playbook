@@ -6,6 +6,10 @@
 ---
 
 description: A DNS sinkhole which blocks ads and trackers network-wide
+docs:
+  name: Pi-hole
+  url: https://pi-hole.net/
+  section: foss
 activation_prefix: pihole_
 
 # Entries added to other components' lists, while those components are in use

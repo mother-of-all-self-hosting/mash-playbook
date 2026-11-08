@@ -6,6 +6,10 @@
 ---
 
 description: Shared budget manager
+docs:
+  name: I hate money
+  url: https://github.com/spiral-project/ihatemoney
+  section: foss
 activation_prefix: ihatemoney_
 
 # Entries added to other components' lists, while those components are in use

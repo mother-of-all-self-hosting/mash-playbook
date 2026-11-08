@@ -5,6 +5,10 @@
 ---
 
 description: Online office suite which integrates with Nextcloud, etc.
+docs:
+  name: Collabora Online Development Edition
+  url: https://www.collaboraonline.com/code/
+  section: foss
 activation_prefix: collabora_online_
 
 # Entries added to other components' lists, while those components are in use

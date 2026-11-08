@@ -5,6 +5,10 @@
 ---
 
 description: An identity and access management solution
+docs:
+  name: Keycloak
+  url: https://www.keycloak.org/
+  section: foss
 activation_prefix: keycloak_
 
 # Entries added to other components' lists, while those components are in use

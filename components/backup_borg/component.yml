@@ -6,6 +6,10 @@
 ---
 
 description: Deduplicating backup program with compression and encryption
+docs:
+  name: BorgBackup (via borgmatic)
+  url: https://www.borgbackup.org/
+  section: foss
 activation_prefix: backup_borg_
 
 # Entries added to other components' lists, while those components are in use

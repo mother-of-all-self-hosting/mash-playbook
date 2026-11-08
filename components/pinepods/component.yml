@@ -6,6 +6,10 @@
 ---
 
 description: Multi-user podcast management system
+docs:
+  name: PinePods
+  url: https://www.pinepods.online/
+  section: foss
 activation_prefix: pinepods_
 
 # Entries added to other components' lists, while those components are in use

@@ -6,6 +6,10 @@
 ---
 
 description: Bookmark manager designed to be minimal and fast
+docs:
+  name: linkding
+  url: https://github.com/sissbruecker/linkding/
+  section: foss
 activation_prefix: linkding_
 
 # Entries added to other components' lists, while those components are in use

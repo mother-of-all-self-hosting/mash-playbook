@@ -679,6 +679,11 @@ class TestComponents(OptimizeTestCase):
         cases = {
             "unknown key": lambda: self.edit_yaml(manifest, lambda data: data.update(no_such_field=True)),
             "needs a `description`": lambda: self.edit_yaml(manifest, lambda data: data.pop("description")),
+            "`docs` may only contain": lambda: self.edit_yaml(manifest, lambda data: data["docs"].update(no_such_field=True)),
+            "`docs` needs a `name`": lambda: self.edit_yaml(manifest, lambda data: data["docs"].pop("name")),
+            "`docs.url` must be a URL": lambda: self.edit_yaml(manifest, lambda data: data["docs"].update(url=["x"])),
+            "`docs.section` must be one of": lambda: self.edit_yaml(manifest, lambda data: data["docs"].update(section="other")),
+            "it has no README.md to link to": lambda: (self.pb.root / "components" / "miniflux" / "README.md").unlink(),
             "is not a component": lambda: self.edit_yaml(
                 manifest, lambda data: data["inject"].update(no_such_component={"services": []})
             ),
@@ -699,7 +704,13 @@ class TestComponents(OptimizeTestCase):
             "may only contain <component>.yml": lambda: self.write_component_file("miniflux/with/no_such_component.yml", "---\n"),
             "contains unknown files": lambda: self.write_component_file("miniflux/notes.txt", ""),
         }
-        for expected, make_mistake in cases.items():
+        # More mistakes with the same message as one above
+        more_cases = [
+            ("`docs` may only contain", lambda: self.edit_yaml(manifest, lambda data: data.update(docs="Miniflux"))),
+            ("`docs` needs a `name`", lambda: self.edit_yaml(manifest, lambda data: data["docs"].update(name=" "))),
+            ("`docs.section` must be one of", lambda: self.edit_yaml(manifest, lambda data: data["docs"].pop("section"))),
+        ]
+        for expected, make_mistake in list(cases.items()) + more_cases:
             with self.subTest(expected):
                 self.setUp()
                 make_mistake()

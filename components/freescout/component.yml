@@ -6,6 +6,10 @@
 ---
 
 description: Helpdesk and shared inbox software
+docs:
+  name: FreeScout
+  url: https://freescout.net/
+  section: foss
 activation_prefix: freescout_
 
 # Entries added to other components' lists, while those components are in use

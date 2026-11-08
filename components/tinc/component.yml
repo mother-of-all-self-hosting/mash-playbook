@@ -6,6 +6,10 @@
 ---
 
 description: Mesh VPN daemon
+docs:
+  name: tinc
+  url: https://www.tinc-vpn.org/
+  section: foss
 activation_prefix: tinc_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,10 @@
 ---
 
 description: Runs coding agents for an ArtiDezi orchestrator
+docs:
+  name: ArtiDezi worker
+  url: https://github.com/devture/artidezi
+  section: foss
 activation_prefix: artidezi_worker_
 
 # Entries added to other components' lists, while those components are in use

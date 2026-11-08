@@ -6,6 +6,10 @@
 ---
 
 description: Web UI for Ansible, Terraform/OpenTofu and other DevOps tools
+docs:
+  name: Semaphore UI
+  url: https://semaphoreui.com/
+  section: foss
 activation_prefix: semaphore_
 
 # Entries added to other components' lists, while those components are in use

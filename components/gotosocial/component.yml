@@ -6,6 +6,10 @@
 ---
 
 description: ActivityPub federated microblogging platform
+docs:
+  name: GoToSocial
+  url: https://gotosocial.org/
+  section: foss
 activation_prefix: gotosocial_
 
 # Entries added to other components' lists, while those components are in use

@@ -6,6 +6,10 @@
 ---
 
 description: To-do app
+docs:
+  name: Vikunja
+  url: https://vikunja.io/
+  section: foss
 activation_prefix: vikunja_
 
 # Entries added to other components' lists, while those components are in use

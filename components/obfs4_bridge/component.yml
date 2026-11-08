@@ -6,6 +6,10 @@
 ---
 
 description: Help users connect to the Tor network in places where Tor is blocked
+docs:
+  name: obfs4 bridge
+  url: https://community.torproject.org/relay/setup/bridge/
+  section: foss
 activation_prefix: obfs4_bridge_
 
 # Entries added to other components' lists, while those components are in use

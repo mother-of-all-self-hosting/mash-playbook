@@ -147,6 +147,12 @@ Components can also live in the inventory, to extend the playbook without changi
 # A brief description, as `just list-services-all` shows it
 description: What YOUR-SERVICE does, in a few words
 
+# The service's row in docs/supported-services.md (`section`: foss, system or non-free)
+docs:
+  name: YOUR-SERVICE
+  url: https://YOUR-SERVICE.example.com
+  section: foss
+
 # The component is in use when the inventory sets any variable starting with this prefix (`''`: always in use)
 activation_prefix: YOUR-SERVICE_
 

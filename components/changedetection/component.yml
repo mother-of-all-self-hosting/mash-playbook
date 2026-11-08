@@ -6,6 +6,10 @@
 ---
 
 description: Website change detection and restock monitoring service
+docs:
+  name: Changedetection.io
+  url: https://github.com/dgtlmoon/changedetection.io
+  section: foss
 activation_prefix: changedetection_
 
 # Entries added to other components' lists, while those components are in use

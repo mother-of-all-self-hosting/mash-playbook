@@ -5,6 +5,10 @@
 ---
 
 description: Extensible Continuous Integration (CI) engine
+docs:
+  name: Woodpecker CI server
+  url: https://woodpecker-ci.org/
+  section: foss
 activation_prefix: woodpecker_ci_server_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,10 @@
 ---
 
 description: Metering and usage-based billing
+docs:
+  name: Lago
+  url: https://www.getlago.com/
+  section: foss
 activation_prefix: lago_
 
 # Entries added to other components' lists, while those components are in use

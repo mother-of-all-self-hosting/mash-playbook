@@ -6,6 +6,10 @@
 ---
 
 description: Complete DevOps platform (Git hosting service, CI/CD, etc.)
+docs:
+  name: GitLab
+  url: https://about.gitlab.com/
+  section: foss
 activation_prefix: gitlab_
 
 # Entries added to other components' lists, while those components are in use

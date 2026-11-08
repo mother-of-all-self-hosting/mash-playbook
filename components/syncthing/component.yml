@@ -5,6 +5,10 @@
 ---
 
 description: Continuous file synchronization between computers
+docs:
+  name: Syncthing
+  url: https://syncthing.net/
+  section: foss
 activation_prefix: syncthing_
 
 # Entries added to other components' lists, while those components are in use

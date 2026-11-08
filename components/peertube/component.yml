@@ -5,6 +5,10 @@
 ---
 
 description: ActivityPub federated video platform
+docs:
+  name: PeerTube
+  url: https://joinpeertube.org/
+  section: foss
 activation_prefix: peertube_
 
 # Entries added to other components' lists, while those components are in use

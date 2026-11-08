@@ -6,6 +6,10 @@
 ---
 
 description: A monitoring and tracking tool for Plex Media Server
+docs:
+  name: Tautulli
+  url: https://tautulli.com/
+  section: foss
 activation_prefix: tautulli_
 
 # Entries added to other components' lists, while those components are in use

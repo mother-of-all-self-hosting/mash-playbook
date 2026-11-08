@@ -6,6 +6,10 @@
 ---
 
 description: A bookmark manager and a read-later tool combined in one
+docs:
+  name: Readeck
+  url: https://readeck.org
+  section: foss
 activation_prefix: readeck_
 
 # Entries added to other components' lists, while those components are in use

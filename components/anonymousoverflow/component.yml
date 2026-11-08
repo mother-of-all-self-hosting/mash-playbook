@@ -6,6 +6,10 @@
 ---
 
 description: Frontend for StackOverflow
+docs:
+  name: AnonymousOverflow
+  url: https://github.com/httpjamesm/AnonymousOverflow
+  section: foss
 activation_prefix: anonymousoverflow_
 
 # Entries added to other components' lists, while those components are in use

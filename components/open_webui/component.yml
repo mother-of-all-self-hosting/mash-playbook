@@ -6,6 +6,10 @@
 ---
 
 description: Self-hosted web interface for AI models
+docs:
+  name: Open WebUI
+  url: https://openwebui.com/
+  section: non-free
 activation_prefix: open_webui_
 
 # Entries added to other components' lists, while those components are in use

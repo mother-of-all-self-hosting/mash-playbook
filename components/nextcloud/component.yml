@@ -5,6 +5,10 @@
 ---
 
 description: File hosting and collaboration platform
+docs:
+  name: Nextcloud
+  url: https://nextcloud.com/
+  section: foss
 activation_prefix: nextcloud_
 
 # Entries added to other components' lists, while those components are in use

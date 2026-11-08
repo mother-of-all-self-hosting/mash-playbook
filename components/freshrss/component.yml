@@ -6,6 +6,10 @@
 ---
 
 description: RSS and Atom feed aggregator
+docs:
+  name: FreshRSS
+  url: https://freshrss.org/
+  section: foss
 activation_prefix: freshrss_
 
 # Entries added to other components' lists, while those components are in use

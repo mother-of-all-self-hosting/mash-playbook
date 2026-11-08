@@ -6,6 +6,10 @@
 ---
 
 description: Authentication middleware adding a login screen to Docker services
+docs:
+  name: Tinyauth
+  url: https://tinyauth.app/
+  section: foss
 activation_prefix: tinyauth_
 
 # Entries added to other components' lists, while those components are in use
