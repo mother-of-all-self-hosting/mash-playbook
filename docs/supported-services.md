@@ -262,6 +262,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [soundcloak](https://git.maid.zone/stuff/soundcloak) | Frontend for SoundCloud | [Link](../components/soundcloak/README.md) |
 | [SQLPage](https://sql-page.com/) | SQL-only data application builder | [Link](../components/sqlpage/README.md) |
 | [Standalone Snowflake proxy](https://community.torproject.org/relay/setup/snowflake/standalone/) | Help users connect to the Tor network in places where Tor is blocked | [Link](../components/snowflake/README.md) |
+| [Static Web Server](https://static-web-server.net/) | Web server for static file-serving | [Link](../components/static_web_server/README.md) |
 | [Statusnook](https://statusnook.com/) | Status page deployment service | [Link](../components/statusnook/README.md) |
 | [Stirling PDF v1](https://github.com/Stirling-Tools/Stirling-PDF) | PDF converter and editor | [Link](../components/stirling_pdf/README.md) |
 | [strongSwan](https://www.strongswan.org/) | IPsec-based VPN solution | [Link](../components/strongswan/README.md) |
