@@ -4,7 +4,7 @@
 
 ---
 
-description: Lightweight Bitwarden-compatible password manager server
+description: Lightweight unofficial Bitwarden-compatible password manager server
 docs:
   name: Vaultwarden
   url: https://github.com/dani-garcia/vaultwarden

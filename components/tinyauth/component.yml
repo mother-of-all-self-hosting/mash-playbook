@@ -5,7 +5,7 @@
 
 ---
 
-description: Authentication middleware adding a login screen to Docker services
+description: Login screen or OAuth authentication middleware for Docker services
 docs:
   name: Tinyauth
   url: https://tinyauth.app/

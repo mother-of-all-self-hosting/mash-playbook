@@ -16,9 +16,12 @@
 # With --check, all components are validated and nothing is written.
 #
 # With --list-services, the services of these components are printed and nothing is written.
+#
+# With --update-supported-services, the tables of docs/supported-services.md are generated from the components' `docs`.
 
 import argparse
 import os
+import re
 import sys
 
 try:
@@ -43,15 +46,22 @@ parser.add_argument(
     action="store_true",
     help="Include all components, instead of only those in use by the inventory",
 )
-parser.add_argument(
+# Modes which only validate, list or update docs (without them, the files for the inventory are generated)
+modes = parser.add_mutually_exclusive_group()
+modes.add_argument(
     "--check",
     action="store_true",
     help="Only validate all components, without writing anything",
 )
-parser.add_argument(
+modes.add_argument(
     "--list-services",
     action="store_true",
     help="Only print the services (which `just install-service` takes) of the components, without writing anything",
+)
+modes.add_argument(
+    "--update-supported-services",
+    metavar="PATH",
+    help="Only update the tables of this docs/supported-services.md file from the components, without writing anything else",
 )
 parser.add_argument("--dst-requirements-yml-path", help="Path to the requirements.yml file to generate")
 parser.add_argument("--dst-setup-yml-path", help="Path to the setup.yml file to generate")
@@ -59,13 +69,15 @@ parser.add_argument("--dst-group-vars-path", help="Path to the group_vars/mash_s
 
 args = parser.parse_args()
 
-if not args.check:
+if not args.check and not args.update_supported_services:
     if not args.list_services:
         for name in ("dst_requirements_yml_path", "dst_setup_yml_path", "dst_group_vars_path"):
             if getattr(args, name) is None:
                 parser.error("--{0} is required (unless --check or --list-services is used)".format(name.replace("_", "-")))
     if not args.all_components and (args.inventory_path is None or args.playbook_path is None):
-        parser.error("--inventory-path and --playbook-path are required (unless --all-components or --check is used)")
+        parser.error(
+            "--inventory-path and --playbook-path are required (unless --all-components, --check or --update-supported-services is used)"
+        )
 
 
 class VarsLoader(yaml.SafeLoader):
@@ -352,8 +364,8 @@ def validate_docs(manifest_path, docs, path):
         fail("{0}: `docs` may only contain {1}".format(manifest_path, ", ".join(sorted(DOCS_KEYS))))
     if not isinstance(docs.get("name"), str) or not docs["name"].strip():
         fail("{0}: `docs` needs a `name`".format(manifest_path))
-    if not isinstance(docs.get("url", ""), str):
-        fail("{0}: `docs.url` must be a URL".format(manifest_path))
+    if "url" in docs and not (isinstance(docs["url"], str) and re.fullmatch(r"https?://[^\s|<>]+", docs["url"])):
+        fail("{0}: `docs.url` must be an http(s) URL, without spaces, `|`, `<` or `>`".format(manifest_path))
     if docs.get("section") not in DOCS_SECTIONS:
         fail("{0}: `docs.section` must be one of: {1}".format(manifest_path, ", ".join(DOCS_SECTIONS)))
     if not os.path.isfile(os.path.join(path, "README.md")):
@@ -378,6 +390,60 @@ def print_services(components, names):
     width = max(map(len, services), default=0)
     for service, description in sorted(services.items()):
         print("{0}  {1}".format(service.ljust(width), description))
+
+
+# --- Generating docs/supported-services.md ------------------------------------------------------
+
+# Each table of the page sits between these markers, which say which `docs.section` it lists
+SUPPORTED_SERVICES_TABLE = re.compile(
+    r"(<!-- Generated from the components with `docs.section: (?P<section>[^`]*)`.*?-->\n)(?P<table>.*?)(<!-- End of generated content -->)",
+    re.DOTALL,
+)
+
+
+def escape_markdown_table_cell(text):
+    return text.replace("\\", "\\\\").replace("|", "\\|")
+
+
+def generate_supported_services_table(components, section):
+    rows = []
+    for name, component in components.items():
+        manifest = component["manifest"]
+        docs = manifest.get("docs")
+        if docs is None or docs["section"] != section:
+            continue
+        title = escape_markdown_table_cell(docs["name"])
+        if docs.get("url"):
+            # `&` would start an entity (e.g. `&copy;`), and parentheses would end the link, unless in angle brackets
+            url = docs["url"].replace("&", "&amp;")
+            url = "<{0}>".format(url) if re.search(r"[()]", url) else url
+            title = "[{0}]({1})".format(title.replace("[", "\\[").replace("]", "\\]"), url)
+        rows.append((
+            docs["name"].casefold(),
+            "| {0} | {1} | [Link](../components/{2}/README.md) |\n".format(
+                title, escape_markdown_table_cell(manifest["description"].strip()), name
+            ),
+        ))
+    return "\n| Name | Description | Documentation |\n| ---- | ----------- | ------------- |\n{0}\n".format(
+        "".join(row for _, row in sorted(rows))
+    )
+
+
+def update_supported_services(components, path):
+    contents = read_file(path)
+    sections = [match.group("section") for match in SUPPORTED_SERVICES_TABLE.finditer(contents)]
+    for section in sorted(set(sections) - set(DOCS_SECTIONS)):
+        fail("{0} has a table for `docs.section: {1}`, which is not one of: {2}".format(path, section, ", ".join(DOCS_SECTIONS)))
+    for section in DOCS_SECTIONS:
+        if sections.count(section) != 1:
+            fail("{0} needs exactly one table for `docs.section: {1}`".format(path, section))
+    updated = SUPPORTED_SERVICES_TABLE.sub(
+        lambda match: match.group(1) + generate_supported_services_table(components, match.group("section")) + match.group(4),
+        contents,
+    )
+    if updated != contents:
+        write_to_file(updated, path)
+        print("Updated {0}".format(path))
 
 
 # --- Generating files -----------------------------------------------------------------------------
@@ -547,6 +613,12 @@ if args.inventory_path is not None:
         components_paths.append(inventory_components_path)
 components = load_components(components_paths)
 validate_components(components)
+
+if args.update_supported_services:
+    if args.inventory_path is not None:
+        parser.error("--update-supported-services lists the playbook's own components, so it takes no --inventory-path")
+    update_supported_services(components, args.update_supported_services)
+    sys.exit(0)
 
 if args.check:
     check_duplicate_variables(generate_group_vars(components, sorted(components)))

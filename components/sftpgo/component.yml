@@ -5,7 +5,7 @@
 
 ---
 
-description: File transfer server for SFTP, HTTP/S, FTP/S and WebDAV
+description: SFTP, HTTP/S, FTP/S and WebDAV server, also for S3 or cloud storage
 docs:
   name: SFTPGo
   url: https://github.com/drakkan/sftpgo/
