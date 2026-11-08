@@ -34,18 +34,26 @@ For details about configuring the [Ansible role for Pi-hole](https://github.com/
 - 📁 `roles/galaxy/pihole/docs/configuring-pihole.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
 
 > [!WARNING]
-> Running a public DNS server is not advisable. You should install Pi-hole in a trusted local network, or set its port exposure so that you don't expose your DNS server publicly to the whole world.
+> Running a public DNS server is not advisable. When exposing Pi-hole's DNS ports, expose them only on an address in a trusted local network or VPN, so that you don't expose your DNS server publicly to the whole world.
 
 ## Prerequisites
 
 ### Open ports
 
-You may need to open the following ports on your server:
+Pi-hole uses the following ports on your server:
 
 - `53` over **TCP**, controlled by `pihole_container_dns_tcp_bind_port` — used for DNS over TCP
-- `53` over **UDP**, controlled by `pihole_container_dns_udp_bind_port` — used for DNS over UDP
+- `53` over **UDP**, controlled by `pihole_container_dns_udp_bind_port` (which follows the TCP one by default) — used for DNS over UDP
 
-These ports are not exposed by default. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-pihole/blob/main/docs/configuring-pihole.md#open-ports) on the role's documentation for details.
+These ports are not exposed by default. To expose them on the address of the server in your local network or VPN, add the following configuration to your `vars.yml` file, replacing `192.168.1.15` with that address:
+
+```yaml
+pihole_container_dns_tcp_bind_port: '192.168.1.15:53'
+```
+
+The address is required. Docker opens the ports in the server's firewall by itself, bypassing rules set with tools such as `ufw`, so `0.0.0.0:53` exposes the DNS server on **all network interfaces**, including public ones.
+
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-pihole/blob/main/docs/configuring-pihole.md#open-ports) on the role's documentation for details.
 
 ## Dependencies
 
@@ -89,7 +97,7 @@ As it is set by the playbook, the password cannot be changed on the web interfac
 
 After running the command for installation, the Pi-hole instance becomes available at the URL specified with `pihole_hostname`. With the configuration above, the service is hosted at `https://pihole.example.com`. Log in with the password you have set.
 
-To have Pi-hole block ads and trackers, set the server as the DNS server of your devices, or of your router, so that it hands the server out to them.
+To have Pi-hole block ads and trackers, [expose its DNS ports](#open-ports), then set the server as the DNS server of your devices, or of your router, so that it hands the server out to them.
 
 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-pihole/blob/main/docs/configuring-pihole.md#usage) on the role's documentation for details about the usage.
 
