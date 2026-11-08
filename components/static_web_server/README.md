@@ -109,4 +109,4 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 
 ## Related services
 
-- [I hate money](../ihatemoney/README.md) — Shared budget manager
+- [Nginx](../nginx/README.md) — Web server, reverse proxy, load balancer and HTTP cache
