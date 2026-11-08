@@ -62,6 +62,20 @@ static_web_server_hostname: static-web-server.example.com
 ########################################################################
 ```
 
+### Mounting the root directory
+
+By default, Static Web Server serves the example page bundled with its container image. To serve your own files, mount a directory from the host as the root directory by adding the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+static_web_server_container_additional_volumes_custom:
+  - type: bind
+    src: /path/on/the/host
+    dst: "{{ static_web_server_environment_variables_server_root }}"
+    options: readonly
+```
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-static-web-server/blob/main/docs/configuring-static-web-server.md#mounting-the-root-directory) on the role's documentation for details.
+
 ### Integrating with Prometheus (optional)
 
 Static Web Server can natively expose metrics to [Prometheus](../prometheus/README.md).
