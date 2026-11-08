@@ -30,29 +30,27 @@ Woodpecker CI is a [Continuous Integration](https://en.wikipedia.org/wiki/Contin
 
 A Woodpecker CI installation contains 2 components:
 
-- one [Woodpecker CI **server**](#woodpecker-ci-server) (web interface, central management node)
-- one or more [Woodpecker CI **agent**](#woodpecker-ci-agent) instances (which run your CI jobs)
+- one Woodpecker CI **server** (web interface, central management node)
+- one or more [Woodpecker CI **agent**](../woodpecker_ci_agent/README.md) instances (which run your CI jobs)
 
 >[!WARNING]
 > It's better to run the **agent** instances elsewhere (not on the source-control server or a server serving anything of value) — on a machine that doesn't contain sensitive data.
 
 Small installations which only run trusted CI jobs can afford to run an agent instance on the source-control server itself.
 
-## Woodpecker CI server
-
 For details about configuring the [Ansible role for Woodpecker CI server](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server), you can check them via:
 
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server/blob/main/docs/configuring-woodpecker-ci-server.md) online
 - 📁 `roles/galaxy/woodpecker_ci_server/docs/configuring-woodpecker-ci-server.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
 
-### Dependencies — Woodpecker CI server
+## Dependencies
 
 This service requires the following other services:
 
 - [Postgres](../postgres/README.md) / MySQL / [MariaDB](../mariadb/README.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](../traefik/README.md) reverse-proxy server
 
-### Configuration — Woodpecker CI server
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../../docs/installing.md) process:
 
@@ -75,7 +73,7 @@ woodpecker_ci_server_path_prefix: /ci
 ########################################################################
 ```
 
-#### Set username matching VCS
+### Set username matching VCS
 
 It is necessary to specify one or more usernames that match your version control system (e.g. Gitea). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server/blob/main/docs/configuring-woodpecker-ci-server.md#set-username-matching-vcs) on the role's documentation for details.
 
@@ -127,50 +125,14 @@ woodpecker_ci_server_container_add_host_domain_name: "{{ forgejo_hostname }}"
 woodpecker_ci_server_container_add_host_ip_address: "{{ ansible_host }}"
 ```
 
-### Usage — Woodpecker CI server
+## Usage
 
 After running the command for installation, the Woodpecker CI server becomes available at the URL specified with `woodpecker_ci_server_hostname` and `woodpecker_ci_server_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/ci`.
 
 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server/blob/main/docs/configuring-woodpecker-ci-server.md#usage) on the role's documentation for details about the usage.
 
-## Woodpecker CI agent
-
-For details about configuring the [Ansible role for Woodpecker CI agent](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-agent), you can check them via:
-
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-agent/blob/main/docs/configuring-woodpecker-ci-agent.md) online
-- 📁 `roles/galaxy/woodpecker_ci_agent/docs/configuring-woodpecker-ci-agent.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
-
-### Dependencies — Woodpecker CI agent
-
-This service requires the following other services:
-
-- Woodpecker CI server
-
-### Configuration — Woodpecker CI agent
-
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../../docs/installing.md) process:
-
-```yaml
-########################################################################
-#                                                                      #
-# woodpecker_ci_agent                                                  #
-#                                                                      #
-########################################################################
-
-woodpecker_ci_agent_enabled: true
-
-########################################################################
-#                                                                      #
-# /woodpecker_ci_agent                                                 #
-#                                                                      #
-########################################################################
-```
-
-### Usage — Woodpecker CI agent
-
-The agent should automatically register with the Woodpecker CI server and take jobs from it.
-
 ## Related services
 
+- [Woodpecker CI agent](../woodpecker_ci_agent/README.md) — Agent which runs the pipelines of a Woodpecker CI server
 - [Forgejo Runner](../forgejo_runner/README.md) — Runner to use with Forgejo Actions
 - [GitLab Runner](../gitlab_runner/README.md) — Runner to use with GitLab CI/CD

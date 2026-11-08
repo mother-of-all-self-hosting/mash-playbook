@@ -292,7 +292,8 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Wetty](https://github.com/butlerx/wetty) | An SSH terminal over HTTP/HTTPS | [Link](../components/wetty/README.md) |
 | [Wikimore](https://git.private.coffee/PrivateCoffee/wikimore) | Frontend for Wikipedia projects | [Link](../components/wikimore/README.md) |
 | [WireGuard Easy](https://github.com/wg-easy/wg-easy) | The easiest way to run [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI | [Link](../components/wg_easy/README.md) |
-| [Woodpecker CI](https://woodpecker-ci.org/) | Extensible Continuous Integration (CI) engine | [Link](../components/woodpecker_ci_server/README.md) |
+| [Woodpecker CI](https://woodpecker-ci.org/) agent | Agent which runs the pipelines of a Woodpecker CI server | [Link](../components/woodpecker_ci_agent/README.md) |
+| [Woodpecker CI](https://woodpecker-ci.org/) server | Extensible Continuous Integration (CI) engine | [Link](../components/woodpecker_ci_server/README.md) |
 | [WordPress](https://wordpress.org/) | Web content management system | [Link](../components/wordpress/README.md) |
 | [Writefreely](https://writefreely.org) | Minimalist publishing platform for writers with optional federation via ActivityPub | [Link](../components/writefreely/README.md) |
 | [YaCy](https://yacy.net) | Distributed web search engine on a P2P network | [Link](../components/yacy/README.md) |
