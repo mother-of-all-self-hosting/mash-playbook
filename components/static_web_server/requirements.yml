@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-static-web-server.git
+  version: v3.0.0-beta.2-0
+  name: static_web_server

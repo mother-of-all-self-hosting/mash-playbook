@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+static_web_server_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+static_web_server_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
