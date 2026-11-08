@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-tinc.git
-  version: 1.0.37-1
+  version: v1.0.37-1-0
   name: tinc
