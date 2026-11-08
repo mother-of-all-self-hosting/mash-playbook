@@ -57,6 +57,14 @@ repos:
         additional_dependencies: ['pyyaml==6.0.3']
         files: '^(components/|bin/optimize\.py$|\.pre-commit-config\.yaml$)'
         pass_filenames: false
+      - id: update-supported-services
+        name: Update the tables of docs/supported-services.md from components/
+        entry: bin/optimize.py --components-path=components --update-supported-services=docs/supported-services.md
+        language: python
+        additional_dependencies: ['pyyaml==6.0.3']
+        # Also when nothing matches, e.g. when a component is only deleted (deleted files are not passed to hooks)
+        always_run: true
+        pass_filenames: false
       - id: check-components-jinja
         name: Check the Jinja syntax in components/
         entry: bin/check-components-jinja.py
