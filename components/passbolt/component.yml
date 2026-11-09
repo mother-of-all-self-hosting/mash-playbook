@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
 # SPDX-FileCopyrightText: 2026 spatterlight
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
@@ -32,4 +33,4 @@ inject:
       - name: "{{ passbolt_database_name }}"
         username: "{{ passbolt_database_postgres_username }}"
         password: "{{ passbolt_database_postgres_password }}"
-        when: "{{ passbolt_enabled and (passbolt_database_postgres_hostname == postgres_connection_hostname or passbolt_database_postgres_socket_enabled) and passbolt_database_type == 'postgres' }}"
+        when: "{{ passbolt_enabled and (passbolt_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and passbolt_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or passbolt_database_postgres_socket_enabled) and passbolt_database_type == 'postgres' }}"

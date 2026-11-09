@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -26,4 +26,4 @@ inject:
       - name: "{{ asciinema_server_database_name }}"
         username: "{{ asciinema_server_database_username }}"
         password: "{{ asciinema_server_database_password }}"
-        when: "{{ asciinema_server_enabled and (asciinema_server_database_hostname == postgres_connection_hostname or asciinema_server_database_socket_enabled) }}"
+        when: "{{ asciinema_server_enabled and (asciinema_server_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and asciinema_server_database_hostname == pgbouncer_connection_hostname | default('')) or asciinema_server_database_socket_enabled) }}"

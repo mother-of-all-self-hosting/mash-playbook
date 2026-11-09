@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
 # SPDX-FileCopyrightText: 2025 Julian-Samuel Gebühr
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -26,4 +27,4 @@ inject:
       - name: "{{ listmonk_database_name }}"
         username: "{{ listmonk_database_username }}"
         password: "{{ listmonk_database_password }}"
-        when: "{{ listmonk_enabled and (listmonk_database_hostname == postgres_connection_hostname or listmonk_database_socket_enabled) }}"
+        when: "{{ listmonk_enabled and (listmonk_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and listmonk_database_hostname == pgbouncer_connection_hostname | default('')) or listmonk_database_socket_enabled) }}"

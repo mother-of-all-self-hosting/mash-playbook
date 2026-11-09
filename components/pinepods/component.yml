@@ -32,4 +32,4 @@ inject:
       - name: "{{ pinepods_database_name }}"
         username: "{{ pinepods_database_postgres_username }}"
         password: "{{ pinepods_database_postgres_password }}"
-        when: "{{ pinepods_enabled and pinepods_database_postgres_hostname == postgres_connection_hostname and pinepods_database_type == 'postgres' }}"
+        when: "{{ pinepods_enabled and (pinepods_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and pinepods_database_postgres_hostname == pgbouncer_connection_hostname | default(''))) and pinepods_database_type == 'postgres' }}"

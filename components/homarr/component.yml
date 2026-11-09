@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -32,4 +32,4 @@ inject:
       - name: "{{ homarr_database_name }}"
         username: "{{ homarr_database_postgres_username }}"
         password: "{{ homarr_database_postgres_password }}"
-        when: "{{ homarr_enabled and (homarr_database_postgres_hostname == postgres_connection_hostname or homarr_database_postgres_socket_enabled) and homarr_database_type == 'postgres' }}"
+        when: "{{ homarr_enabled and (homarr_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and homarr_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or homarr_database_postgres_socket_enabled) and homarr_database_type == 'postgres' }}"

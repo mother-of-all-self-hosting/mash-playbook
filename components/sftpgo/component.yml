@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -32,7 +32,7 @@ inject:
       - name: "{{ sftpgo_database_name }}"
         username: "{{ sftpgo_database_postgres_username }}"
         password: "{{ sftpgo_database_postgres_password }}"
-        when: "{{ sftpgo_enabled and (sftpgo_database_postgres_hostname == postgres_connection_hostname or sftpgo_database_postgres_socket_enabled) and sftpgo_environment_variables_data_provider_driver == 'postgres' }}"
+        when: "{{ sftpgo_enabled and (sftpgo_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and sftpgo_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or sftpgo_database_postgres_socket_enabled) and sftpgo_environment_variables_data_provider_driver == 'postgres' }}"
   traefik:
     entrypoints:
       - name: "{{ sftpgo_container_labels_traefik_sftp_entrypoints }}"

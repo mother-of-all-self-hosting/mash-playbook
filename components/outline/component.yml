@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -25,4 +26,4 @@ inject:
       - name: "{{ outline_database_name }}"
         username: "{{ outline_database_username }}"
         password: "{{ outline_database_password }}"
-        when: "{{ outline_enabled and (outline_database_hostname == postgres_connection_hostname or outline_database_socket_enabled) }}"
+        when: "{{ outline_enabled and (outline_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and outline_database_hostname == pgbouncer_connection_hostname | default('')) or outline_database_socket_enabled) }}"

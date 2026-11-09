@@ -26,4 +26,4 @@ inject:
       - name: "{{ donetick_database_name }}"
         username: "{{ donetick_database_username }}"
         password: "{{ donetick_database_password }}"
-        when: "{{ donetick_enabled and donetick_database_hostname == postgres_connection_hostname and donetick_database_type == 'postgres' }}"
+        when: "{{ donetick_enabled and (donetick_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and donetick_database_hostname == pgbouncer_connection_hostname | default(''))) and donetick_database_type == 'postgres' }}"

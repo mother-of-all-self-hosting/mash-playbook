@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
 # SPDX-FileCopyrightText: 2025 IUCCA
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -40,4 +41,4 @@ inject:
       - name: "{{ ihatemoney_database_name }}"
         username: "{{ ihatemoney_database_postgres_username }}"
         password: "{{ ihatemoney_database_postgres_password }}"
-        when: "{{ ihatemoney_enabled and (ihatemoney_database_postgres_hostname == postgres_connection_hostname or ihatemoney_database_postgres_socket_enabled) and ihatemoney_database_type == 'postgres' }}"
+        when: "{{ ihatemoney_enabled and (ihatemoney_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and ihatemoney_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or ihatemoney_database_postgres_socket_enabled) and ihatemoney_database_type == 'postgres' }}"

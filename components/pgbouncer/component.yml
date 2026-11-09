@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+activation_prefix: pgbouncer_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ pgbouncer_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ pgbouncer_restart_necessary | bool }}"
+        groups: [mash, pgbouncer]
+        when: "{{ pgbouncer_enabled }}"
