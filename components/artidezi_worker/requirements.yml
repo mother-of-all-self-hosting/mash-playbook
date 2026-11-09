@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-artidezi-worker.git
-  version: v2026.11.08.1-0
+  version: v2026.11.08.1-1
   name: artidezi_worker
