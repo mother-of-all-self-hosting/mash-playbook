@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://progressiv.radicle.garden/z4ATDhf89CPqP7XCLNpNwobuJ9fBs.git
-  version: v18.24.4-0
+  version: v18.24.6-0
   name: atuin
