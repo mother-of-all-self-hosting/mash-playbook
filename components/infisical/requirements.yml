@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-infisical.git
-  version: v0.167.4-0
+  version: v0.167.7-0
   name: infisical
