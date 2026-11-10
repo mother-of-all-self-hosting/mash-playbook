@@ -48,7 +48,7 @@ env:
 jobs:
   preflight:
     name: Decide whether to run Renovate
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     outputs:
       should_run: ${{ steps.decision.outputs.should_run }}
 
@@ -125,7 +125,7 @@ jobs:
     name: Renovate
     needs: preflight
     if: needs.preflight.outputs.should_run == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     environment: main
     concurrency:
       group: renovate
