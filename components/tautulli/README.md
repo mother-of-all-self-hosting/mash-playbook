@@ -70,7 +70,13 @@ Tautulli's log viewer can also show the logs of Plex Media Server, if its data d
 
 After running the command for installation, the Tautulli instance becomes available at the URL specified with `tautulli_hostname`. With the configuration above, the service is hosted at `https://tautulli.example.com`.
 
-To get started, open the URL with a web browser, and follow the setup wizard to create an account. As whoever opens it first can complete the wizard, it is recommended to do so immediately after installing.
+To get started, open the URL with a web browser to log in to the instance as the `tautulli` user with a **temporary** randomly generated password. Tautulli generates it on its first start, and logs it once. You can output the password by running the playbook as below:
+
+```sh
+ansible-playbook -i inventory/hosts setup.yml --tags=print-password-tautulli
+```
+
+After logging in, follow the setup wizard, and change the password in the settings.
 
 To connect the Plex Media Server installed by the playbook, set `Plex IP Address or Hostname` to `mash-plex` and `Plex Port` to `32400` when the setup wizard asks for them.
 

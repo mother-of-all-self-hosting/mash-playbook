@@ -74,7 +74,13 @@ Unpackerr still needs the URL and the API key of each Starr app. Refer to [this 
 
 After running the command for installation, the web UI becomes available at the URL specified with `unpackerr_hostname`. With the configuration above, it is hosted at `https://unpackerr.example.com`.
 
-Unpackerr generates a password for the `admin` user on its first start, and logs it once. To find it, run `journalctl -u mash-unpackerr | grep 'Generated temporary UI password'` on the server. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-unpackerr/blob/main/docs/configuring-unpackerr.md#logging-in-to-the-web-ui) on the role's documentation for details.
+Unpackerr generates a password for the `admin` user on its first start, and logs it once. You can output the password by running the playbook as below:
+
+```sh
+ansible-playbook -i inventory/hosts setup.yml --tags=print-password-unpackerr
+```
+
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-unpackerr/blob/main/docs/configuring-unpackerr.md#logging-in-to-the-web-ui) on the role's documentation for details.
 
 Unpackerr works in the background. Whenever a Starr app it is connected to lists a completed download containing archives, Unpackerr extracts them, so that the Starr app can import the extracted files.
 
