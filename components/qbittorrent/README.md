@@ -62,7 +62,13 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 
 After running the command for installation, the qBittorrent instance becomes available at the URL specified with `qbittorrent_hostname`. With the configuration above, the service is hosted at `https://qbittorrent.example.com`.
 
-To get started, open the URL with a web browser to log in to the instance with a **temporary** randomly generated password. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent/blob/main/docs/configuring-qbittorrent.md#usage) on the role's documentation for details about the usage.
+To get started, open the URL with a web browser to log in to the instance with a **temporary** randomly generated password. You can output the password by running the playbook as below:
+
+```sh
+ansible-playbook -i inventory/hosts setup.yml --tags=print-password-qbittorrent
+```
+
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent/blob/main/docs/configuring-qbittorrent.md#usage) on the role's documentation for details about the usage.
 
 ## Related services
 
