@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2026-11-13
+
+### PostgreSQL 16: check for indexes requiring repair
+
+This affects existing PostgreSQL 16 installations using the role's default image for that major version, which is now 16.16. After updating, follow the [PostgreSQL 16.16 release notes](https://www.postgresql.org/docs/release/16.16/) to identify and `REINDEX` affected indexes: btree indexes on unconstrained `bpchar` columns and `gist_trgm_ops` indexes need rebuilding; GIN and TOAST indexes may also need repair in the circumstances described upstream. Updating PostgreSQL does not repair existing index corruption. The role neither performs these repairs nor issues a validation error reminding you to do so. A dump/restore is not required for an upgrade within PostgreSQL 16.
+
 ## 2026-11-07
 
 ### Components need a description
