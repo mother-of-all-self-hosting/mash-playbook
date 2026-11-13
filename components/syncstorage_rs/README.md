@@ -65,7 +65,7 @@ syncstorage_rs_hostname: syncstorage-rs.example.com
 
 Syncstorage-rs can use a MySQL compatible database or Postgres, and you need to choose one. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%253Az2BgqgDV3M1WeX9V3Y21yersbiCx7/tree/docs/configuring-syncstorage-rs.md#specify-database) on the role's documentation for details.
 
-### Set random strings
+### Set a random string
 
 You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
 
