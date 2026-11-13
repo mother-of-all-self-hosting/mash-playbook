@@ -274,8 +274,6 @@ Here are the list of known affected services:
 | Meilisearch    | grep 'MEILI_MASTER_KEY' /mash/meilisearch/env              | `meilisearch_environment_variables_master_key`                   |
 | Papra          | grep 'AUTH_SECRET' /mash/papra/env                         | `papra_environment_variables_auth_secret`                        |
 | Pocket ID      | grep 'ENCRYPTION_KEY' /mash/pocket-id/env                  | `pocket_id_environment_variable_encryption_key`                  |
-| syncstorage-rs | grep 'SYNC_MASTER_SECRET' /mash/syncstorage-rs-docker/env  | `syncstorage_rs_docker_environment_variable_sync_master_secret`  |
-| syncstorage-rs | grep 'METRICS_HASH_SECRET' /mash/syncstorage-rs-docker/env | `syncstorage_rs_docker_environment_variable_metrics_hash_secret` |
 | Typesense      | grep 'ENCRYPTION_KEY' /mash/typesense/env                  | `typesense_environment_variables_api_key`                        |
 
 If you use a certain cervice on the list, please run the command on the server to retrieve the value, and specify the output value to the variable for it on your `vars.yml` file.

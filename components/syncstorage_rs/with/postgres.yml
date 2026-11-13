@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+syncstorage_rs_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+syncstorage_rs_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+syncstorage_rs_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.docuseal.p') | hash('sha512') | to_uuid }}"
+syncstorage_rs_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and (syncstorage_rs_database_postgres_hostname == postgres_connection_hostname or syncstorage_rs_database_postgres_socket_enabled) else 'prefer' }}"
+syncstorage_rs_database_postgres_socket_path_host: "{{ postgres_run_path }}"
