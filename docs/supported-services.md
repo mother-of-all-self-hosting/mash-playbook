@@ -267,7 +267,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Stirling PDF v1](https://github.com/Stirling-Tools/Stirling-PDF) | PDF converter and editor | [Link](../components/stirling_pdf/README.md) |
 | [strongSwan](https://www.strongswan.org/) | IPsec-based VPN solution | [Link](../components/strongswan/README.md) |
 | [Svix](https://github.com/svix/svix-webhooks) | Webhook service | [Link](../components/svix/README.md) |
-| [syncstorage-rs](https://github.com/mozilla-services/syncstorage-rs) | Mozilla Sync Storage server for Firefox Sync | [Link](../components/syncstorage_rs_docker/README.md) |
+| [Syncstorage-rs](https://mozilla-services.github.io/syncstorage-rs/) | Mozilla Sync Storage server for Firefox Sync | [Link](../components/syncstorage_rs/README.md) |
 | [Syncthing](https://syncthing.net/) | Continuous file synchronization between computers | [Link](../components/syncthing/README.md) |
 | [Tandoor](https://docs.tandoor.dev/) | Recipe manager | [Link](../components/tandoor/README.md) |
 | [Tasks.md](https://hub.docker.com/r/baldissaramatheus/tasks.md) | Markdown file-based task management board | [Link](../components/tasksmd/README.md) |
