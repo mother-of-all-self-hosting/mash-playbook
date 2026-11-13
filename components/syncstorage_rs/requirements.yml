@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://progressiv.radicle.garden/z2BgqgDV3M1WeX9V3Y21yersbiCx7.git
-  version: v0.21.0-10
+  version: v0.25.0-0
   name: syncstorage_rs
