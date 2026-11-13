@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-sonarr.git
-  version: v4.0.20-7
+  version: v4.0.20-8
   name: sonarr
