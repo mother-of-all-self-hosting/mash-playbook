@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-seerr.git
-  version: v3.5.1-1
+  version: v3.5.1-2
   name: seerr
