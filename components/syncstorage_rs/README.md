@@ -67,7 +67,7 @@ Syncstorage-rs can use a MySQL compatible database or Postgres, and you need to 
 
 ### Set random strings
 
-You also need to set random strings to the variables as below by adding the following configuration to your `vars.yml` file. The values can be generated with `pwgen -s 64 1` or in another way.
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
 
 ```yaml
 syncstorage_rs_environment_variables_sync_master_secret: YOUR_SECRET_KEY_HERE
