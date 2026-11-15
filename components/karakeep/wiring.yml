@@ -12,10 +12,8 @@ karakeep_identifier: "{{ mash_playbook_service_identifier_prefix }}karakeep"
 
 karakeep_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}karakeep"
 
-# Currently root access without read-only option is necessary for Karakeep to work properly.
-# See: https://github.com/karakeep-app/karakeep/issues/865
-karakeep_uid: "0"
-karakeep_gid: "0"
+karakeep_uid: "{{ mash_playbook_uid }}"
+karakeep_gid: "{{ mash_playbook_gid }}"
 
 karakeep_systemd_wanted_services_list_auto: |
   {{
