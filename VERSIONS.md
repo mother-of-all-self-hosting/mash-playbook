@@ -103,6 +103,7 @@
 * Healthchecks: v5.0
 * Heimdall: 2.8.4
 * Heyform: v3.0.6
+* Hindsight: 1.1.0
 * Homarr: v2.12.0
 * Hubsite Nginx: 1.31.8
 * Ihatemoney: 7.2.1

@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2026 Robin Miller
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+activation_prefix: hindsight_
+description: State of the art long-term memory for your agents.
+
+inject:
+  systemd:
+    managed_services:
+      - name: "{{ hindsight_api_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ hindsight_api_restart_necessary }}"
+        groups: [mash, hindsight]
+        when: "{{ hindsight_enabled and hindsight_api_enabled }}"
+      - name: "{{ hindsight_controlplane_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ hindsight_controlplane_restart_necessary }}"
+        groups: [mash, hindsight]
+        when: "{{ hindsight_enabled and hindsight_controlplane_enabled }}"

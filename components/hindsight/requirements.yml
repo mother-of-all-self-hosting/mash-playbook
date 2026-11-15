@@ -1,0 +1,4 @@
+---
+- src: git+https://forgejo.littlecedar.net/littlecedar/ansible-role-mash-hindsight.git
+  version: main
+  name: hindsight
