@@ -29,3 +29,5 @@ gotenberg_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_e
 gotenberg_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ gotenberg_identifier }}"
 gotenberg_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 gotenberg_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+gotenberg_environment_variables_otel_metrics_exporter: "{{ 'prometheus' if prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
