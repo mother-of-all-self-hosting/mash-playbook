@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/ansible-role-pghero.git
+  version: v4.1.0-0
+  name: pghero
