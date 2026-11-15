@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/bergruebe/ansible-role-haben.git
+  version: v0.9.0-0
+  name: haben

@@ -1,0 +1,43 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+# SPDX-FileCopyrightText: 2026 Bergruebe
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+haben_enabled: false
+
+haben_identifier: "{{ mash_playbook_service_identifier_prefix }}haben"
+
+haben_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}haben"
+
+haben_uid: "{{ mash_playbook_uid }}"
+haben_gid: "{{ mash_playbook_gid }}"
+
+haben_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and haben_database_hostname == postgres_connection_hostname else [])
+  }}
+
+haben_systemd_wanted_services_list_auto: |
+  {{
+    ([tsdproxy_identifier ~ '.service'] if tsdproxy_enabled | default(false) and haben_container_labels_tsdproxy_enabled else [])
+  }}
+
+haben_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and haben_database_hostname == postgres_connection_hostname and haben_container_network != postgres_container_network else [])
+    +
+    ([tsdproxy_container_network] if tsdproxy_enabled | default(false) and haben_container_labels_tsdproxy_enabled and haben_container_network != tsdproxy_container_network else [])
+  }}
+
+haben_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+haben_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+haben_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+haben_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
+
+haben_environment_variables_better_auth_secret: "{{ (mash_playbook_generic_secret_key + ':haben.auth') | hash('sha512') | to_uuid }}"

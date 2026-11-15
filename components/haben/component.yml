@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+description: Bookkeeping for German freelancers and small businesses
+docs:
+  name: Haben
+  url: https://haben.app
+  section: foss
+activation_prefix: haben_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ haben_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ haben_restart_necessary | bool }}"
+        groups: [mash, haben]
+        when: "{{ haben_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ haben_database_name }}"
+        username: "{{ haben_database_username }}"
+        password: "{{ haben_database_password }}"
+        when: "{{ haben_enabled and haben_database_hostname == postgres_connection_hostname }}"
