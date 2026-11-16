@@ -5,7 +5,7 @@
 
 ---
 
-asciinema_server_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+asciinema_server_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not asciinema_server_database_socket_enabled else '' }}"
 asciinema_server_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 asciinema_server_database_password: "{{ (mash_playbook_generic_secret_key + ':db.asciinema') | hash('sha512') | to_uuid }}"
 asciinema_server_database_sslmode: "{{ 'disable' if postgres_enabled and (asciinema_server_database_hostname == postgres_connection_hostname or asciinema_server_database_socket_enabled) else 'prefer' }}"
