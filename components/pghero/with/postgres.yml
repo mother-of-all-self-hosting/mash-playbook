@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 ---
-pghero_database_hostname: "{{ postgres_connection_hostname }}"
+pghero_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not pghero_database_socket_enabled else '' }}"
 pghero_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 pghero_database_username: "{{ postgres_connection_username if postgres_enabled else '' }}"
 pghero_database_password: "{{ postgres_connection_password if postgres_enabled else '' }}"
