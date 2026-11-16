@@ -1,0 +1,31 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+pghero_enabled: false
+
+pghero_identifier: "{{ mash_playbook_service_identifier_prefix }}pghero"
+
+pghero_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}pghero"
+
+pghero_uid: "{{ mash_playbook_uid }}"
+pghero_gid: "{{ mash_playbook_gid }}"
+
+pghero_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (pghero_database_hostname == postgres_connection_hostname or pghero_database_socket_enabled) else [])
+  }}
+
+pghero_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and (pghero_database_hostname == postgres_connection_hostname and pghero_container_network != postgres_container_network and not pghero_database_socket_enabled) else [])
+  }}
+
+pghero_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+pghero_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
