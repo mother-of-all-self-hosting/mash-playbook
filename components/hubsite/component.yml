@@ -26,6 +26,6 @@ inject:
     services:
       - name: "{{ hubsite_identifier }}.service"
         priority: 2000
-        restart_necessary: true
+        restart_necessary: "{{ hubsite_restart_necessary | bool }}"
         groups: [mash, hubsite]
         when: "{{ hubsite_enabled }}"
