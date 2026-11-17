@@ -33,3 +33,9 @@ inject:
         username: "{{ vikunja_database_postgres_username }}"
         password: "{{ vikunja_database_postgres_password }}"
         when: "{{ vikunja_enabled and (vikunja_database_postgres_hostname == postgres_connection_hostname or vikunja_database_postgres_socket_enabled) and vikunja_database_type == 'postgres' }}"
+  paradedb:
+    managed_databases:
+      - name: "{{ vikunja_database_name }}"
+        username: "{{ vikunja_database_paradedb_username }}"
+        password: "{{ vikunja_database_paradedb_password }}"
+        when: "{{ vikunja_enabled and (vikunja_database_paradedb_hostname == paradedb_connection_hostname or vikunja_database_paradedb_socket_enabled) and vikunja_database_type == 'paradedb' }}"

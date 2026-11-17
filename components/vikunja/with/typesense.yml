@@ -1,9 +1,0 @@
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
----
-
-vikunja_environment_variables_typesense_enabled: "{{ typesense_enabled }}"
-vikunja_environment_variables_typesense_url: http://{{ typesense_identifier }}:{{ typesense_container_http_port }}
-vikunja_environment_variables_typesense_apikey: "{{ typesense_environment_variables_api_key }}"
