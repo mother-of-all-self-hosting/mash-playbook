@@ -12,9 +12,8 @@ browserless_identifier: "{{ mash_playbook_service_identifier_prefix }}browserles
 
 browserless_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}browserless"
 
-# Currently Browserless can only run as root user
-browserless_uid: "0"
-browserless_gid: "0"
+browserless_uid: "{{ mash_playbook_uid }}"
+browserless_gid: "{{ mash_playbook_gid }}"
 
 browserless_container_additional_networks_auto: |
   {{
