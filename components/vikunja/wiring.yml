@@ -44,8 +44,6 @@ vikunja_container_additional_networks_auto: |
     ([paradedb_container_network] if paradedb_enabled | default(false) and (vikunja_database_paradedb_hostname == paradedb_connection_hostname and vikunja_container_network != paradedb_container_network and not vikunja_database_paradedb_socket_enabled) and vikunja_database_type == 'paradedb' else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and (vikunja_database_postgres_hostname == postgres_connection_hostname and vikunja_container_network != postgres_container_network and not vikunja_database_postgres_socket_enabled) and vikunja_database_type == 'postgres' else [])
-    +
-    ([typesense_container_network] if typesense_enabled | default(false) and vikunja_container_network != typesense_container_network else [])
   }}
 
 vikunja_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
