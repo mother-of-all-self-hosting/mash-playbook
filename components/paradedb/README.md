@@ -26,6 +26,8 @@ The playbook can install and configure [ParadeDB](https://www.paradedb.com) for 
 
 ParadeDB is a [PostgreSQL](https://www.postgresql.org) extension with a custom index for full-text and vector search, BM25 scoring, filters, facets, aggregations, and joins.
 
+This service runs its own PostgreSQL server with ParadeDB's extension built in, separately from the [Postgres](../postgres/README.md) service. It does not add the extension to an existing Postgres instance.
+
 See the project's [documentation](https://www.paradedb.com/docs/reference/overview) to learn what ParadeDB does and why it might be useful to you.
 
 For details about configuring the [Ansible role for ParadeDB](https://github.com/mother-of-all-self-hosting/ansible-role-paradedb), you can check them via:
