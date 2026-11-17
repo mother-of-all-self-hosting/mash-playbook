@@ -71,7 +71,7 @@ Vikunja can use a MySQL compatible database, Postgres (ParadeDB), or SQLite, and
 
 >[!NOTE]
 >
-> - Using [ParadeDB](../postgres/README.md) is necessary for full-text search. Refer to [this section](https://vikunja.io/docs/paradedb/#migration-from-typesense) on the official documentation for details about migrating from Typesense.
+> - Using [ParadeDB](../paradedb/README.md) is necessary for full-text search. Refer to [this section](https://vikunja.io/docs/paradedb/#migration-from-typesense) on the official documentation for details about migrating from Typesense.
 > - If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 ### Configuring the mailer (optional)
