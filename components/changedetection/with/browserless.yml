@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+changedetection_changedetection_environment_variables_playwright_driver_url: "{{ 'ws://' + browserless_identifier + ':3000/?stealth=1&--disable-web-security=true' if browserless_enabled else '' }}"
