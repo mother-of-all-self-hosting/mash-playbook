@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2026-11-18
+
+### Prowlarr 3 requires PostgreSQL 15 or later
+
+If you configured Prowlarr to use PostgreSQL 14 or earlier, back up its databases and upgrade the PostgreSQL server to version 15 or later before deploying this playbook update. If MASH manages that server, follow the [PostgreSQL maintenance instructions](https://github.com/mother-of-all-self-hosting/ansible-role-postgres/blob/main/docs/configuring-postgres.md#maintenance). The Prowlarr role leaves the version check and database server upgrade to the administrator. Prowlarr installations using the default SQLite database can upgrade without a database server change. See the [Prowlarr 3.0.2 release notes](https://github.com/Prowlarr/Prowlarr/releases/tag/v3.0.2.5780).
+
 ## 2026-11-13
 
 ### PostgreSQL 16: check for indexes requiring repair
