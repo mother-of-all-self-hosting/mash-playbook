@@ -61,7 +61,7 @@ A worker needs at least 1 coding-agent harness. To offer Codex, add the followin
 artidezi_worker_codex_enabled: true
 ```
 
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-artidezi-worker/blob/main/docs/configuring-artidezi-worker.md#choose-a-harness) on the role's documentation for Pi and the harness versions.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-artidezi-worker/blob/main/docs/configuring-artidezi-worker.md#choose-a-harness) on the role's documentation for Pi, Claude Code and the harness versions.
 
 ### Adding project tooling (optional)
 
