@@ -64,6 +64,8 @@ After running the command for installation, the ParadeDB instance becomes availa
 
 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-paradedb/blob/main/docs/configuring-paradedb.md#maintenance) on the role's documentation for details about how to conduct maintenance tasks, such as upgrading ParadeDB and backing up its database.
 
+After upgrading the ParadeDB image on an existing PostgreSQL data directory, follow the [ParadeDB instructions for upgrading the PostgreSQL catalog](https://www.paradedb.com/docs/operate/deploy/upgrading#upgrading-the-postgresql-catalog) in each database where `pg_search` is installed. This step also applies to ParadeDB patch upgrades.
+
 ## Troubleshooting
 
 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-paradedb/blob/main/docs/configuring-paradedb.md#troubleshooting) on the role's documentation for details.
