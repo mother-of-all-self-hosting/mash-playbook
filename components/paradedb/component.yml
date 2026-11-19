@@ -1,0 +1,37 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+description: PostgreSQL server bundled with an extension for full-text and vector search
+docs:
+  name: ParadeDB
+  url: https://github.com/paradedb/paradedb
+  section: foss
+activation_prefix: paradedb_
+
+setup:
+  priority: 220
+  entry:
+    # This role exposes various tags (setup-paradedb, setup-all, upgrade-paradedb, import-paradedb, etc.), so we don't tag it here.
+    - role: galaxy/paradedb
+
+# Lists other components can add entries to (via `inject`).
+# The generator puts the entries of the components in use (whose `when` is true) into the `into` variable.
+accepts:
+  managed_databases:
+    description: Databases (and users) to create and keep up to date
+    into: paradedb_managed_databases_auto
+    required_keys: [name, password, username]
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ paradedb_identifier }}.service"
+        priority: 500
+        restart_necessary: "{{ paradedb_restart_necessary | bool }}"
+        groups: [mash, paradedb]
+        when: "{{ paradedb_enabled }}"

@@ -156,6 +156,12 @@ install-service service *extra_args:
     --tags=install-{{ service }},start-group \
     --extra-vars=group={{ service }} {{ extra_args }}
 
+# Lists all services supported by the playbook
+list-services-all: (_optimize-files "--all-components" "--list-services")
+
+# Lists the services in use by your inventory
+list-services-own: (_optimize-files "--list-services")
+
 # Runs the playbook with --tags=setup-all,start and optional arguments
 setup-all *extra_args: (run-tags "setup-all,start" extra_args)
 
@@ -202,6 +208,13 @@ run +extra_args: _prepare-files (_install-roles "--quiet")
 # Runs the playbook with the given list of comma-separated tags and optional arguments
 run-tags tags *extra_args:
     {{ just_executable() }} --justfile {{ justfile() }} run --tags={{ tags }} {{ extra_args }}
+
+# Lists the playbook tags of the services in use by your inventory
+list-tags: _prepare-files (_install-roles "--quiet")
+    #!/usr/bin/env sh
+    set -eu
+    output=$(ansible-playbook -i {{ quote(inventory) }} setup.yml --list-tags)
+    printf '%s\n' "$output" | sed -n 's/.*TASK TAGS: \[\(.*\)\]/\1/p' | tr ',' '\n' | sed 's/^ *//' | sort -u
 
 # Starts all services
 start-all *extra_args: (run-tags "start-all" extra_args)

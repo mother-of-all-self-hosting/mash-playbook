@@ -5,6 +5,11 @@
 
 ---
 
+description: A fully-featured, standalone, Matrix rooms search service
+docs:
+  name: Matrix Rooms Search API
+  url: https://github.com/etkecc/mrs
+  section: foss
 activation_prefix: mrs_
 
 # Entries added to other components' lists, while those components are in use

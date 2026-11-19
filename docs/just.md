@@ -24,8 +24,13 @@ Here are some examples of shortcuts:
 | `just install-all --ask-vault-pass`            | Run commands with additional arguments (`--ask-vault-pass` will be appended to the above installation command) |
 | `just run-tags install-miniflux,start`         | Run specific playbook tags (here `install-miniflux` and `start`)                                               |
 | `just install-service miniflux`                | Run `just run --tags=install-miniflux,start-group --extra-vars=group=miniflux` with even less typing           |
+| `just list-services-all`                       | List all services supported by the playbook, with their descriptions                                           |
+| `just list-services-own`                       | List only the services in use by your inventory                                                                |
+| `just list-tags`                               | List the [playbook tags](playbook-tags.md) of the services in use by your inventory, one per line              |
 | `just start-all`                               | (Re-)starts all services                                                                                       |
 | `just stop-group postgres`                     | Stop only the Postgres service                                                                                 |
+
+The names printed by `just list-services-all` and `just list-services-own` are the ones `just install-service` and `just setup-service` take. You can search them with `grep` (e.g. `just list-services-all | grep -i wiki`). Before installing a service which is not in use yet, enable it in your `vars.yml` by following its [documentation](supported-services.md).
 
 While [our documentation on prerequisites](prerequisites.md) lists `just` as one of the requirements for installation, using `just` is optional. If you find it difficult to install it, do not find it useful, or want to prefer raw `ansible-playbook` commands for some reason, feel free to run all commands manually. For example, you can run `ansible-galaxy` directly to install the Ansible roles: `rm -rf roles/galaxy; ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force`.
 

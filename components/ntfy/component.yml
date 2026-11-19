@@ -1,10 +1,15 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 ---
 
+description: HTTP-based pub-sub push notification service
+docs:
+  name: ntfy
+  url: https://ntfy.sh/
+  section: foss
 activation_prefix: ntfy_
 
 # Entries added to other components' lists, while those components are in use
@@ -24,3 +29,9 @@ inject:
         description: "{{ mash_playbook_hubsite_service_ntfy_description }}"
         priority: "{{ mash_playbook_hubsite_service_ntfy_priority }}"
         when: "{{ mash_playbook_hubsite_service_ntfy_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ ntfy_database_name }}"
+        username: "{{ ntfy_database_username }}"
+        password: "{{ ntfy_database_password }}"
+        when: "{{ ntfy_enabled and ntfy_database_hostname == postgres_connection_hostname and ntfy_database_type == 'postgres' }}"

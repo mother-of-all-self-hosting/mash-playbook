@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://progressiv.radicle.garden/z28JTUhepmbS3hLZyUeEvXeqk9QW5.git
-  version: v1.10.3-0
+  version: v1.10.3-1
   name: radicle_node

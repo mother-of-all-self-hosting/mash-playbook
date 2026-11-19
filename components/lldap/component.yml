@@ -5,6 +5,11 @@
 
 ---
 
+description: Lightweight authentication server with a simplified LDAP interface
+docs:
+  name: LLDAP
+  url: https://github.com/lldap/lldap/
+  section: foss
 activation_prefix: lldap_
 
 # Entries added to other components' lists, while those components are in use

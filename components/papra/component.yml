@@ -5,6 +5,11 @@
 
 ---
 
+description: Document management and archiving platform
+docs:
+  name: Papra
+  url: https://github.com/papra-hq/papra
+  section: foss
 activation_prefix: papra_
 
 # Entries added to other components' lists, while those components are in use

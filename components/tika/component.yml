@@ -5,6 +5,11 @@
 
 ---
 
+description: Detects and extracts metadata and text from many file types
+docs:
+  name: Apache Tika Server
+  url: https://github.com/apache/tika-docker
+  section: foss
 activation_prefix: tika_
 
 # Entries added to other components' lists, while those components are in use

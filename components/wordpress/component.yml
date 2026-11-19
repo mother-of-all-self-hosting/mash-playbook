@@ -5,6 +5,11 @@
 
 ---
 
+description: Web content management system
+docs:
+  name: WordPress
+  url: https://wordpress.org/
+  section: foss
 activation_prefix: wordpress_
 
 # Entries added to other components' lists, while those components are in use

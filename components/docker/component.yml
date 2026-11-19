@@ -4,6 +4,11 @@
 
 ---
 
+description: Docker, the container runtime which runs the services
+docs:
+  name: Docker
+  url: https://www.docker.com/
+  section: foss
 activation_prefix: mash_playbook_docker_installation_enabled
 
 setup:

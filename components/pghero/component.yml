@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+description: Performance dashboard for Postgres
+docs:
+  name: PgHero
+  url: https://github.com/ankane/pghero
+  section: foss
+activation_prefix: pghero_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ pghero_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ pghero_restart_necessary | bool }}"
+        groups: [mash, pghero]
+        when: "{{ pghero_enabled }}"

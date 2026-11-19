@@ -4,6 +4,7 @@
 
 ---
 
+description: Migrations between versions of the playbook
 activation_prefix: ''  # Always in use
 
 setup:

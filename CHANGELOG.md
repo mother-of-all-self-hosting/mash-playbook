@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 2026-11-18
+
+### Prowlarr 3 requires PostgreSQL 15 or later
+
+If you configured Prowlarr to use PostgreSQL 14 or earlier, back up its databases and upgrade the PostgreSQL server to version 15 or later before deploying this playbook update. If MASH manages that server, follow the [PostgreSQL maintenance instructions](https://github.com/mother-of-all-self-hosting/ansible-role-postgres/blob/main/docs/configuring-postgres.md#maintenance). The Prowlarr role leaves the version check and database server upgrade to the administrator. Prowlarr installations using the default SQLite database can upgrade without a database server change. See the [Prowlarr 3.0.2 release notes](https://github.com/Prowlarr/Prowlarr/releases/tag/v3.0.2.5780).
+
+## 2026-11-13
+
+### PostgreSQL 16: check for indexes requiring repair
+
+This affects existing PostgreSQL 16 installations using the role's default image for that major version, which is now 16.16. After updating, follow the [PostgreSQL 16.16 release notes](https://www.postgresql.org/docs/release/16.16/) to identify and `REINDEX` affected indexes: btree indexes on unconstrained `bpchar` columns and `gist_trgm_ops` indexes need rebuilding; GIN and TOAST indexes may also need repair in the circumstances described upstream. Updating PostgreSQL does not repair existing index corruption. The role neither performs these repairs nor issues a validation error reminding you to do so. A dump/restore is not required for an upgrade within PostgreSQL 16.
+
+## 2026-11-07
+
+### Components need a description
+
+This affects you only if your inventory has [components of its own](docs/extending-the-playbook.md) (e.g. in `inventory/components/`). If it has none, nothing changes for you.
+
+Each component's `component.yml` now needs a brief `description`, which `just list-services-all` and `just list-services-own` show. Until yours have one, the playbook stops with an error naming the file. Add it to each of your components:
+
+```yaml
+description: What this component does, in a few words
+```
+
 ## 2026-10-30
 
 ### Woodpecker CI's directories moved
@@ -262,8 +286,6 @@ Here are the list of known affected services:
 | Meilisearch    | grep 'MEILI_MASTER_KEY' /mash/meilisearch/env              | `meilisearch_environment_variables_master_key`                   |
 | Papra          | grep 'AUTH_SECRET' /mash/papra/env                         | `papra_environment_variables_auth_secret`                        |
 | Pocket ID      | grep 'ENCRYPTION_KEY' /mash/pocket-id/env                  | `pocket_id_environment_variable_encryption_key`                  |
-| syncstorage-rs | grep 'SYNC_MASTER_SECRET' /mash/syncstorage-rs-docker/env  | `syncstorage_rs_docker_environment_variable_sync_master_secret`  |
-| syncstorage-rs | grep 'METRICS_HASH_SECRET' /mash/syncstorage-rs-docker/env | `syncstorage_rs_docker_environment_variable_metrics_hash_secret` |
 | Typesense      | grep 'ENCRYPTION_KEY' /mash/typesense/env                  | `typesense_environment_variables_api_key`                        |
 
 If you use a certain cervice on the list, please run the command on the server to retrieve the value, and specify the output value to the variable for it on your `vars.yml` file.

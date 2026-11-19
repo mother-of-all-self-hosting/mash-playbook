@@ -5,6 +5,11 @@
 
 ---
 
+description: Webhook service
+docs:
+  name: Svix
+  url: https://github.com/svix/svix-webhooks
+  section: foss
 activation_prefix: svix_server_
 
 # Entries added to other components' lists, while those components are in use

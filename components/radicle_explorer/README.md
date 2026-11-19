@@ -19,7 +19,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Radicle Explorer
 
-The playbook can install and configure [Radicle Explorer](https://radicle.network/nodes/seed.radicle.dev/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5) for you.
+The playbook can install and configure [Radicle Explorer](https://radicle.network/nodes/seed.radicle.dev/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/explorer/README.md) for you.
 
 Radicle Explorer allows you to interact with [Radicle](https://radicle.dev/), a peer-to-peer code collaboration and publishing stack, directly from your web browser.
 

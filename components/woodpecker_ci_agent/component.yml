@@ -4,6 +4,11 @@
 
 ---
 
+description: Agent which runs the pipelines of a Woodpecker CI server
+docs:
+  name: Woodpecker CI agent
+  url: https://woodpecker-ci.org/
+  section: foss
 activation_prefix: woodpecker_ci_agent_
 
 # Entries added to other components' lists, while those components are in use

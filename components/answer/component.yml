@@ -5,6 +5,11 @@
 
 ---
 
+description: Q&A community platform software for teams
+docs:
+  name: Apache Answer
+  url: https://answer.apache.org/
+  section: foss
 activation_prefix: answer_
 
 # Entries added to other components' lists, while those components are in use

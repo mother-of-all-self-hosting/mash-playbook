@@ -5,6 +5,11 @@
 
 ---
 
+description: Feature-complete Tailscale Web UI for Headscale
+docs:
+  name: Headplane
+  url: https://headplane.net/
+  section: foss
 activation_prefix: headplane_
 
 # Entries added to other components' lists, while those components are in use

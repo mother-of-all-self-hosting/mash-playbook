@@ -5,6 +5,11 @@
 
 ---
 
+description: An SSH terminal over HTTP/HTTPS
+docs:
+  name: Wetty
+  url: https://github.com/butlerx/wetty
+  section: foss
 activation_prefix: wetty_
 
 # Entries added to other components' lists, while those components are in use

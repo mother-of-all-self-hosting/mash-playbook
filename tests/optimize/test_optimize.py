@@ -392,6 +392,176 @@ class TestInventoryChanges(OptimizeTestCase):
         self.assertEqual(list((self.pb.root / "run").glob("*.srchash")), [])
 
 
+class TestListServices(OptimizeTestCase):
+    def listed(self, recipe):
+        result = self.pb.just(recipe)
+        self.assertSucceeded(result)
+        return {line.split()[0]: line for line in result.stdout.splitlines()}
+
+    def test_all_services(self):
+        self.standard_inventory()
+        services = self.listed("list-services-all")
+        self.assertIn("nextcloud", services)
+        self.assertIn("prometheus-node-exporter", services)
+        # Components which run no service of their own
+        self.assertNotIn("docker", services)
+        self.assertNotIn("swap", services)
+
+    def test_own_services(self):
+        self.standard_inventory()
+        services = self.listed("list-services-own")
+        self.assertIn("miniflux", services)
+        self.assertIn("gitea", services)
+        self.assertNotIn("nextcloud", services)
+
+    def test_descriptions(self):
+        self.standard_inventory()
+        services = self.listed("list-services-all")
+        self.assertRegex(services["anki"], r"^anki +Data synchronization server for Anki$")
+
+    def test_nothing_is_written(self):
+        self.standard_inventory()
+        self.listed("list-services-all")
+        self.listed("list-services-own")
+        self.assertFalse((self.pb.root / "requirements.yml").exists())
+        self.assertFalse((self.pb.root / "setup.yml").exists())
+        self.assertFalse((self.pb.root / "group_vars" / "mash_servers").exists())
+
+    def test_services_work_with_install_service(self):
+        # `just install-service SERVICE` also starts the service group named SERVICE
+        for path in sorted((self.pb.root / "components").glob("*/component.yml")):
+            inject = yaml.safe_load(path.read_text()).get("inject") or {}
+            for_service_manager = inject.get("systemd_service_manager") or {}
+            if not for_service_manager.get("services"):
+                continue
+            service = path.parent.name.replace("_", "-")
+            groups = [entry.get("groups") or [] for entry in for_service_manager["services"]]
+            self.assertTrue(any(service in entry for entry in groups), "{0} has no {1} group".format(path, service))
+
+
+class TestSupportedServices(OptimizeTestCase):
+    """docs/supported-services.md, whose tables are generated from the components' `docs`."""
+
+    def setUp(self):
+        super().setUp()
+        self.page = self.pb.root / "docs" / "supported-services.md"
+        self.page.parent.mkdir()
+        shutil.copy(REPO / "docs" / "supported-services.md", self.page)
+
+    def update(self):
+        return subprocess.run(
+            [
+                sys.executable, str(self.pb.root / "bin" / "optimize.py"),
+                "--components-path", str(self.pb.root / "components"),
+                "--update-supported-services", str(self.page),
+            ],
+            capture_output=True,
+            text=True,
+        )
+
+    def edit_manifest(self, name, edit):
+        path = self.pb.root / "components" / name / "component.yml"
+        data = yaml.safe_load(path.read_text())
+        edit(data)
+        path.write_text(yaml.safe_dump(data, sort_keys=False))
+
+    def table(self, section):
+        """The rows of the generated table for a `docs.section`."""
+        match = re.search(
+            r"<!-- Generated from the components with `docs.section: {0}`.*?-->\n(.*?)<!-- End of generated content -->".format(section),
+            self.page.read_text(),
+            re.DOTALL,
+        )
+        return [line for line in match.group(1).splitlines() if line.startswith("| ") and "[Link]" in line]
+
+    def test_committed_page_is_up_to_date(self):
+        result = self.update()
+        self.assertSucceeded(result)
+        self.assertEqual(result.stdout, "")
+        self.assertEqual(self.page.read_text(), (REPO / "docs" / "supported-services.md").read_text())
+
+    def test_rows_come_from_components(self):
+        def edit(data):
+            data["description"] = "Reads feeds | fast"
+            data["docs"] = {"name": "Aaa [feeds]", "url": "https://example.com", "section": "non-free"}
+        self.edit_manifest("miniflux", edit)
+        self.edit_manifest("swap", lambda data: data.pop("docs"))
+        self.assertSucceeded(self.update())
+
+        self.assertEqual(
+            self.table("non-free")[0],
+            "| [Aaa \\[feeds\\]](https://example.com) | Reads feeds \\| fast | [Link](../components/miniflux/README.md) |",
+        )
+        self.assertFalse(any("components/miniflux/" in row for row in self.table("foss")))
+        self.assertFalse(any("components/swap/" in row for row in self.table("system")))
+        # Rows without a `url` have an unlinked name
+        self.assertIn("| Cleanup | ", "\n".join(self.table("system")))
+        # Sorted by name, regardless of case
+        names = [re.match(r"^\| \[?(.+?)(\]\(.*?\))? \| ", row).group(1).casefold() for row in self.table("foss")]
+        self.assertEqual(names, sorted(names))
+
+    def test_urls_with_markdown_characters(self):
+        self.edit_manifest("swap", lambda data: data["docs"].update(url="https://example.com/a_(b)?q=&copy;"))
+        self.assertSucceeded(self.update())
+        self.assertIn("| [Swap](<https://example.com/a_(b)?q=&amp;copy;>) | ", "\n".join(self.table("system")))
+
+    def test_other_modes_are_rejected(self):
+        self.edit_manifest("swap", lambda data: data.update(description="Something else"))
+        for mode in ("--check", "--list-services"):
+            with self.subTest(mode):
+                result = subprocess.run(
+                    [
+                        sys.executable, str(self.pb.root / "bin" / "optimize.py"),
+                        "--components-path", str(self.pb.root / "components"),
+                        "--update-supported-services", str(self.page), mode,
+                    ],
+                    capture_output=True,
+                    text=True,
+                )
+                self.assertFailedCleanly(result)
+                self.assertIn("not allowed with argument", result.stderr)
+                self.assertEqual(self.page.read_text(), (REPO / "docs" / "supported-services.md").read_text())
+
+    def test_text_around_tables_is_kept(self):
+        contents = self.page.read_text()
+        self.edit_manifest("miniflux", lambda data: data.update(description="Something else"))
+        self.assertSucceeded(self.update())
+        outside = lambda text: re.sub(r"<!-- Generated from .*?<!-- End of generated content -->", "", text, flags=re.DOTALL)
+        self.assertEqual(outside(self.page.read_text()), outside(contents))
+
+    def test_mistakes(self):
+        cases = {
+            # Twice
+            "needs exactly one table for `docs.section: foss`": lambda text: text.replace("`docs.section: system`", "`docs.section: foss`"),
+            # Missing, or its end marker is
+            "needs exactly one table for `docs.section: non-free`": lambda text: text[:text.rindex("<!-- End of generated content -->")],
+            "which is not one of": lambda text: text.replace("`docs.section: system`", "`docs.section: other`"),
+        }
+        for expected, make_mistake in cases.items():
+            with self.subTest(expected):
+                shutil.copy(REPO / "docs" / "supported-services.md", self.page)
+                self.page.write_text(make_mistake(self.page.read_text()))
+                result = self.update()
+                self.assertFailedCleanly(result)
+                self.assertIn(expected, result.stderr)
+
+    def test_inventory_components_are_not_listed(self):
+        result = self.update()
+        self.assertSucceeded(result)
+        result = subprocess.run(
+            [
+                sys.executable, str(self.pb.root / "bin" / "optimize.py"),
+                "--components-path", str(self.pb.root / "components"),
+                "--inventory-path", str(self.pb.inventory),
+                "--update-supported-services", str(self.page),
+            ],
+            capture_output=True,
+            text=True,
+        )
+        self.assertFailedCleanly(result)
+        self.assertIn("takes no --inventory-path", result.stderr)
+
+
 class TestVariableFileContents(OptimizeTestCase):
     def test_empty_file(self):
         self.standard_inventory()
@@ -631,6 +801,12 @@ class TestComponents(OptimizeTestCase):
         manifest = "miniflux/component.yml"
         cases = {
             "unknown key": lambda: self.edit_yaml(manifest, lambda data: data.update(no_such_field=True)),
+            "needs a `description`": lambda: self.edit_yaml(manifest, lambda data: data.pop("description")),
+            "`docs` may only contain": lambda: self.edit_yaml(manifest, lambda data: data["docs"].update(no_such_field=True)),
+            "`docs` needs a `name`": lambda: self.edit_yaml(manifest, lambda data: data["docs"].pop("name")),
+            "`docs.url` must be an http(s) URL": lambda: self.edit_yaml(manifest, lambda data: data["docs"].update(url=["x"])),
+            "`docs.section` must be one of": lambda: self.edit_yaml(manifest, lambda data: data["docs"].update(section="other")),
+            "it has no README.md to link to": lambda: (self.pb.root / "components" / "miniflux" / "README.md").unlink(),
             "is not a component": lambda: self.edit_yaml(
                 manifest, lambda data: data["inject"].update(no_such_component={"services": []})
             ),
@@ -651,7 +827,16 @@ class TestComponents(OptimizeTestCase):
             "may only contain <component>.yml": lambda: self.write_component_file("miniflux/with/no_such_component.yml", "---\n"),
             "contains unknown files": lambda: self.write_component_file("miniflux/notes.txt", ""),
         }
-        for expected, make_mistake in cases.items():
+        # More mistakes with the same message as one above
+        more_cases = [
+            ("`docs` may only contain", lambda: self.edit_yaml(manifest, lambda data: data.update(docs="Miniflux"))),
+            ("`docs` needs a `name`", lambda: self.edit_yaml(manifest, lambda data: data["docs"].update(name=" "))),
+            ("`docs.section` must be one of", lambda: self.edit_yaml(manifest, lambda data: data["docs"].pop("section"))),
+            ("`docs.url` must be an http(s) URL", lambda: self.edit_yaml(manifest, lambda data: data["docs"].update(url="example.com"))),
+            ("`docs.url` must be an http(s) URL", lambda: self.edit_yaml(manifest, lambda data: data["docs"].update(url="https://a b"))),
+            ("`docs.url` must be an http(s) URL", lambda: self.edit_yaml(manifest, lambda data: data["docs"].update(url="https://a|b"))),
+        ]
+        for expected, make_mistake in list(cases.items()) + more_cases:
             with self.subTest(expected):
                 self.setUp()
                 make_mistake()
@@ -682,6 +867,7 @@ class TestInventoryComponents(OptimizeTestCase):
 
     HOOKS_COMPONENT = textwrap.dedent("""\
         activation_prefix: hooks_
+        description: Hooks
         setup:
           - priority: 200
             entry:
@@ -695,6 +881,7 @@ class TestInventoryComponents(OptimizeTestCase):
 
     NOTES_COMPONENT = textwrap.dedent("""\
         activation_prefix: notes_
+        description: Notes
         inject:
           systemd_service_manager:
             services:
@@ -908,7 +1095,7 @@ class TestRoleInstallation(OptimizeTestCase):
         self.assertEqual(result.stderr, "")
 
     def test_roles_of_inventory_components(self):
-        self.pb.write("components/notes/component.yml", "activation_prefix: notes_\n")
+        self.pb.write("components/notes/component.yml", "activation_prefix: notes_\ndescription: Notes\n")
         self.pb.write("components/notes/requirements.yml", "- src: git+https://example.com/notes.git\n  version: v1.0.0\n  name: notes\n")
         self.pb.write("host_vars/a/vars.yml", "mash_playbook_generic_secret_key: x\nminiflux_enabled: true\nnotes_enabled: true\n")
         self.assertSucceeded(self.pb.just("roles", env=self.env))

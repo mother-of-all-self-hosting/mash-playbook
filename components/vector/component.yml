@@ -5,6 +5,11 @@
 
 ---
 
+description: High-performance data pipeline for logs and metrics
+docs:
+  name: Vector
+  url: https://vector.dev/
+  section: foss
 activation_prefix: vector_
 
 # Entries added to other components' lists, while those components are in use

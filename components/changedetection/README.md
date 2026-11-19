@@ -13,6 +13,7 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Niels Bouma
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Thomas Miceli
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -36,6 +37,7 @@ For details about configuring the [Ansible role for Changedetection.io](https://
 This service requires the following other services:
 
 - [Traefik](../traefik/README.md) reverse-proxy server
+- (optional) [Browserless](../browserless/README.md) — required for the screenshot function
 - (optional) Notification services which [Apprise API](../apprise/README.md) supports, including [exim-relay](../exim_relay/README.md) mailer, [Gotify](../gotify/README.md), and [ntfy](../ntfy/README.md)
 
 ## Configuration
@@ -61,9 +63,13 @@ changedetection_path_prefix: /changedetection
 ########################################################################
 ```
 
-### Enable Playwright webdriver for advanced options (optional)
+### Connecting to a Browserless instance (optional)
 
-Some advanced options like using Javascript or the Visual Selector tool require an additional Playwright webdriver. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-changedetection/blob/main/docs/configuring-changedetection.md#enable-playwright-webdriver-for-advanced-options-optional) on the role's documentation for details.
+To enable the screenshot function with JavaScript execution allowed, you can optionally have the Changedetection.io instance connect to a Browserless instance.
+
+Browserless is available on the playbook. Enabling it automatically configures the Changedetection.io instance to connect to it.
+
+Refer to [this page](../browserless/README.md) for details about how to install it.
 
 ## Usage
 

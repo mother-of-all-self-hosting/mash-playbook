@@ -5,6 +5,11 @@
 
 ---
 
+description: File-based wiki engine without database requirement
+docs:
+  name: DokuWiki
+  url: https://dokuwiki.org/
+  section: foss
 activation_prefix: dokuwiki_
 
 # Entries added to other components' lists, while those components are in use

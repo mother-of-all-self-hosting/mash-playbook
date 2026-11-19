@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+radicle_search_environment_variables_radicle_search_meili_url: "{{ radicle_httpd_environment_variables_radicle_search_url }}"

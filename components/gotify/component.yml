@@ -5,6 +5,11 @@
 
 ---
 
+description: Send and receive messages in real-time per WebSocket
+docs:
+  name: Gotify
+  url: https://gotify.net/
+  section: foss
 activation_prefix: gotify_
 
 # Entries added to other components' lists, while those components are in use

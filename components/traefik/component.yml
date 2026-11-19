@@ -4,6 +4,11 @@
 
 ---
 
+description: A container-aware reverse-proxy server
+docs:
+  name: Traefik
+  url: https://doc.traefik.io/traefik/
+  section: foss
 activation_prefix: mash_
 
 setup:

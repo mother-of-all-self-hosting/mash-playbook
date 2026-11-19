@@ -5,6 +5,11 @@
 
 ---
 
+description: Live video and web chat server
+docs:
+  name: Owncast
+  url: https://owncast.online/
+  section: foss
 activation_prefix: owncast_
 
 # Entries added to other components' lists, while those components are in use

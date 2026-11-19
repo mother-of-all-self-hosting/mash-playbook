@@ -99,7 +99,7 @@ Homarr also integrates with various software, to which you can connect your appl
 | Media | [audiobookshelf](../audiobookshelf/README.md), [Bazarr](../bazarr/README.md), [Immich](../immich/README.md), [Jellyfin](../jellyfin/README.md), [Lidarr](../lidarr/README.md), [Navidrome](../navidrome/README.md), [Plex](../plex/README.md), [Radarr](../radarr/README.md), [Seerr](../seerr/README.md), [Sonarr](../sonarr/README.md) |
 | Monitoring | [Beszel](../beszel_hub/README.md), [Changedetection.io](../changedetection/README.md), [Prometheus](../prometheus/README.md), [Uptime Kuma](../uptime_kuma/README.md) |
 | Notification | [Gotify](../gotify/README.md), [Nextcloud](../nextcloud/README.md), [ntfy](../ntfy/README.md) |
-| Misc | [AdGuard Home](../adguard_home/README.md), [Autobrr](../autobrr/README.md), [Miniflux](../miniflux/README.md), [Paperless-ngx](../paperless/README.md), [qBittorrent](../qbittorrent/README.md), [Syncthing](../syncthing/README.md), [Tandoor](../tandoor/README.md), [Wazuh](../wazuh/README.md) |
+| Misc | [AdGuard Home](../adguard_home/README.md), [Autobrr](../autobrr/README.md), [Miniflux](../miniflux/README.md), [Paperless-ngx](../paperless/README.md), [Pi-hole](../pihole/README.md), [qBittorrent](../qbittorrent/README.md), [Syncthing](../syncthing/README.md), [Tandoor](../tandoor/README.md), [Wazuh](../wazuh/README.md) |
 
 Refer to [this page](https://homarr.dev/docs/integrations/) on the official documentation for the latest information about integrations.
 

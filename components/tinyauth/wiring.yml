@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -15,6 +15,11 @@ tinyauth_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 tinyauth_uid: "{{ mash_playbook_uid }}"
 tinyauth_gid: "{{ mash_playbook_gid }}"
 
+tinyauth_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (tinyauth_database_hostname == postgres_connection_hostname or tinyauth_database_socket_enabled) and tinyauth_database_type == 'postgres' else [])
+  }}
+
 tinyauth_systemd_wanted_services_list_auto: |
   {{
     ([lldap_identifier ~ '.service'] if lldap_enabled | default(false) and tinyauth_ldap_enabled else [])
@@ -25,6 +30,8 @@ tinyauth_container_additional_networks_auto: |
     ([lldap_container_network] if lldap_enabled | default(false) and tinyauth_container_network != lldap_container_network and tinyauth_ldap_enabled else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and (tinyauth_database_hostname == postgres_connection_hostname and tinyauth_container_network != postgres_container_network and not tinyauth_database_socket_enabled) and tinyauth_database_type == 'postgres' else [])
   }}
 
 tinyauth_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"

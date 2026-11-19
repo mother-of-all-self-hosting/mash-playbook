@@ -5,6 +5,11 @@
 
 ---
 
+description: RSS feed generator for websites
+docs:
+  name: RSSHub
+  url: https://docs.rsshub.app/
+  section: foss
 activation_prefix: rsshub_
 
 # Entries added to other components' lists, while those components are in use

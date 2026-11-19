@@ -5,6 +5,11 @@
 
 ---
 
+description: HTTP server implementing restic's REST backend API
+docs:
+  name: Rest Server
+  url: https://github.com/restic/rest-server
+  section: foss
 activation_prefix: restserver_
 
 # Entries added to other components' lists, while those components are in use

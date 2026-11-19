@@ -5,6 +5,11 @@
 
 ---
 
+description: Relationship management for advocacy and non-profit groups
+docs:
+  name: CiviCRM
+  url: https://civicrm.org/
+  section: foss
 activation_prefix: civicrm_
 
 # Entries added to other components' lists, while those components are in use

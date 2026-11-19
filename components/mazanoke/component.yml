@@ -5,6 +5,11 @@
 
 ---
 
+description: Image optimizer that runs in your browser
+docs:
+  name: MAZANOKE
+  url: https://github.com/civilblur/mazanoke
+  section: foss
 activation_prefix: mazanoke_
 
 # Entries added to other components' lists, while those components are in use

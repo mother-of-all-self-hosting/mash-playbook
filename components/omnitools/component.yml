@@ -6,6 +6,11 @@
 
 ---
 
+description: Web app offering a variety of online tools to simplify everyday tasks
+docs:
+  name: OmniTools
+  url: https://github.com/iib0011/omni-tools
+  section: foss
 activation_prefix: omnitools_
 
 # Entries added to other components' lists, while those components are in use

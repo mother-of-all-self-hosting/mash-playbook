@@ -5,6 +5,11 @@
 
 ---
 
+description: PDF converter and editor
+docs:
+  name: Stirling PDF v1
+  url: https://github.com/Stirling-Tools/Stirling-PDF
+  section: foss
 activation_prefix: stirling_pdf_
 
 # Entries added to other components' lists, while those components are in use

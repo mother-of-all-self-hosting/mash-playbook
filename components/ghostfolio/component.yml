@@ -5,6 +5,11 @@
 
 ---
 
+description: Wealth management software for tracking stocks, ETFs, etc.
+docs:
+  name: Ghostfolio
+  url: https://ghostfol.io/
+  section: foss
 activation_prefix: ghostfolio_
 
 # Entries added to other components' lists, while those components are in use

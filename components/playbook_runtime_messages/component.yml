@@ -4,6 +4,7 @@
 
 ---
 
+description: Shows messages from roles at the end of a playbook run
 activation_prefix: ''  # Always in use
 
 setup:

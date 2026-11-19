@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2026 Slavi Pantaleev
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+description: Runs coding agents for an ArtiDezi orchestrator
+docs:
+  name: ArtiDezi worker
+  url: https://github.com/devture/artidezi
+  section: foss
+activation_prefix: artidezi_worker_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ artidezi_worker_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ artidezi_worker_restart_necessary | bool }}"
+        groups: [mash, artidezi-worker]
+        when: "{{ artidezi_worker_enabled }}"

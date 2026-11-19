@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/ansible-role-radicle-search.git
+  version: v0.31.0-0
+  name: radicle_search

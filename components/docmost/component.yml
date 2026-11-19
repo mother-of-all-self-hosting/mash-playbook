@@ -5,6 +5,11 @@
 
 ---
 
+description: Collaborative wiki and documentation software
+docs:
+  name: Docmost
+  url: https://docmost.com/
+  section: foss
 activation_prefix: docmost_
 
 # Entries added to other components' lists, while those components are in use

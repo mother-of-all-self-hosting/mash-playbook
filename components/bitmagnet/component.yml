@@ -5,6 +5,11 @@
 
 ---
 
+description: BitTorrent indexer, DHT crawler, content classifier and search engine
+docs:
+  name: bitmagnet
+  url: https://bitmagnet.io/
+  section: foss
 activation_prefix: bitmagnet_
 
 # Entries added to other components' lists, while those components are in use

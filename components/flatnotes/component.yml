@@ -5,6 +5,11 @@
 
 ---
 
+description: Database-less note-taking web app using flat Markdown files
+docs:
+  name: flatnotes
+  url: https://flatnotes.io/
+  section: foss
 activation_prefix: flatnotes_
 
 # Entries added to other components' lists, while those components are in use

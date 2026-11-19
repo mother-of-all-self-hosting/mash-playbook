@@ -5,6 +5,11 @@
 
 ---
 
+description: Signal notification receiver via UnifiedPush for Molly
+docs:
+  name: MollySocket
+  url: https://github.com/mollyim/mollysocket
+  section: foss
 activation_prefix: mollysocket_
 
 # Entries added to other components' lists, while those components are in use

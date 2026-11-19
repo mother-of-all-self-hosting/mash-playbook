@@ -5,6 +5,11 @@
 
 ---
 
+description: SMTP server which catches messages and shows them in a web UI
+docs:
+  name: MailCatcher
+  url: http://mailcatcher.me/
+  section: foss
 activation_prefix: mailcatcher_
 
 # Entries added to other components' lists, while those components are in use

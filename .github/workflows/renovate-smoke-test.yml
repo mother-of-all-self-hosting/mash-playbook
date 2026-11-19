@@ -26,7 +26,7 @@ permissions:
 jobs:
   validate:
     name: Validate config and runtime with the pinned Renovate image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
 
     # Same-repository pull requests already run via the push event;

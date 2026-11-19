@@ -5,6 +5,11 @@
 
 ---
 
+description: Web based forms and surveys
+docs:
+  name: LimeSurvey
+  url: https://www.limesurvey.org
+  section: foss
 activation_prefix: limesurvey_
 
 # Entries added to other components' lists, while those components are in use

@@ -1,0 +1,39 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+description: Mozilla Sync Storage server for Firefox Sync
+docs:
+  name: Syncstorage-rs
+  url: https://mozilla-services.github.io/syncstorage-rs/
+  section: foss
+activation_prefix: syncstorage_rs_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ syncstorage_rs_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ syncstorage_rs_restart_necessary | bool }}"
+        groups: [mash, syncstorage-rs]
+        when: "{{ syncstorage_rs_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ syncstorage_rs_database_mysql_name_syncstorage }}"
+        username: "{{ syncstorage_rs_database_mysql_username }}"
+        password: "{{ syncstorage_rs_database_mysql_password }}"
+        when: "{{ syncstorage_rs_enabled and (syncstorage_rs_database_mysql_hostname == mariadb_connection_hostname or syncstorage_rs_database_mysql_socket_enabled) and syncstorage_rs_database_type == 'mysql' }}"
+      - name: "{{ syncstorage_rs_database_mysql_name_tokenserver }}"
+        username: "{{ syncstorage_rs_database_mysql_username }}"
+        password: "{{ syncstorage_rs_database_mysql_password }}"
+        when: "{{ syncstorage_rs_enabled and (syncstorage_rs_database_mysql_hostname == mariadb_connection_hostname or syncstorage_rs_database_mysql_socket_enabled) and syncstorage_rs_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ syncstorage_rs_database_postgres_name }}"
+        username: "{{ syncstorage_rs_database_postgres_username }}"
+        password: "{{ syncstorage_rs_database_postgres_password }}"
+        when: "{{ syncstorage_rs_enabled and (syncstorage_rs_database_postgres_hostname == postgres_connection_hostname or syncstorage_rs_database_postgres_socket_enabled) and syncstorage_rs_database_type == 'postgres' }}"

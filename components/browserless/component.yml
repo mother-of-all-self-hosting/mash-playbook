@@ -5,6 +5,11 @@
 
 ---
 
+description: Deploy headless browsers in Docker
+docs:
+  name: Browserless
+  url: https://docs.browserless.io
+  section: non-free
 activation_prefix: browserless_
 
 # Entries added to other components' lists, while those components are in use

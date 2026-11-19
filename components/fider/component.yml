@@ -5,6 +5,11 @@
 
 ---
 
+description: Feedback portal for feature requests and suggestions
+docs:
+  name: Fider
+  url: https://github.com/getfider/fider
+  section: foss
 activation_prefix: fider_
 
 # Entries added to other components' lists, while those components are in use

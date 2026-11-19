@@ -5,6 +5,11 @@
 
 ---
 
+description: Unofficial web interface for BorgBackup
+docs:
+  name: Borg UI
+  url: https://github.com/karanhudia/borg-ui
+  section: foss
 activation_prefix: borg_ui_
 
 # Entries added to other components' lists, while those components are in use

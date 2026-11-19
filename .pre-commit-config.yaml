@@ -33,7 +33,7 @@ repos:
     hooks:
       - id: codespell
   - repo: https://codeberg.org/fsfe/reuse-tool
-    rev: v6.2.0
+    rev: v6.3.0
     hooks:
       - id: reuse
   - repo: https://github.com/adrienverge/yamllint
@@ -41,7 +41,7 @@ repos:
     hooks:
       - id: yamllint
   - repo: https://github.com/ansible/ansible-lint
-    rev: v26.10.1
+    rev: v26.11.0
     hooks:
       - id: ansible-lint
         files: '^roles/mash/'
@@ -56,6 +56,14 @@ repos:
         language: python
         additional_dependencies: ['pyyaml==6.0.3']
         files: '^(components/|bin/optimize\.py$|\.pre-commit-config\.yaml$)'
+        pass_filenames: false
+      - id: update-supported-services
+        name: Update the tables of docs/supported-services.md from components/
+        entry: bin/optimize.py --components-path=components --update-supported-services=docs/supported-services.md
+        language: python
+        additional_dependencies: ['pyyaml==6.0.3']
+        # Also when nothing matches, e.g. when a component is only deleted (deleted files are not passed to hooks)
+        always_run: true
         pass_filenames: false
       - id: check-components-jinja
         name: Check the Jinja syntax in components/
@@ -74,7 +82,7 @@ repos:
         entry: tests/optimize/test_optimize.py
         language: python
         additional_dependencies: ['pyyaml==6.0.3']
-        files: '^(justfile|bin/(optimize\.py|install-roles\.py|ansible-python\.sh)|components/.*\.yml|docs/installing\.md|tests/optimize/.*|\.pre-commit-config\.yaml)$'
+        files: '^(justfile|bin/(optimize\.py|install-roles\.py|ansible-python\.sh)|components/.*\.yml|docs/(installing|supported-services)\.md|tests/optimize/.*|\.pre-commit-config\.yaml)$'
         pass_filenames: false
       - id: test-install-roles
         name: Test role installation
@@ -90,6 +98,6 @@ repos:
         files: '^(bin/ansible-python\.sh|tests/ansible_python/.*|\.pre-commit-config\.yaml)$'
         pass_filenames: false
   - repo: https://github.com/renovatebot/pre-commit-hooks
-    rev: 44.186.3
+    rev: 44.251.0
     hooks:
       - id: renovate-config-validator

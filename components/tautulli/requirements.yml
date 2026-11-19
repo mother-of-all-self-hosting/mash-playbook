@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-tautulli.git
+  version: v2.19.1-0
+  name: tautulli

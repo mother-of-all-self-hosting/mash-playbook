@@ -5,6 +5,11 @@
 
 ---
 
+description: Status page deployment service
+docs:
+  name: Statusnook
+  url: https://statusnook.com/
+  section: foss
 activation_prefix: statusnook_
 
 # Entries added to other components' lists, while those components are in use

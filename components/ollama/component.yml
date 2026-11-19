@@ -5,6 +5,11 @@
 
 ---
 
+description: Server for running large language models on your own hardware
+docs:
+  name: Ollama
+  url: https://ollama.com/
+  section: foss
 activation_prefix: ollama_
 
 # Entries added to other components' lists, while those components are in use

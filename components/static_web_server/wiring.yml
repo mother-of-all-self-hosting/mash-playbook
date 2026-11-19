@@ -1,0 +1,32 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+static_web_server_enabled: false
+
+static_web_server_identifier: "{{ mash_playbook_service_identifier_prefix }}static-web-server"
+
+static_web_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}static-web-server"
+
+static_web_server_uid: "{{ mash_playbook_uid }}"
+static_web_server_gid: "{{ mash_playbook_gid }}"
+
+static_web_server_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+static_web_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+static_web_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+static_web_server_container_labels_traefik_metrics_enabled: "{{ static_web_server_environment_variables_server_metrics and mash_playbook_metrics_exposure_enabled }}"
+static_web_server_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+static_web_server_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ static_web_server_identifier }}"
+static_web_server_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+static_web_server_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+static_web_server_environment_variables_server_metrics: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"

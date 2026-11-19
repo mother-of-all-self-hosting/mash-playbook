@@ -61,3 +61,7 @@ After running the command for installation, Nginx becomes available at the URL s
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nginx/blob/main/docs/configuring-nginx.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Static Web Server](../static_web_server/README.md) — Web server for static file-serving

@@ -5,6 +5,11 @@
 
 ---
 
+description: Official server for FMD (FindMyDevice)
+docs:
+  name: FMD Server
+  url: https://gitlab.com/fmd-foss/fmd-server
+  section: foss
 activation_prefix: fmd_server_
 
 # Entries added to other components' lists, while those components are in use

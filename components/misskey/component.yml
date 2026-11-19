@@ -5,6 +5,11 @@
 
 ---
 
+description: ActivityPub federated microblogging platform
+docs:
+  name: Misskey
+  url: https://misskey-hub.net/en/
+  section: foss
 activation_prefix: misskey_
 
 # Entries added to other components' lists, while those components are in use

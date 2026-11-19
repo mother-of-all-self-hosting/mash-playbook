@@ -5,6 +5,11 @@
 
 ---
 
+description: Resource scheduling and booking application
+docs:
+  name: LibreBooking
+  url: https://github.com/LibreBooking/librebooking
+  section: foss
 activation_prefix: librebooking_
 
 # Entries added to other components' lists, while those components are in use

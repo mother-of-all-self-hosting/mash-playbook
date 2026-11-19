@@ -5,6 +5,11 @@
 
 ---
 
+description: An online grammar, style and spell checker
+docs:
+  name: LanguageTool
+  url: https://languagetool.org/
+  section: foss
 activation_prefix: languagetool_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: Archive extraction daemon for Sonarr, Radarr, Lidarr, etc.
+docs:
+  name: Unpackerr
+  url: https://unpackerr.zip/
+  section: foss
 activation_prefix: unpackerr_
 
 # Entries added to other components' lists, while those components are in use

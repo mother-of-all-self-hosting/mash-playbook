@@ -5,6 +5,11 @@
 
 ---
 
+description: A virtual browser or even desktop environment
+docs:
+  name: Neko
+  url: https://neko.m1k1o.net/
+  section: foss
 activation_prefix: neko_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: A proxy server to bypass Cloudflare protection
+docs:
+  name: FlareSolverr
+  url: https://github.com/FlareSolverr/FlareSolverr
+  section: foss
 activation_prefix: flaresolverr_
 
 # Entries added to other components' lists, while those components are in use

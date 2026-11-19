@@ -5,6 +5,11 @@
 
 ---
 
+description: Web-based regular expression (regex) tester and debugger
+docs:
+  name: OpenRegex
+  url: https://github.com/SunneV/OpenRegex
+  section: foss
 activation_prefix: openregex_
 
 # Entries added to other components' lists, while those components are in use

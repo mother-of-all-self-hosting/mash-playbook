@@ -5,6 +5,11 @@
 
 ---
 
+description: Music collection manager for Usenet and BitTorrent users
+docs:
+  name: Lidarr
+  url: https://lidarr.audio/
+  section: foss
 activation_prefix: lidarr_
 
 # Entries added to other components' lists, while those components are in use

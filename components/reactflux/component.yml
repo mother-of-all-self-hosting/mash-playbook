@@ -5,6 +5,11 @@
 
 ---
 
+description: Third-party web frontend for Miniflux
+docs:
+  name: ReactFlux
+  url: https://github.com/electh/ReactFlux
+  section: foss
 activation_prefix: reactflux_
 
 # Entries added to other components' lists, while those components are in use

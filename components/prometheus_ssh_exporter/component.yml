@@ -5,6 +5,11 @@
 
 ---
 
+description: Prometheus exporter for SSH probes
+docs:
+  name: Prometheus SSH Exporter
+  url: https://github.com/treydock/ssh_exporter
+  section: foss
 activation_prefix: prometheus_ssh_exporter_
 
 # Entries added to other components' lists, while those components are in use

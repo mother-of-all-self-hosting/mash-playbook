@@ -5,6 +5,11 @@
 
 ---
 
+description: Music streaming server with a player
+docs:
+  name: Polaris
+  url: https://github.com/agersant/polaris
+  section: foss
 activation_prefix: polaris_
 
 # Entries added to other components' lists, while those components are in use

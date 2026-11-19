@@ -5,6 +5,11 @@
 
 ---
 
+description: RSS feed generator for websites that do not have one
+docs:
+  name: RSS-Bridge
+  url: https://rss-bridge.github.io/rss-bridge/
+  section: foss
 activation_prefix: rssbridge_
 
 # Entries added to other components' lists, while those components are in use

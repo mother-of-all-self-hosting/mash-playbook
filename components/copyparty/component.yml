@@ -5,6 +5,11 @@
 
 ---
 
+description: Portable file server with many features
+docs:
+  name: Copyparty
+  url: https://copyparty.eu/
+  section: foss
 activation_prefix: copyparty_
 
 # Entries added to other components' lists, while those components are in use

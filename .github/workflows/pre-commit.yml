@@ -6,7 +6,10 @@
 ---
 name: pre-commit
 
-on: [push, pull_request]  # yamllint disable-line rule:truthy
+on:  # yamllint disable-line rule:truthy
+  push:
+  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -14,15 +17,25 @@ permissions:
 jobs:
   prek:
     name: Run prek hooks
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
+
+    # Same-repository pull requests already run via the push event;
+    # run pull_request jobs only for pull requests from forks.
+    if: >-
+      github.event_name != 'pull_request'
+      || github.event.pull_request.head.repo.full_name != github.repository
+
     container:
       image: docker.io/archlinux:base-devel
 
     steps:
       # git must be installed before checkout so it does a proper clone
       # (with .git directory) instead of a tarball download.
-      - name: Install git
-        run: pacman -Sy --noconfirm git
+      # Always upgrade (-Syu): Arch does not support partial upgrades, and
+      # installing packages from a refreshed database onto the image's older
+      # packages fails whenever the repositories have moved on.
+      - name: Install dependencies
+        run: pacman -Syu --noconfirm --needed git just mise python
 
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -32,9 +45,6 @@ jobs:
         with:
           path: var/prek
           key: arch-prek-v1-${{ hashFiles('.pre-commit-config.yaml') }}
-
-      - name: Install dependencies
-        run: pacman -S --noconfirm --needed just mise python
 
       - name: Run prek hooks
         run: |

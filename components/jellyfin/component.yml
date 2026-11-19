@@ -5,6 +5,11 @@
 
 ---
 
+description: A personal media server
+docs:
+  name: Jellyfin
+  url: https://github.com/jellyfin/jellyfin
+  section: foss
 activation_prefix: jellyfin_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: Web-based file manager
+docs:
+  name: File Browser
+  url: https://filebrowser.org/
+  section: foss
 activation_prefix: filebrowser_
 
 # Entries added to other components' lists, while those components are in use

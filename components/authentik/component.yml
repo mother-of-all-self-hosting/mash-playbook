@@ -6,6 +6,11 @@
 
 ---
 
+description: An Identity Provider focused on flexibility and versatility
+docs:
+  name: authentik
+  url: https://goauthentik.io/
+  section: foss
 activation_prefix: authentik_
 
 # Entries added to other components' lists, while those components are in use

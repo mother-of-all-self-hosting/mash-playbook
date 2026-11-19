@@ -5,6 +5,11 @@
 
 ---
 
+description: Share files that expire after a set number of downloads or days
+docs:
+  name: Gokapi
+  url: https://github.com/Forceu/Gokapi
+  section: foss
 activation_prefix: gokapi_
 
 # Entries added to other components' lists, while those components are in use

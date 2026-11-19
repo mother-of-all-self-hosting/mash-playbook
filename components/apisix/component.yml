@@ -4,6 +4,11 @@
 
 ---
 
+description: API gateway and ingress controller
+docs:
+  name: APISIX
+  url: https://apisix.apache.org/docs/apisix/getting-started/README/
+  section: foss
 activation_prefix: apisix_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: Encrypted, incremental backups to local and cloud storage
+docs:
+  name: Duplicati
+  url: https://duplicati.com
+  section: foss
 activation_prefix: duplicati_
 
 # Entries added to other components' lists, while those components are in use

@@ -4,6 +4,11 @@
 
 ---
 
+description: CalDAV and CardDAV server for contacts and calendars
+docs:
+  name: Radicale
+  url: https://radicale.org/
+  section: foss
 activation_prefix: radicale_
 
 # Entries added to other components' lists, while those components are in use

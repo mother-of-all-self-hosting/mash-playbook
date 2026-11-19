@@ -4,6 +4,11 @@
 
 ---
 
+description: Auxiliary file/directory management on your server via Ansible
+docs:
+  name: AUX
+  url: https://github.com/mother-of-all-self-hosting/ansible-role-aux
+  section: system
 activation_prefix: aux_
 
 setup:

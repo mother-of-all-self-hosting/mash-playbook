@@ -5,6 +5,11 @@
 
 ---
 
+description: Low-latency voice chat application
+docs:
+  name: Mumble
+  url: https://www.mumble.info/
+  section: foss
 activation_prefix: mumble_
 
 # Entries added to other components' lists, while those components are in use

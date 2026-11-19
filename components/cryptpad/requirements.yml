@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://progressiv.radicle.garden/z38Yp2e9yFouswvrnX5MdgZYaViLb.git
-  version: v2026.5.1-4
+  version: v2026.10.1-2
   name: cryptpad

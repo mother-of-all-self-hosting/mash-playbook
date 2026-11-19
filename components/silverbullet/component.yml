@@ -5,6 +5,11 @@
 
 ---
 
+description: Programmable, private, personal knowledge management platform
+docs:
+  name: SilverBullet
+  url: https://silverbullet.md
+  section: foss
 activation_prefix: silverbullet_
 
 # Entries added to other components' lists, while those components are in use

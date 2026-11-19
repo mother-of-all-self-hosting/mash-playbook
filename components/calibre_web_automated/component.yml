@@ -5,6 +5,11 @@
 
 ---
 
+description: Calibre-Web with additional features and automation
+docs:
+  name: Calibre-Web Automated
+  url: https://github.com/crocodilestick/Calibre-Web-Automated
+  section: foss
 activation_prefix: calibre_web_automated_
 
 # Entries added to other components' lists, while those components are in use

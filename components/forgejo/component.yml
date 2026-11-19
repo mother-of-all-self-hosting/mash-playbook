@@ -6,6 +6,11 @@
 
 ---
 
+description: Software forge (Git hosting service, etc.)
+docs:
+  name: Forgejo
+  url: https://forgejo.org/
+  section: foss
 activation_prefix: forgejo_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: Frontend for translation engines
+docs:
+  name: Mozhi
+  url: https://codeberg.org/aryak/mozhi
+  section: foss
 activation_prefix: mozhi_
 
 # Entries added to other components' lists, while those components are in use

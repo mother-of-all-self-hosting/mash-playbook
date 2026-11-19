@@ -5,6 +5,11 @@
 
 ---
 
+description: Help users connect to the Tor network in places where Tor is blocked
+docs:
+  name: Standalone Snowflake proxy
+  url: https://community.torproject.org/relay/setup/snowflake/standalone/
+  section: foss
 activation_prefix: snowflake_
 
 # Entries added to other components' lists, while those components are in use

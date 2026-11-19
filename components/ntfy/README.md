@@ -38,6 +38,7 @@ For details about configuring the [Ansible role for ntfy](https://github.com/mot
 
 This service requires the following other services:
 
+- [Postgres](../postgres/README.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](../traefik/README.md) reverse-proxy server
 - (optional) [exim-relay](../exim_relay/README.md) mailer
 
@@ -63,9 +64,12 @@ ntfy_hostname: ntfy.example.com
 ########################################################################
 ```
 
-As the most of the necessary settings for the role have been taken care of by the playbook, you can enable ntfy on your server with this minimum configuration.
+### Select database to use
 
-See the role's documentation for details about configuring ntfy per your preference (such as [setting access control with authentication](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/docs/configuring-ntfy.md#enable-access-control-with-authentication-optional), [allowing attachments](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/docs/configuring-ntfy.md#allow-attachments-optional), [enabling the web app](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/docs/configuring-ntfy.md#enable-web-app-optional) and [e-mail notification](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/docs/configuring-ntfy.md#enable-e-mail-notification-optional), etc.)
+ntfy can use Postgres or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/docs/configuring-ntfy.md#configuring-database) on the role's documentation for details.
+
+>[!NOTE]
+> The database for your existing installation is most likely to be `sqlite`.
 
 ### Configuring the mailer (optional)
 

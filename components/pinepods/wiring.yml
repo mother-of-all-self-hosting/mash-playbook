@@ -17,9 +17,9 @@ pinepods_gid: "{{ mash_playbook_gid }}"
 
 pinepods_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and pinepods_database_mariadb_hostname == mariadb_connection_hostname and pinepods_database_type == 'mariadb' else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (pinepods_database_mariadb_hostname == mariadb_connection_hostname or pinepods_database_mariadb_socket_enabled) and pinepods_database_type == 'mariadb' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and pinepods_database_postgres_hostname == postgres_connection_hostname and pinepods_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (pinepods_database_postgres_hostname == postgres_connection_hostname or pinepods_database_postgres_socket_enabled) and pinepods_database_type == 'postgres' else [])
   }}
 
 pinepods_systemd_wanted_services_list_auto: |
@@ -37,13 +37,13 @@ pinepods_container_additional_networks_auto: |
     +
     ([gotify_container_network] if gotify_enabled | default(false) and pinepods_container_network != gotify_container_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and pinepods_database_mariadb_hostname == mariadb_connection_hostname and pinepods_container_network != mariadb_container_network and pinepods_database_type == 'mariadb' else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (pinepods_database_mariadb_hostname == mariadb_connection_hostname and pinepods_container_network != mariadb_container_network and not pinepods_database_mariadb_socket_enabled) and pinepods_database_type == 'mariadb' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([ntfy_container_network] if ntfy_enabled | default(false) and pinepods_container_network != ntfy_container_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and pinepods_database_postgres_hostname == postgres_connection_hostname and pinepods_container_network != postgres_container_network and pinepods_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (pinepods_database_postgres_hostname == postgres_connection_hostname and pinepods_container_network != postgres_container_network and not pinepods_database_postgres_socket_enabled) and pinepods_database_type == 'postgres' else [])
   }}
 
 pinepods_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"

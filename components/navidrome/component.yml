@@ -4,6 +4,11 @@
 
 ---
 
+description: Subsonic-API compatible music server
+docs:
+  name: Navidrome
+  url: https://www.navidrome.org/
+  section: foss
 activation_prefix: navidrome_
 
 # Entries added to other components' lists, while those components are in use

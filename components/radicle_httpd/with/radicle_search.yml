@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# Specify on this file, not on meilisearch.yml, as the values should be specified only if radicle-search is enabled
+radicle_httpd_environment_variables_radicle_search_key: "{{ radicle_search_environment_variables_radicle_search_meili_key if meilisearch_enabled | default(false) and radicle_search_enabled else '' }}"
+radicle_httpd_environment_variables_radicle_search_url: "{{ ('http://' + meilisearch_identifier + ':' + (meilisearch_container_http_port | string)) if meilisearch_enabled | default(false) and radicle_search_enabled else '' }}"

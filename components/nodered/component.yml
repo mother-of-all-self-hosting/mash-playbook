@@ -5,6 +5,11 @@
 
 ---
 
+description: Flow-based programming tool
+docs:
+  name: Node-RED
+  url: https://nodered.org
+  section: foss
 activation_prefix: nodered_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: A smart PVR for newsgroup and BitTorrent users
+docs:
+  name: Sonarr
+  url: https://sonarr.tv/
+  section: foss
 activation_prefix: sonarr_
 
 # Entries added to other components' lists, while those components are in use

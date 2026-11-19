@@ -4,6 +4,11 @@
 
 ---
 
+description: Source-available document-oriented (NoSQL) database
+docs:
+  name: MongoDB
+  url: https://www.mongodb.com/
+  section: non-free
 activation_prefix: mongodb_
 
 # Lists other components can add entries to (via `inject`).

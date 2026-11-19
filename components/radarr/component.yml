@@ -5,6 +5,11 @@
 
 ---
 
+description: A movie organizer/manager for Usenet and BitTorrent users
+docs:
+  name: Radarr
+  url: https://radarr.video/
+  section: foss
 activation_prefix: radarr_
 
 # Entries added to other components' lists, while those components are in use

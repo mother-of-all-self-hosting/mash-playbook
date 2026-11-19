@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 spatterlight
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+description: Syncs the recommended TRaSH Guides settings to Sonarr and Radarr
+docs:
+  name: Recyclarr
+  url: https://recyclarr.dev/
+  section: foss
+activation_prefix: recyclarr_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ recyclarr_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ recyclarr_restart_necessary | bool }}"
+        groups: [mash, recyclarr]
+        when: "{{ recyclarr_enabled }}"

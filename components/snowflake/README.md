@@ -32,4 +32,5 @@ For details about configuring the [Ansible role for the standalone Snowflake pro
 
 ## Related services
 
+- [obfs4 bridge](../obfs4_bridge/README.md) — Help users connect to the Tor network in places where Tor is blocked
 - [Onion Service with C Tor](../onion_service_tor/README.md) — Run Onion Service with [C Tor](https://gitlab.torproject.org/tpo/core/tor)

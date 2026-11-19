@@ -5,6 +5,11 @@
 
 ---
 
+description: PDF manager, viewer and editor
+docs:
+  name: PdfDing
+  url: https://www.pdfding.com/
+  section: foss
 activation_prefix: pdfding_
 
 # Entries added to other components' lists, while those components are in use

@@ -45,7 +45,7 @@ You can generate a first user with its TOTP secret by running the command below:
 ansible-playbook -i inventory/hosts setup.yml --tags=create-user-tinyauth -e username=USERNAME_HERE -e password=RAW_PASSWORD_HERE
 ```
 
-Then, specify the output to the `tinyauth_environment_variables_users` environment variable on your `vars.yml` file.
+Then, specify the output to the `tinyauth_environment_variables_tinyauth_auth_users` environment variable on your `vars.yml` file.
 
 Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#prerequisites) on the role's documentation for details.
 
@@ -53,6 +53,7 @@ Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/
 
 This service requires the following other services:
 
+- [Postgres](../postgres/README.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](../traefik/README.md) reverse-proxy server
 
 >[!NOTE]
@@ -83,6 +84,13 @@ tinyauth_hostname: tinyauth.example.com
 With this configuration, Tinyauth will set a cookie for `.example.com` for authentication. Note that all your services to be authenticated will need to be under this domain. Refer to [this section](https://tinyauth.app/docs/getting-started/#set-up-the-domains) on the official documentation for details.
 
 **Note**: hosting Tinyauth under a subpath (by configuring the `tinyauth_path_prefix` variable) does not seem to be possible due to Tinyauth's technical limitations.
+
+### Select database to use
+
+Tinyauth can use either Postgres, SQLite, or in-memory database, and you need to choose one. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> The database for your existing installation is most likely to be `sqlite`.
 
 ### Configuring OAuth (optional)
 
@@ -224,7 +232,7 @@ tinyauth_environment_variables_additional_variables: |
   TINYAUTH_OAUTH_PROVIDERS_POCKETID_NAME=Pocket ID
 
 # Disable logging in with a password
-tinyauth_environment_variables_users_enabled: false
+tinyauth_environment_variables_tinyauth_auth_users_enabled: false
 
 ########################################################################
 #                                                                      #

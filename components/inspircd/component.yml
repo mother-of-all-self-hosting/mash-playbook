@@ -5,6 +5,11 @@
 
 ---
 
+description: Modular IRC server
+docs:
+  name: InspIRCd
+  url: https://www.inspircd.org/
+  section: foss
 activation_prefix: inspircd_
 
 # Entries added to other components' lists, while those components are in use

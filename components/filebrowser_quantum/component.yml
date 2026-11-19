@@ -5,6 +5,11 @@
 
 ---
 
+description: Web-based file manager
+docs:
+  name: FileBrowser Quantum
+  url: https://filebrowserquantum.com/
+  section: foss
 activation_prefix: filebrowser_quantum_
 
 # Entries added to other components' lists, while those components are in use

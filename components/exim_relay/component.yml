@@ -4,6 +4,11 @@
 
 ---
 
+description: A lightweight Exim SMTP mail relay server
+docs:
+  name: exim-relay
+  url: https://github.com/devture/exim-relay
+  section: foss
 activation_prefix: exim_relay_
 
 setup:

@@ -5,6 +5,11 @@
 
 ---
 
+description: Digital document signing and processing
+docs:
+  name: DocuSeal
+  url: https://github.com/docusealco/docuseal
+  section: foss
 activation_prefix: docuseal_
 
 # Entries added to other components' lists, while those components are in use

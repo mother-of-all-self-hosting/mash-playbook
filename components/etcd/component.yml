@@ -4,6 +4,11 @@
 
 ---
 
+description: Distributed, reliable key-value store
+docs:
+  name: etcd
+  url: https://etcd.io/
+  section: foss
 activation_prefix: etcd_
 
 # Entries added to other components' lists, while those components are in use

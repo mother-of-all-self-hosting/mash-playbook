@@ -5,6 +5,11 @@
 
 ---
 
+description: Collaboration server for Excalidraw instance
+docs:
+  name: Excalidraw collaboration server
+  url: https://github.com/excalidraw/excalidraw-room
+  section: foss
 activation_prefix: excalidraw_room_
 
 # Entries added to other components' lists, while those components are in use

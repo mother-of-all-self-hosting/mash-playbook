@@ -4,6 +4,11 @@
 
 ---
 
+description: Reverse proxy providing authentication via OpenID Connect providers
+docs:
+  name: OAuth2-Proxy
+  url: https://oauth2-proxy.github.io/oauth2-proxy/
+  section: foss
 activation_prefix: oauth2_proxy_
 
 # Entries added to other components' lists, while those components are in use

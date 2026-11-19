@@ -20,11 +20,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Cap Standalone
 
-The playbook can install and configure [Cap Standalone](https://capjs.js.org/guide/standalone/) for you.
+The playbook can install and configure [Cap Standalone](https://trycap.dev/guide/standalone/) for you.
 
 Cap Standalone is a self-hosted version of Cap's backend.
 
-See the project's [documentation](https://capjs.js.org/guide/standalone/) to learn what Cap Standalone does and why it might be useful to you.
+See the project's [documentation](https://trycap.dev/guide/standalone/) to learn what Cap Standalone does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Cap Standalone](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzSj65STd1FuR22pm4vLCSmFQ1rt5), you can check them via:
 
@@ -244,7 +244,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After running the command for installation, the Cap Standalone instance becomes available at the URL specified with `cap_hostname`. With the configuration above, the service is hosted at `https://cap.example.com`.
 
-Refer to <https://capjs.js.org/guide/> for the usage.
+Refer to <https://trycap.dev/guide/> for the usage.
 
 ## Troubleshooting
 

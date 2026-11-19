@@ -5,6 +5,11 @@
 
 ---
 
+description: MQTT broker
+docs:
+  name: Mosquitto
+  url: https://mosquitto.org/
+  section: foss
 activation_prefix: mosquitto_
 
 # Entries added to other components' lists, while those components are in use

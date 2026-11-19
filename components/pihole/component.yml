@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 spatterlight
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+description: A DNS sinkhole which blocks ads and trackers network-wide
+docs:
+  name: Pi-hole
+  url: https://pi-hole.net/
+  section: foss
+activation_prefix: pihole_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ pihole_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ pihole_restart_necessary | bool }}"
+        groups: [mash, pihole]
+        when: "{{ pihole_enabled }}"

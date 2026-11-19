@@ -5,6 +5,11 @@
 
 ---
 
+description: A personal media server
+docs:
+  name: Plex
+  url: https://www.plex.tv/
+  section: non-free
 activation_prefix: plex_
 
 # Entries added to other components' lists, while those components are in use

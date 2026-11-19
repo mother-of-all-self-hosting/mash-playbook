@@ -5,6 +5,11 @@
 
 ---
 
+description: Configuration of the server's SSH daemon and authorized keys
+docs:
+  name: SSH server
+  url: https://www.openssh.com/
+  section: system
 activation_prefix: system_security_ssh_
 
 setup:

@@ -5,6 +5,11 @@
 
 ---
 
+description: A proxy for virtual services in Tailscale
+docs:
+  name: TSDProxy
+  url: https://almeidapaulopt.github.io/tsdproxy/
+  section: foss
 activation_prefix: tsdproxy_
 
 # Entries added to other components' lists, while those components are in use

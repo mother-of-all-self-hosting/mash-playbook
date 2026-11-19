@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 spatterlight
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+recyclarr_enabled: false
+
+recyclarr_identifier: "{{ mash_playbook_service_identifier_prefix }}recyclarr"
+
+recyclarr_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}recyclarr"
+
+recyclarr_uid: "{{ mash_playbook_uid }}"
+recyclarr_gid: "{{ mash_playbook_gid }}"
+
+recyclarr_systemd_wanted_services_list_auto: |
+  {{
+    ([radarr_identifier ~ '.service'] if radarr_enabled | default(false) else [])
+    +
+    ([sonarr_identifier ~ '.service'] if sonarr_enabled | default(false) else [])
+  }}
+
+recyclarr_container_additional_networks_auto: |
+  {{
+    ([radarr_container_network] if radarr_enabled | default(false) and recyclarr_container_network != radarr_container_network else [])
+    +
+    ([sonarr_container_network] if sonarr_enabled | default(false) and recyclarr_container_network != sonarr_container_network else [])
+  }}

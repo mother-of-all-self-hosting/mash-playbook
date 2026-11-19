@@ -5,6 +5,11 @@
 
 ---
 
+description: Tasks and chores manager
+docs:
+  name: Donetick
+  url: https://donetick.com/
+  section: foss
 activation_prefix: donetick_
 
 # Entries added to other components' lists, while those components are in use

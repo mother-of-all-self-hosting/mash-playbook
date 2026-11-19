@@ -1,0 +1,37 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+radicle_search_enabled: false
+
+radicle_search_identifier: "{{ mash_playbook_service_identifier_prefix }}radicle-search"
+
+radicle_search_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}radicle-search"
+
+# Run as the same user as radicle_node does
+radicle_search_uid: "{{ radicle_node_uid }}"
+radicle_search_gid: "{{ radicle_node_gid }}"
+
+radicle_search_systemd_required_services_list_auto: |
+  {{
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) else [])
+    +
+    ([radicle_node_identifier ~ '.service'] if radicle_node_enabled | default(false) else [])
+    +
+    ([radicle_httpd_identifier ~ '.service'] if radicle_httpd_enabled | default(false) else [])
+  }}
+
+radicle_search_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and radicle_search_container_network != meilisearch_container_network else [])
+    +
+    ([radicle_node_container_network] if radicle_node_enabled | default(false) and radicle_search_container_network != radicle_node_container_network else [])
+    +
+    ([radicle_httpd_container_network] if radicle_httpd_enabled | default(false) and radicle_search_container_network != radicle_httpd_container_network else [])
+  }}

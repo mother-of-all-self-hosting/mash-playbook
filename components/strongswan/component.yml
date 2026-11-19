@@ -5,6 +5,11 @@
 
 ---
 
+description: IPsec-based VPN solution
+docs:
+  name: strongSwan
+  url: https://www.strongswan.org/
+  section: foss
 activation_prefix: strongswan_
 
 # Entries added to other components' lists, while those components are in use

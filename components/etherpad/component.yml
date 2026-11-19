@@ -5,6 +5,11 @@
 
 ---
 
+description: Collaborative text editor
+docs:
+  name: Etherpad
+  url: https://etherpad.org
+  section: foss
 activation_prefix: etherpad_
 
 # Entries added to other components' lists, while those components are in use

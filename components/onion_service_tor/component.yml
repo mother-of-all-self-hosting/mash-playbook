@@ -5,6 +5,11 @@
 
 ---
 
+description: Run Onion Service with C Tor
+docs:
+  name: Onion Service with C Tor
+  url: https://community.torproject.org/onion-services/
+  section: foss
 activation_prefix: onion_service_tor_
 
 # Entries added to other components' lists, while those components are in use

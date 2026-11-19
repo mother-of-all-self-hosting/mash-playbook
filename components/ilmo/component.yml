@@ -4,6 +4,11 @@
 
 ---
 
+description: A library management tool
+docs:
+  name: ILMO
+  url: https://github.com/moan0s/ILMO2
+  section: foss
 activation_prefix: ilmo_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: Online file converter for images, video, documents, etc.
+docs:
+  name: ConvertX
+  url: https://github.com/C4illin/ConvertX
+  section: foss
 activation_prefix: convertx_
 
 # Entries added to other components' lists, while those components are in use

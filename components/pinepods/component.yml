@@ -5,6 +5,11 @@
 
 ---
 
+description: Multi-user podcast management system
+docs:
+  name: PinePods
+  url: https://www.pinepods.online/
+  section: foss
 activation_prefix: pinepods_
 
 # Entries added to other components' lists, while those components are in use
@@ -21,10 +26,10 @@ inject:
       - name: "{{ pinepods_database_name }}"
         username: "{{ pinepods_database_mariadb_username }}"
         password: "{{ pinepods_database_mariadb_password }}"
-        when: "{{ pinepods_enabled and pinepods_database_mariadb_hostname == mariadb_connection_hostname and pinepods_database_type == 'mariadb' }}"
+        when: "{{ pinepods_enabled and (pinepods_database_mariadb_hostname == mariadb_connection_hostname or pinepods_database_mariadb_socket_enabled) and pinepods_database_type == 'mariadb' }}"
   postgres:
     managed_databases:
       - name: "{{ pinepods_database_name }}"
         username: "{{ pinepods_database_postgres_username }}"
         password: "{{ pinepods_database_postgres_password }}"
-        when: "{{ pinepods_enabled and (pinepods_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and pinepods_database_postgres_hostname == pgbouncer_connection_hostname | default(''))) and pinepods_database_type == 'postgres' }}"
+        when: "{{ pinepods_enabled and (pinepods_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and pinepods_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or pinepods_database_postgres_socket_enabled) and pinepods_database_type == 'postgres' }}"

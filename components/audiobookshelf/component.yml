@@ -5,6 +5,11 @@
 
 ---
 
+description: Audiobook and podcast server
+docs:
+  name: audiobookshelf
+  url: https://www.audiobookshelf.org/
+  section: foss
 activation_prefix: audiobookshelf_
 
 # Entries added to other components' lists, while those components are in use

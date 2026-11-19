@@ -5,6 +5,11 @@
 
 ---
 
+description: Minimalist publishing platform with optional ActivityPub federation
+docs:
+  name: Writefreely
+  url: https://writefreely.org
+  section: foss
 activation_prefix: writefreely_
 
 # Entries added to other components' lists, while those components are in use

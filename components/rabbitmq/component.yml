@@ -5,6 +5,11 @@
 
 ---
 
+description: Message-broker which supports AMQP, STOMP, MQTT, etc.
+docs:
+  name: RabbitMQ
+  url: https://www.rabbitmq.com/
+  section: foss
 activation_prefix: rabbitmq_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: Web app for encryption, encoding, compression and data analysis
+docs:
+  name: CyberChef
+  url: https://github.com/gchq/CyberChef
+  section: foss
 activation_prefix: cyberchef_
 
 # Entries added to other components' lists, while those components are in use

@@ -4,6 +4,7 @@
 
 ---
 
+description: Starts, stops and restarts the systemd services in order
 activation_prefix: ''  # Always in use
 
 setup:

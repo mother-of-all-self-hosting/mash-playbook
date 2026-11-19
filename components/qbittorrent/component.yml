@@ -5,6 +5,11 @@
 
 ---
 
+description: A BitTorrent client
+docs:
+  name: qBittorrent
+  url: https://www.qbittorrent.org/
+  section: foss
 activation_prefix: qbittorrent_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: SOCKS5 proxy server and TCP port forwarder for Yggdrasil Network
+docs:
+  name: Yggstack
+  url: https://github.com/yggdrasil-network/yggstack
+  section: foss
 activation_prefix: yggstack_
 
 # Entries added to other components' lists, while those components are in use

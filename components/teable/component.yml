@@ -5,6 +5,11 @@
 
 ---
 
+description: Database management platform with spreadsheet-like interface
+docs:
+  name: Teable
+  url: https://github.com/teableio/teable
+  section: foss
 activation_prefix: teable_
 
 # Entries added to other components' lists, while those components are in use

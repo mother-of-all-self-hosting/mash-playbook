@@ -5,6 +5,11 @@
 
 ---
 
+description: Online office suite comprising viewers and editors
+docs:
+  name: ONLYOFFICE Docs
+  url: https://helpcenter.onlyoffice.com/docs
+  section: foss
 activation_prefix: onlyoffice_docs_
 
 # Entries added to other components' lists, while those components are in use

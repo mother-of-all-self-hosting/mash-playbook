@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://progressiv.radicle.garden/z3roZFCprFZhmK8BvkrsKwkLZXr56.git
-  version: v0.30.0-0
+  version: v0.31.0-0
   name: radicle_httpd

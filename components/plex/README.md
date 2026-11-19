@@ -59,4 +59,5 @@ After running the command for installation, the Plex instance becomes available 
 - [Jackett](../jackett/README.md)
 - [Jellyfin](../jellyfin/README.md)
 - [Seerr](../seerr/README.md)
+- [Tautulli](../tautulli/README.md)
 - [qBittorrent](../qbittorrent/README.md)

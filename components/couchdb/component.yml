@@ -5,6 +5,11 @@
 
 ---
 
+description: Document-oriented NoSQL database which uses JSON to store data
+docs:
+  name: CouchDB
+  url: https://couchdb.apache.org/
+  section: foss
 activation_prefix: couchdb_
 
 # Entries added to other components' lists, while those components are in use

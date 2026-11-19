@@ -5,6 +5,11 @@
 
 ---
 
+description: Music player for Navidrome, Jellyfin, Funkwhale, etc.
+docs:
+  name: Feishin
+  url: https://github.com/jeffvli/feishin
+  section: foss
 activation_prefix: feishin_
 
 # Entries added to other components' lists, while those components are in use

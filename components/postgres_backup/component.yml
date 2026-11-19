@@ -4,6 +4,11 @@
 
 ---
 
+description: Periodic PostgreSQL backups to the local filesystem
+docs:
+  name: Postgres Backup
+  url: https://github.com/prodrigestivill/docker-postgres-backup-local
+  section: foss
 activation_prefix: postgres_backup_
 
 # Entries added to other components' lists, while those components are in use

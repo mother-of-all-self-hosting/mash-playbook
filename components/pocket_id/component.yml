@@ -5,6 +5,11 @@
 
 ---
 
+description: OIDC provider for passkey-only authentication
+docs:
+  name: Pocket ID
+  url: https://pocket-id.org/
+  section: foss
 activation_prefix: pocket_id_
 
 # Entries added to other components' lists, while those components are in use

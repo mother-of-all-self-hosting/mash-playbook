@@ -5,6 +5,11 @@
 
 ---
 
+description: An indexer manager/proxy for Usenet and BitTorrent users
+docs:
+  name: Prowlarr
+  url: https://prowlarr.com/
+  section: foss
 activation_prefix: prowlarr_
 
 # Entries added to other components' lists, while those components are in use

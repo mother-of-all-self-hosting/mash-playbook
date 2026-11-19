@@ -5,6 +5,11 @@
 
 ---
 
+description: Typo-tolerant fulltext search engine
+docs:
+  name: Typesense
+  url: https://typesense.org
+  section: foss
 activation_prefix: typesense_
 
 # Entries added to other components' lists, while those components are in use

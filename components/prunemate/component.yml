@@ -5,6 +5,11 @@
 
 ---
 
+description: Automatically clean up Docker resources on a schedule
+docs:
+  name: PruneMate
+  url: https://github.com/anoniemerd/PruneMate
+  section: foss
 activation_prefix: prunemate_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: Web application to mix and play ambient soundtracks
+docs:
+  name: Moodist
+  url: https://moodist.mvze.net/
+  section: foss
 activation_prefix: moodist_
 
 # Entries added to other components' lists, while those components are in use

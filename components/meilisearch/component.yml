@@ -5,6 +5,11 @@
 
 ---
 
+description: Typo-tolerant fulltext search engine with a RESTful search API
+docs:
+  name: Meilisearch
+  url: https://www.meilisearch.com
+  section: foss
 activation_prefix: meilisearch_
 
 # Entries added to other components' lists, while those components are in use

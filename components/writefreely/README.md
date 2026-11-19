@@ -79,12 +79,6 @@ To actually have the service use (and get messages sent through the exim-relay s
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
-### Using an unofficial Docker image (optional)
-
-By default the service is configured to use the Docker image locally built on the source code using [this Dockerfile](https://github.com/writefreely/writefreely/blob/develop/Dockerfile) provided by the author.
-
-As the official Docker image is not available, the role to install the service supports [this unofficial Docker image](https://hub.docker.com/r/jrasanen/writefreely) for user's convenience. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2i8BkHXzRvK1ZtGwHuvLACRswXgA/tree/docs/configuring-writefreely.md#using-an-unofficial-docker-image-optional) for details about how to use it.
-
 ## Usage
 
 After running the command for installation, the WriteFreely instance becomes available at the URL specified with `writefreely_hostname`. With the configuration above, the service is hosted at `https://writefreely.example.com`.

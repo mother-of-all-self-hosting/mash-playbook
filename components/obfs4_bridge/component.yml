@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+description: Help users connect to the Tor network in places where Tor is blocked
+docs:
+  name: obfs4 bridge
+  url: https://community.torproject.org/relay/setup/bridge/
+  section: foss
+activation_prefix: obfs4_bridge_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ obfs4_bridge_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ obfs4_bridge_restart_necessary | bool }}"
+        groups: [mash, obfs4-bridge]
+        when: "{{ obfs4_bridge_enabled }}"

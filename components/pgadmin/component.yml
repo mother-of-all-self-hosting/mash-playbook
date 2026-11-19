@@ -5,6 +5,11 @@
 
 ---
 
+description: Web-based Postgres database server administration software
+docs:
+  name: pgAdmin
+  url: https://www.pgadmin.org/
+  section: foss
 activation_prefix: pgadmin_
 
 # Entries added to other components' lists, while those components are in use

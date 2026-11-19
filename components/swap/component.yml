@@ -5,6 +5,10 @@
 
 ---
 
+description: A swap file for the server
+docs:
+  name: Swap
+  section: system
 activation_prefix: system_swap_
 
 setup:

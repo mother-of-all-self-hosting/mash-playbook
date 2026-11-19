@@ -5,6 +5,11 @@
 
 ---
 
+description: A fast, modern web interface for qBittorrent
+docs:
+  name: qui
+  url: https://getqui.com/
+  section: foss
 activation_prefix: qui_
 
 # Entries added to other components' lists, while those components are in use

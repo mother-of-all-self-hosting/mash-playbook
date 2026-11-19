@@ -5,6 +5,11 @@
 
 ---
 
+description: Slideshow for displaying Immich pictures and videos
+docs:
+  name: Immich Kiosk
+  url: https://immichkiosk.app/
+  section: foss
 activation_prefix: immich_kiosk_
 
 # Entries added to other components' lists, while those components are in use

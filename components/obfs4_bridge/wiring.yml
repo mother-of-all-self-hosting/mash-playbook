@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+obfs4_bridge_enabled: false
+
+obfs4_bridge_identifier: "{{ mash_playbook_service_identifier_prefix }}obfs4-bridge"
+
+obfs4_bridge_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}obfs4-bridge"
+
+# Runs as root
+obfs4_bridge_uid: "0"
+obfs4_bridge_gid: "0"
+
+obfs4_bridge_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}

@@ -5,6 +5,11 @@
 
 ---
 
+description: Online office suite comprising viewers and editors
+docs:
+  name: Euro-Office
+  url: https://github.com/Euro-Office/DocumentServer
+  section: foss
 activation_prefix: eurooffice_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: Web server, reverse proxy, load balancer and HTTP cache
+docs:
+  name: Nginx
+  url: https://nginx.org/
+  section: foss
 activation_prefix: nginx_
 
 # Entries added to other components' lists, while those components are in use

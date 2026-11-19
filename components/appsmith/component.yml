@@ -4,6 +4,11 @@
 
 ---
 
+description: Platform for building internal tools without writing code
+docs:
+  name: Appsmith
+  url: https://www.appsmith.com/
+  section: foss
 activation_prefix: appsmith_
 
 # Entries added to other components' lists, while those components are in use

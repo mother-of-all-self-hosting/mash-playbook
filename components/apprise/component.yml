@@ -5,6 +5,11 @@
 
 ---
 
+description: Lightweight REST framework that wraps the Apprise Notification Library
+docs:
+  name: Apprise API
+  url: https://github.com/caronc/apprise-api
+  section: foss
 activation_prefix: apprise_
 
 # Entries added to other components' lists, while those components are in use

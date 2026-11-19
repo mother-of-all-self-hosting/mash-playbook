@@ -61,7 +61,7 @@ radicle_httpd_enabled: true
 
 After running the command for installation, the Radicle HTTP Daemon instance becomes available at the same URL as specified to the Radicle node with `radicle_node_hostname`.
 
-Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-httpd.md#usage) on the role's documentation for details about how to browse a repository on your seed node via a web client like [Radicle Explorer](https://radicle.network/nodes/seed.radicle.dev/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5).
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-httpd.md#usage) on the role's documentation for details about how to browse a repository on your seed node via a web client like [Radicle Explorer](https://radicle.network/nodes/seed.radicle.dev/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/explorer/README.md).
 
 This playbook supports Radicle Explorer, and you can set up the instance by enabling it on `vars.yml`. Refer to [this page](../radicle_explorer/README.md) for details.
 
@@ -73,3 +73,4 @@ Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/
 
 - [Radicle Explorer](../radicle_explorer/README.md) — Radicle user interface for the web browser
 - [Radicle node](../radicle_node/README.md) — Network daemon for the Radicle network
+- [radicle-search](../radicle_search/README.md) — Indexing daemon for Radicle

@@ -4,6 +4,7 @@
 
 ---
 
+description: Restricted proxy to the Docker socket for other services
 activation_prefix: mash_
 
 setup:

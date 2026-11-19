@@ -4,6 +4,11 @@
 
 ---
 
+description: A full-featured DNS server
+docs:
+  name: BIND
+  url: https://www.isc.org/bind/
+  section: foss
 activation_prefix: bind_
 
 # Entries added to other components' lists, while those components are in use

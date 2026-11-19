@@ -5,6 +5,11 @@
 
 ---
 
+description: Bookmark manager to collect, organize and archive webpages
+docs:
+  name: Karakeep
+  url: https://karakeep.app/
+  section: foss
 activation_prefix: karakeep_
 
 # Entries added to other components' lists, while those components are in use

@@ -16,6 +16,11 @@ changedetection_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_servi
 changedetection_uid: "{{ mash_playbook_uid }}"
 changedetection_gid: "{{ mash_playbook_gid }}"
 
+changedetection_systemd_required_services_list_auto: |
+  {{
+    ([browserless_identifier ~ '.service'] if browserless_enabled | default(false) and changedetection_changedetection_environment_variables_playwright_driver_url != '' else [])
+  }}
+
 changedetection_systemd_wanted_services_list_auto: |
   {{
     ([apprise_identifier ~ '.service'] if apprise_enabled | default(false) else [])
@@ -34,6 +39,8 @@ changedetection_systemd_wanted_services_list_auto: |
 changedetection_container_additional_networks_auto: |
   {{
     ([apprise_container_network] if apprise_enabled | default(false) and changedetection_container_network != apprise_container_network else [])
+    +
+    ([browserless_container_network] if browserless_enabled | default(false) and changedetection_container_network != browserless_container_network and changedetection_changedetection_environment_variables_playwright_driver_url != '' else [])
     +
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and changedetection_container_network != exim_relay_container_network else [])
     +

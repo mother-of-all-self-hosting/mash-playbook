@@ -5,6 +5,11 @@
 
 ---
 
+description: Online pastebin where the server has zero knowledge of the data
+docs:
+  name: PrivateBin
+  url: https://privatebin.info/
+  section: foss
 activation_prefix: privatebin_
 
 # Entries added to other components' lists, while those components are in use

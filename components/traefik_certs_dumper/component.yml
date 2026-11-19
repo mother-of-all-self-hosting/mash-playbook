@@ -5,6 +5,11 @@
 
 ---
 
+description: Dump ACME data from Traefik to certificates
+docs:
+  name: traefik-certs-dumper
+  url: https://github.com/ldez/traefik-certs-dumper
+  section: foss
 activation_prefix: traefik_certs_dumper_
 
 # Entries added to other components' lists, while those components are in use

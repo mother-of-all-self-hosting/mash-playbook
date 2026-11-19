@@ -4,6 +4,11 @@
 
 ---
 
+description: Java edition server for Minecraft, a popular voxel-based sandbox game
+docs:
+  name: Minecraft Server
+  url: https://docker-minecraft-server.readthedocs.io
+  section: foss
 activation_prefix: minecraft_
 
 # Entries added to other components' lists, while those components are in use

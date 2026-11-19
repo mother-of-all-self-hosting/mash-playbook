@@ -5,6 +5,11 @@
 
 ---
 
+description: Markdown file-based task management board
+docs:
+  name: Tasks.md
+  url: https://hub.docker.com/r/baldissaramatheus/tasks.md
+  section: foss
 activation_prefix: tasksmd_
 
 # Entries added to other components' lists, while those components are in use

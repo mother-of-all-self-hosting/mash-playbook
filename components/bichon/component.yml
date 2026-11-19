@@ -5,6 +5,11 @@
 
 ---
 
+description: Email archiving server with full-text search function
+docs:
+  name: Bichon
+  url: https://github.com/rustmailer/bichon
+  section: foss
 activation_prefix: bichon_
 
 # Entries added to other components' lists, while those components are in use

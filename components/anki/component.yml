@@ -5,6 +5,11 @@
 
 ---
 
+description: Data synchronization server for Anki
+docs:
+  name: Anki
+  url: https://docs.ankiweb.net/sync-server.html
+  section: foss
 activation_prefix: anki_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: Client-side PDF editor and converter
+docs:
+  name: BentoPDF
+  url: https://github.com/alam00000/bentopdf
+  section: foss
 activation_prefix: bentopdf_
 
 # Entries added to other components' lists, while those components are in use

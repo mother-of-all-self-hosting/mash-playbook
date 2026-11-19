@@ -5,6 +5,11 @@
 
 ---
 
+description: Bans IP addresses showing malicious signs, e.g. failed SSH logins
+docs:
+  name: Fail2Ban
+  url: https://github.com/fail2ban/fail2ban
+  section: system
 activation_prefix: system_security_fail2ban_
 
 setup:

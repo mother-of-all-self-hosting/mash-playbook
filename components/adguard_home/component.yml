@@ -4,6 +4,11 @@
 
 ---
 
+description: A network-wide DNS software for blocking ads & tracking
+docs:
+  name: AdGuard Home
+  url: https://adguard.com/en/adguard-home/overview.html/
+  section: foss
 activation_prefix: adguard_home_
 
 # Entries added to other components' lists, while those components are in use

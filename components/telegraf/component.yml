@@ -5,6 +5,11 @@
 
 ---
 
+description: Server agent for collecting metrics
+docs:
+  name: Telegraf
+  url: https://www.influxdata.com/time-series-platform/telegraf/
+  section: foss
 activation_prefix: telegraf_
 
 # Entries added to other components' lists, while those components are in use

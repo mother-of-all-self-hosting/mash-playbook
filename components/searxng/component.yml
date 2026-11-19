@@ -5,6 +5,11 @@
 
 ---
 
+description: Privacy-respecting, hackable metasearch engine
+docs:
+  name: SearXNG
+  url: https://github.com/searxng/searxng
+  section: foss
 activation_prefix: searxng_
 
 # Entries added to other components' lists, while those components are in use

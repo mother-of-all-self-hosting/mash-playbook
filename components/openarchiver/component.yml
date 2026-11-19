@@ -5,6 +5,11 @@
 
 ---
 
+description: Archives, indexes and searches emails from various platforms
+docs:
+  name: Open Archiver
+  url: https://github.com/LogicLabs-OU/OpenArchiver
+  section: foss
 activation_prefix: openarchiver_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: Central storage of versioned flows for Apache NiFi
+docs:
+  name: Apache NiFi Registry
+  url: https://nifi.apache.org/projects/registry/
+  section: foss
 activation_prefix: nifi_registry_
 
 # Entries added to other components' lists, while those components are in use

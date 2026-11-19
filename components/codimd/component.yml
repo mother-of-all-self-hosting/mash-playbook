@@ -5,6 +5,11 @@
 
 ---
 
+description: Realtime collaborative markdown notes on all platforms
+docs:
+  name: CodiMD
+  url: https://github.com/hackmdio/codimd
+  section: foss
 activation_prefix: codimd_
 
 # Entries added to other components' lists, while those components are in use

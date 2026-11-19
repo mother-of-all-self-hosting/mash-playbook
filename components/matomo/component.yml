@@ -5,6 +5,11 @@
 
 ---
 
+description: Web analytics platform
+docs:
+  name: Matomo
+  url: https://matomo.org/
+  section: foss
 activation_prefix: matomo_
 
 # Entries added to other components' lists, while those components are in use

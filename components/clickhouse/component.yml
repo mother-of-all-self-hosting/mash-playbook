@@ -4,6 +4,11 @@
 
 ---
 
+description: Column-oriented database for real-time analytical reports
+docs:
+  name: ClickHouse
+  url: https://clickhouse.com/
+  section: foss
 activation_prefix: clickhouse_
 
 # Lists other components can add entries to (via `inject`).

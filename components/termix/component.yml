@@ -5,6 +5,11 @@
 
 ---
 
+description: Server management platform with SSH terminal
+docs:
+  name: Termix
+  url: https://docs.termix.site/
+  section: foss
 activation_prefix: termix_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: Encrypted paper storage
+docs:
+  name: OrigamiVault
+  url: https://github.com/origamivault/origamivault
+  section: foss
 activation_prefix: origamivault_
 
 # Entries added to other components' lists, while those components are in use

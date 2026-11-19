@@ -5,6 +5,11 @@
 
 ---
 
+description: Software forge (Git hosting service, etc.)
+docs:
+  name: Gitea
+  url: https://gitea.io/
+  section: foss
 activation_prefix: gitea_
 
 # Entries added to other components' lists, while those components are in use

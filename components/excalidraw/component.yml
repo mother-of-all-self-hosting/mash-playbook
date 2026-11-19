@@ -5,6 +5,11 @@
 
 ---
 
+description: Virtual whiteboard for sketching hand-drawn like diagrams
+docs:
+  name: Excalidraw
+  url: https://excalidraw.com/
+  section: foss
 activation_prefix: excalidraw_
 
 # Entries added to other components' lists, while those components are in use

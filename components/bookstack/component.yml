@@ -5,6 +5,11 @@
 
 ---
 
+description: Platform for organizing and storing documentation
+docs:
+  name: BookStack
+  url: https://www.bookstackapp.com
+  section: foss
 activation_prefix: bookstack_
 
 # Entries added to other components' lists, while those components are in use

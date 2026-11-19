@@ -5,6 +5,11 @@
 
 ---
 
+description: Bridge between chat platforms
+docs:
+  name: Matterbridge
+  url: https://github.com/42wim/matterbridge
+  section: foss
 activation_prefix: matterbridge_
 
 # Entries added to other components' lists, while those components are in use

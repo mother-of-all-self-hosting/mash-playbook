@@ -5,6 +5,11 @@
 
 ---
 
+description: Farm management, planning, and record keeping
+docs:
+  name: farmOS
+  url: https://farmos.org/
+  section: foss
 activation_prefix: farmos_
 
 # Entries added to other components' lists, while those components are in use

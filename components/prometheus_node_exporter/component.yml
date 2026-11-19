@@ -5,6 +5,11 @@
 
 ---
 
+description: Exporter for machine metrics
+docs:
+  name: Prometheus Node Exporter
+  url: https://github.com/prometheus/node_exporter
+  section: foss
 activation_prefix: prometheus_node_exporter_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: Cocktail recipe manager for your home bar
+docs:
+  name: Bar Assistant
+  url: https://github.com/karlomikus/bar-assistant/
+  section: foss
 activation_prefix: barassistant_
 
 # Entries added to other components' lists, while those components are in use

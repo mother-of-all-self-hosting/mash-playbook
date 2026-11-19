@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+vikunja_database_paradedb_hostname: "{{ paradedb_connection_hostname if paradedb_enabled and not vikunja_database_paradedb_socket_enabled else '' }}"
+vikunja_database_paradedb_port: "{{ paradedb_connection_port if paradedb_enabled else '5432' }}"
+vikunja_database_paradedb_password: "{{ (mash_playbook_generic_secret_key + ':vikunja.db') | hash('sha512') | to_uuid }}"
+vikunja_database_paradedb_sslmode: "{{ 'disable' if paradedb_enabled and (vikunja_database_paradedb_hostname == paradedb_connection_hostname or vikunja_database_paradedb_socket_enabled) else 'require' }}"
+vikunja_database_paradedb_socket_path_host: "{{ paradedb_run_path }}"

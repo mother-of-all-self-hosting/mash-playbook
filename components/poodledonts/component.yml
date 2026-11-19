@@ -5,6 +5,11 @@
 
 ---
 
+description: Privacy-friendly Google Fonts proxy
+docs:
+  name: PoodleDonts
+  url: https://git.private.coffee/PrivateCoffee/poodledonts
+  section: foss
 activation_prefix: poodledonts_
 
 # Entries added to other components' lists, while those components are in use

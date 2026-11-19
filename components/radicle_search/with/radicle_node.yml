@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+radicle_search_data_path: "{{ radicle_node_data_path }}" # The Docker volume is shared with `radicle_node`
+radicle_search_environment_variables_rad_home: "{{ radicle_node_environment_variables_rad_home }}" # This sets the same value to RAD_HOME as `radicle_node` does

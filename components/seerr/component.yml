@@ -5,6 +5,11 @@
 
 ---
 
+description: A media request and discovery manager
+docs:
+  name: Seerr
+  url: https://github.com/seerr-team/seerr
+  section: foss
 activation_prefix: seerr_
 
 # Entries added to other components' lists, while those components are in use

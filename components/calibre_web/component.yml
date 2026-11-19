@@ -5,6 +5,11 @@
 
 ---
 
+description: Web app for browsing and reading eBooks in a Calibre database
+docs:
+  name: Calibre-Web
+  url: https://github.com/janeczku/calibre-web
+  section: foss
 activation_prefix: calibre_web_
 
 # Entries added to other components' lists, while those components are in use

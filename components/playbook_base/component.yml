@@ -4,6 +4,7 @@
 
 ---
 
+description: 'Base setup of the playbook: its system user and base directory'
 activation_prefix: ''  # Always in use
 
 setup:

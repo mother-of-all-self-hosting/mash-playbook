@@ -4,6 +4,11 @@
 
 ---
 
+description: Agent which ships local logs to a Grafana Loki instance
+docs:
+  name: Promtail
+  url: https://grafana.com/docs/loki/latest/send-data/promtail/
+  section: foss
 activation_prefix: promtail_
 
 # Entries added to other components' lists, while those components are in use

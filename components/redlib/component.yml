@@ -5,6 +5,11 @@
 
 ---
 
+description: Frontend for Reddit
+docs:
+  name: Redlib
+  url: https://github.com/redlib-org/redlib
+  section: foss
 activation_prefix: redlib_
 
 # Entries added to other components' lists, while those components are in use

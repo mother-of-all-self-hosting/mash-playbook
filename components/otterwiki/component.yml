@@ -5,6 +5,11 @@
 
 ---
 
+description: Minimalistic wiki powered by Python, Markdown and Git
+docs:
+  name: An Otter Wiki
+  url: https://otterwiki.com/
+  section: foss
 activation_prefix: otterwiki_
 
 # Entries added to other components' lists, while those components are in use

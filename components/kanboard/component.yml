@@ -5,6 +5,11 @@
 
 ---
 
+description: Kanban project management software
+docs:
+  name: Kanboard
+  url: https://kanboard.org/
+  section: foss
 activation_prefix: kanboard_
 
 # Entries added to other components' lists, while those components are in use

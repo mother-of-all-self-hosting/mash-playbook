@@ -5,6 +5,11 @@
 
 ---
 
+description: High performance, embeddable MQTT broker
+docs:
+  name: rumqttd
+  url: https://github.com/bytebeamio/rumqtt
+  section: foss
 activation_prefix: rumqttd_
 
 # Entries added to other components' lists, while those components are in use

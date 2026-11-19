@@ -5,6 +5,11 @@
 
 ---
 
+description: Monero / fiat exchange rates in various currencies
+docs:
+  name: Moner.ooo
+  url: https://github.com/nice42q/moner.ooo
+  section: foss
 activation_prefix: monerooo_
 
 # Entries added to other components' lists, while those components are in use

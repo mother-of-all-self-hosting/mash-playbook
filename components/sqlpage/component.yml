@@ -5,6 +5,11 @@
 
 ---
 
+description: SQL-only data application builder
+docs:
+  name: SQLPage
+  url: https://sql-page.com/
+  section: foss
 activation_prefix: sqlpage_
 
 # Entries added to other components' lists, while those components are in use

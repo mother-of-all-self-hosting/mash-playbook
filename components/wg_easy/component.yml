@@ -4,6 +4,11 @@
 
 ---
 
+description: WireGuard VPN with a web-based admin UI
+docs:
+  name: WireGuard Easy
+  url: https://github.com/wg-easy/wg-easy
+  section: foss
 activation_prefix: wg_easy_
 
 # Entries added to other components' lists, while those components are in use

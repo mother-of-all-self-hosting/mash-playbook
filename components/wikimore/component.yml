@@ -5,6 +5,11 @@
 
 ---
 
+description: Frontend for Wikipedia projects
+docs:
+  name: Wikimore
+  url: https://git.private.coffee/PrivateCoffee/wikimore
+  section: foss
 activation_prefix: wikimore_
 
 # Entries added to other components' lists, while those components are in use

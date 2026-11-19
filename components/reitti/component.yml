@@ -5,6 +5,11 @@
 
 ---
 
+description: Personal location tracking and analysis application
+docs:
+  name: Reitti
+  url: https://www.dedicatedcode.com/projects/reitti/
+  section: foss
 activation_prefix: reitti_
 
 # Entries added to other components' lists, while those components are in use

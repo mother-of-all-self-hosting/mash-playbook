@@ -36,7 +36,7 @@ For details about configuring the [Ansible role for Vikunja](https://github.com/
 
 This service requires the following other services:
 
-- [Postgres](../postgres/README.md) / MySQL / [MariaDB](../mariadb/README.md) / [SQLite](https://www.sqlite.org/) database
+- [Postgres](../postgres/README.md) ([ParadeDB](../paradedb/README.md)) / MySQL / [MariaDB](../mariadb/README.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](../traefik/README.md) reverse-proxy server
 - (optional) [exim-relay](../exim_relay/README.md) mailer
 - (optional) [Valkey](../valkey/README.md) data-store; see [below](#configuring-valkey-optional) for details about installation
@@ -67,10 +67,12 @@ vikunja_hostname: vikunja.example.com
 
 ### Select database to use
 
-Vikunja can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#specify-database) on the role's documentation for details.
+Vikunja can use a MySQL compatible database, Postgres (ParadeDB), or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#specify-database) on the role's documentation for details.
 
 >[!NOTE]
-> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
+>
+> - Using [ParadeDB](../paradedb/README.md) is necessary for full-text search. Refer to [this section](https://vikunja.io/docs/paradedb/#migration-from-typesense) on the official documentation for details about migrating from Typesense.
+> - If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 ### Configuring the mailer (optional)
 

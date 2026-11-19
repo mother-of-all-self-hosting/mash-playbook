@@ -5,6 +5,11 @@
 
 ---
 
+description: Lists animals available for adoption
+docs:
+  name: Notfellchen
+  url: https://codeberg.org/moanos/notfellchen
+  section: foss
 activation_prefix: notfellchen_
 
 # Entries added to other components' lists, while those components are in use

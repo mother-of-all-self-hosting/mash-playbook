@@ -4,6 +4,11 @@
 
 ---
 
+description: Container image distribution registry
+docs:
+  name: Distribution Registry
+  url: https://github.com/distribution/distribution/
+  section: foss
 activation_prefix: docker_registry_enabled
 
 # Entries added to other components' lists, while those components are in use

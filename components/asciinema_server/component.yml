@@ -5,6 +5,11 @@
 
 ---
 
+description: Server for recording, streaming and sharing terminal sessions
+docs:
+  name: asciinema server
+  url: https://github.com/asciinema/asciinema-server
+  section: foss
 activation_prefix: asciinema_server_
 
 # Entries added to other components' lists, while those components are in use

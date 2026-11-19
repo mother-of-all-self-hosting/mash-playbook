@@ -5,6 +5,11 @@
 
 ---
 
+description: Download automator for torrents and Usenet
+docs:
+  name: Autobrr
+  url: https://autobrr.com/
+  section: foss
 activation_prefix: autobrr_
 
 # Entries added to other components' lists, while those components are in use

@@ -1,0 +1,25 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2026 spatterlight
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+pihole_enabled: false
+
+pihole_identifier: "{{ mash_playbook_service_identifier_prefix }}pihole"
+
+pihole_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}pihole"
+
+pihole_uid: "{{ mash_playbook_uid }}"
+pihole_gid: "{{ mash_playbook_gid }}"
+
+pihole_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+pihole_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+pihole_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

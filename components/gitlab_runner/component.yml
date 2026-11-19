@@ -5,6 +5,11 @@
 
 ---
 
+description: A runner to use with GitLab CI/CD
+docs:
+  name: GitLab Runner
+  url: https://docs.gitlab.com/runner/
+  section: foss
 activation_prefix: gitlab_runner_
 
 # Entries added to other components' lists, while those components are in use

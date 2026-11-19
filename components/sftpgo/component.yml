@@ -5,6 +5,11 @@
 
 ---
 
+description: SFTP, HTTP/S, FTP/S and WebDAV server, also for S3 or cloud storage
+docs:
+  name: SFTPGo
+  url: https://github.com/drakkan/sftpgo/
+  section: foss
 activation_prefix: sftpgo_
 
 # Entries added to other components' lists, while those components are in use

@@ -4,6 +4,11 @@
 
 ---
 
+description: A time-series database
+docs:
+  name: InfluxDB OSS v2
+  url: https://docs.influxdata.com/influxdb/v2/
+  section: foss
 activation_prefix: influxdb_
 
 # Entries added to other components' lists, while those components are in use

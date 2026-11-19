@@ -30,6 +30,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 # Removes stopped containers and Docker images which a newer image of the same repository superseded
 # at least 3 days ago (and which no container uses). Unlike `docker image prune -a`, unused images
 # without a newer version (of stopped services, timer-only containers, locally built images) are kept.
+# Also removes build cache which no build has used for 3 days.
 # Runs on runs with the `start` tag (e.g. `just setup-all`); to also run it daily via a systemd timer,
 # enable `system_cleanup_docker_timer_enabled`.
 system_cleanup_docker: true
@@ -56,7 +57,7 @@ system_cleanup_kernels: false
 ########################################################################
 ```
 
-Refer to the role's [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-cleanup/blob/main/defaults/main.yml) for more options (grace period, exclude patterns, dry run, anonymous volumes, the timer's schedule).
+Refer to the role's [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-cleanup/blob/main/defaults/main.yml) for more options (grace periods, exclude patterns, build cache, dry run, anonymous volumes, the timer's schedule).
 
 The Docker cleanup script (`/mash/system-cleanup/bin/cleanup-docker`) can also be run by hand, with `--dry-run` to only see what it would remove.
 

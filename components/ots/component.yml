@@ -5,6 +5,11 @@
 
 ---
 
+description: One-Time-Secret sharing platform
+docs:
+  name: OTS
+  url: https://ots.fyi/
+  section: foss
 activation_prefix: ots_
 
 # Entries added to other components' lists, while those components are in use

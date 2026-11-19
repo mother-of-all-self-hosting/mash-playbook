@@ -5,6 +5,11 @@
 
 ---
 
+description: Security platform for SIEM, threat detection and compliance
+docs:
+  name: Wazuh
+  url: https://wazuh.com/
+  section: foss
 activation_prefix: wazuh_
 
 # Entries added to other components' lists, while those components are in use

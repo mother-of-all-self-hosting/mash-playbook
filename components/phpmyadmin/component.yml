@@ -5,6 +5,11 @@
 
 ---
 
+description: Web-based MySQL or MariaDB database server administration software
+docs:
+  name: phpMyAdmin
+  url: https://www.phpmyadmin.net/
+  section: foss
 activation_prefix: phpmyadmin_
 
 # Entries added to other components' lists, while those components are in use

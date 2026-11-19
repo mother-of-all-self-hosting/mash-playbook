@@ -5,6 +5,11 @@
 
 ---
 
+description: Modern IRCd (IRC server software)
+docs:
+  name: Ergo
+  url: https://ergo.chat/
+  section: foss
 activation_prefix: ergo_
 
 # Entries added to other components' lists, while those components are in use

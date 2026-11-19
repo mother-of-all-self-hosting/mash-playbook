@@ -4,6 +4,7 @@
 
 ---
 
+description: Preserves the playbook's variables and commit hash on the server
 activation_prefix: devture_playbook_state_preserver_
 
 setup:

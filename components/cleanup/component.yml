@@ -5,6 +5,10 @@
 
 ---
 
+description: 'Server housekeeping: Docker leftovers, logs, packages, old kernels'
+docs:
+  name: Cleanup
+  section: system
 activation_prefix: system_cleanup_
 
 setup:

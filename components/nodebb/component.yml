@@ -5,6 +5,11 @@
 
 ---
 
+description: Node.js based forum software
+docs:
+  name: NodeBB
+  url: https://github.com/NodeBB/NodeBB
+  section: foss
 activation_prefix: nodebb_
 
 # Entries added to other components' lists, while those components are in use

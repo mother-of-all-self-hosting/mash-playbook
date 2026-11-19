@@ -5,6 +5,11 @@
 
 ---
 
+description: An API for your favorite Torrent trackers
+docs:
+  name: Jackett
+  url: https://github.com/Jackett/Jackett
+  section: foss
 activation_prefix: jackett_
 
 # Entries added to other components' lists, while those components are in use

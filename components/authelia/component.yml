@@ -5,6 +5,11 @@
 
 ---
 
+description: Authentication and authorization server for reverse proxies
+docs:
+  name: Authelia
+  url: https://www.authelia.com/
+  section: foss
 activation_prefix: authelia_
 
 # Entries added to other components' lists, while those components are in use

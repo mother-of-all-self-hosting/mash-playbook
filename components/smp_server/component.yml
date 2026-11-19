@@ -5,6 +5,11 @@
 
 ---
 
+description: Relay server used to pass messages in SimpleX network
+docs:
+  name: SMP server
+  url: https://simplex.chat/docs/server.html
+  section: foss
 activation_prefix: smp_server_
 
 # Entries added to other components' lists, while those components are in use

@@ -5,6 +5,11 @@
 
 ---
 
+description: Privacy-friendly cdnjs proxy
+docs:
+  name: noCDNbs
+  url: https://git.private.coffee/PrivateCoffee/nocdnbs
+  section: foss
 activation_prefix: nocdnbs_
 
 # Entries added to other components' lists, while those components are in use

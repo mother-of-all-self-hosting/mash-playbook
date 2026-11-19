@@ -5,6 +5,11 @@
 
 ---
 
+description: Vector tile generator & server from OpenStreetMap
+docs:
+  name: VersaTiles
+  url: https://versatiles.org
+  section: foss
 activation_prefix: versatiles_
 
 # Entries added to other components' lists, while those components are in use

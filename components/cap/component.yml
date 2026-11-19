@@ -5,6 +5,11 @@
 
 ---
 
+description: Backend of Cap, a POW Captcha
+docs:
+  name: Cap Standalone
+  url: https://trycap.dev/guide/standalone/
+  section: foss
 activation_prefix: cap_
 
 # Entries added to other components' lists, while those components are in use

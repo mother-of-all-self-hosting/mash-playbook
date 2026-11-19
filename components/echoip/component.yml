@@ -5,6 +5,11 @@
 
 ---
 
+description: Look up your IP address
+docs:
+  name: echoip
+  url: https://github.com/mpolden/echoip
+  section: foss
 activation_prefix: echoip_
 
 # Entries added to other components' lists, while those components are in use

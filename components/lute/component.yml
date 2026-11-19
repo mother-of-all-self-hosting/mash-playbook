@@ -5,6 +5,11 @@
 
 ---
 
+description: Learning foreign languages through reading
+docs:
+  name: Lute
+  url: https://github.com/LuteOrg/lute-v3
+  section: foss
 activation_prefix: lute_
 
 # Entries added to other components' lists, while those components are in use

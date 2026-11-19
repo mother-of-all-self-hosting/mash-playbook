@@ -1,10 +1,15 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 ---
 
+description: Login screen or OAuth authentication middleware for Docker services
+docs:
+  name: Tinyauth
+  url: https://tinyauth.app/
+  section: foss
 activation_prefix: tinyauth_
 
 # Entries added to other components' lists, while those components are in use
@@ -16,3 +21,9 @@ inject:
         restart_necessary: "{{ tinyauth_restart_necessary | bool }}"
         groups: [mash, tinyauth]
         when: "{{ tinyauth_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ tinyauth_database_name }}"
+        username: "{{ tinyauth_database_username }}"
+        password: "{{ tinyauth_database_password }}"
+        when: "{{ tinyauth_enabled and (tinyauth_database_hostname == postgres_connection_hostname or tinyauth_database_socket_enabled) and tinyauth_database_type == 'postgres' }}"

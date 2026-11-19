@@ -5,6 +5,11 @@
 
 ---
 
+description: Server component for Joplin
+docs:
+  name: Joplin Server
+  url: https://joplinapp.org/help/dev/spec/architecture#joplin-server
+  section: foss
 activation_prefix: joplin_server_
 
 # Entries added to other components' lists, while those components are in use

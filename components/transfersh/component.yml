@@ -5,6 +5,11 @@
 
 ---
 
+description: File sharing with the command-line
+docs:
+  name: transfer.sh
+  url: https://github.com/dutchcoders/transfer.sh
+  section: foss
 activation_prefix: transfersh_
 
 # Entries added to other components' lists, while those components are in use

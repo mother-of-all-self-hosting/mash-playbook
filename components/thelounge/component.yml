@@ -5,6 +5,11 @@
 
 ---
 
+description: Web IRC client which stays connected to IRC servers
+docs:
+  name: The Lounge
+  url: https://thelounge.chat/
+  section: foss
 activation_prefix: thelounge_
 
 # Entries added to other components' lists, while those components are in use

@@ -65,4 +65,5 @@ To get started, open the URL with a web browser to create an account.
 - [Plex](../plex/README.md)
 - [qBittorrent](../qbittorrent/README.md)
   - For qBittorrent integration instructions, refer to the [setup guide](https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent/blob/main/docs/configuring-qbittorrent.md#integration-with-sonarrradarr) on the role's documentation
+- [Recyclarr](../recyclarr/README.md)
 - [Unpackerr](../unpackerr/README.md)

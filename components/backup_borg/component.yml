@@ -5,6 +5,11 @@
 
 ---
 
+description: Deduplicating backup program with compression and encryption
+docs:
+  name: BorgBackup (via borgmatic)
+  url: https://www.borgbackup.org/
+  section: foss
 activation_prefix: backup_borg_
 
 # Entries added to other components' lists, while those components are in use
@@ -14,5 +19,5 @@ inject:
       - name: "{{ backup_borg_identifier }}.timer"
         priority: 5000
         restart_necessary: true
-        groups: [mash, backup, borg]
+        groups: [mash, backup, borg, backup-borg]
         when: "{{ backup_borg_enabled }}"

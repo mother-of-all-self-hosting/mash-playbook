@@ -5,6 +5,11 @@
 
 ---
 
+description: A spatial database extender for PostgreSQL object-relational database
+docs:
+  name: PostGIS
+  url: https://postgis.net/
+  section: foss
 activation_prefix: postgis_
 
 # Lists other components can add entries to (via `inject`).

@@ -5,6 +5,11 @@
 
 ---
 
+description: Dashboard for web applications
+docs:
+  name: Heimdall
+  url: https://heimdall.site/
+  section: foss
 activation_prefix: heimdall_
 
 # Entries added to other components' lists, while those components are in use

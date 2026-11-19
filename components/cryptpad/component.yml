@@ -5,6 +5,11 @@
 
 ---
 
+description: End-to-end encrypted collaborative office suite
+docs:
+  name: CryptPad
+  url: https://cryptpad.org/
+  section: foss
 activation_prefix: cryptpad_
 
 # Entries added to other components' lists, while those components are in use

@@ -39,6 +39,8 @@ This service requires the following other services:
 - [Postgres database with PostGIS extensions installed](../postgis/README.md)
 - [Traefik](../traefik/README.md) reverse-proxy server
 - [Valkey](../valkey/README.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [apprise](../apprise/README.md)
+- (optional) [ntfy](../ntfy/README.md)
 
 ## Configuration
 
@@ -238,11 +240,44 @@ reitti_systemd_required_services_list_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
+### Integrating with Immich (optional)
+
+Reitti can be integrated with [Immich](../immich/README.md).
+
+If Reitti and Immich do not share a network (like Traefik), you can connect the Reitti container network to Immich by adding the following configuration to your `vars.yml` file:
+
+```yaml
+immich_container_additional_networks_custom:
+  - "{{ reitti_container_network }}"
+```
+
+On the settings UI, specify `http://mash-immich:2283` to the Immich Server URL.
+
+Refer to [this page](https://www.dedicatedcode.com/projects/reitti/latest/configurations/photo-integration/) on the official documentation for details about how to set it up.
+
 ### Usage
 
 After running the command for installation, the Reitti instance becomes available at the URL specified with `reitti_hostname`. With the configuration above, the service is hosted at `https://reitti.example.com`.
 
 To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
+
+#### Configuring notification services (optional)
+
+On Reitti you can add configuration settings of notification services. If you enable [Apprise API](../apprise/README.md) and or [ntfy](../ntfy/README.md) services in your inventory configuration, the playbook will automatically connect them to the Reitti service.
+
+As the Reitti instance does not support configuring the notification services with environment variables, you can add default options for it on its UI. Refer to [this page](https://www.dedicatedcode.com/projects/reitti/latest/configurations/notifications/) on the official documentation as well about how to configure them.
+
+To set up with the default ntfy settings, open `https://reitti.example.com/settings/notifications`to add the following configuration:
+
+- **Enable Notifications**: Enable
+- **ntfy server URL**: `http://mash-ntfy:8080`
+- **Topic**: (Input the topic to send notifications)
+
+You can optionally enable authentication with an access token. The access token can be retrieved with the ntfy's command line or the web app if it is enabled.
+
+Apprise API integration can be enabled in a similar way.
+
+After setting the configuration, you can have the Reitti instance send a test notification.
 
 ## Troubleshooting
 

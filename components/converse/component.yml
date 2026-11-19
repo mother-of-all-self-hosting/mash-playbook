@@ -5,6 +5,11 @@
 
 ---
 
+description: Browser based XMPP chat client
+docs:
+  name: Converse
+  url: https://conversejs.org/
+  section: foss
 activation_prefix: converse_
 
 # Entries added to other components' lists, while those components are in use

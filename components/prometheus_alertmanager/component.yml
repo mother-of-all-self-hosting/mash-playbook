@@ -5,6 +5,11 @@
 
 ---
 
+description: Handles alerts sent by the Prometheus server
+docs:
+  name: Prometheus Alertmanager
+  url: https://github.com/prometheus/alertmanager
+  section: foss
 activation_prefix: prometheus_alertmanager_
 
 # Entries added to other components' lists, while those components are in use
