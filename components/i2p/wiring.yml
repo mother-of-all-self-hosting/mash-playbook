@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+i2p_enabled: false
+
+i2p_identifier: "{{ mash_playbook_service_identifier_prefix }}i2p"
+
+i2p_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}i2p"
+
+i2p_uid: "{{ mash_playbook_uid }}"
+i2p_gid: "{{ mash_playbook_gid }}"
