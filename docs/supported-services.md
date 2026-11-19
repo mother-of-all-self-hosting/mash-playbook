@@ -209,6 +209,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [PdfDing](https://www.pdfding.com/) | PDF manager, viewer and editor | [Link](../components/pdfding/README.md) |
 | [PeerTube](https://joinpeertube.org/) | ActivityPub federated video platform | [Link](../components/peertube/README.md) |
 | [pgAdmin](https://www.pgadmin.org/) | Web-based Postgres database server administration software | [Link](../components/pgadmin/README.md) |
+| [PgBouncer](https://www.pgbouncer.org/) | PostgreSQL connection pooler | [Link](../components/pgbouncer/README.md) |
 | [PgHero](https://github.com/ankane/pghero) | Performance dashboard for Postgres | [Link](../components/pghero/README.md) |
 | [phpMyAdmin](https://www.phpmyadmin.net/) | Web-based MySQL or MariaDB database server administration software | [Link](../components/phpmyadmin/README.md) |
 | [Pi-hole](https://pi-hole.net/) | A DNS sinkhole which blocks ads and trackers network-wide | [Link](../components/pihole/README.md) |
