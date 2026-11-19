@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
 # SPDX-FileCopyrightText: 2023 aine-etke
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -26,4 +27,4 @@ inject:
       - name: "{{ soft_serve_database_name }}"
         username: "{{ soft_serve_database_username }}"
         password: "{{ soft_serve_database_password }}"
-        when: "{{ soft_serve_enabled and soft_serve_database_hostname == postgres_connection_hostname and soft_serve_database_type == 'postgres' }}"
+        when: "{{ soft_serve_enabled and (soft_serve_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and soft_serve_database_hostname == pgbouncer_connection_hostname | default(''))) and soft_serve_database_type == 'postgres' }}"

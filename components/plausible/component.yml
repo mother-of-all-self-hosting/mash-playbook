@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: 2023, 2024 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -32,4 +33,4 @@ inject:
       - name: "{{ plausible_database_name }}"
         username: "{{ plausible_database_username }}"
         password: "{{ plausible_database_password }}"
-        when: "{{ plausible_enabled and plausible_database_hostname == postgres_connection_hostname }}"
+        when: "{{ plausible_enabled and (plausible_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and plausible_database_hostname == pgbouncer_connection_hostname | default(''))) }}"

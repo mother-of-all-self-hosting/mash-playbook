@@ -32,4 +32,4 @@ inject:
       - name: "{{ docuseal_database_name }}"
         username: "{{ docuseal_database_postgres_username }}"
         password: "{{ docuseal_database_postgres_password }}"
-        when: "{{ docuseal_enabled and (docuseal_database_postgres_hostname == postgres_connection_hostname or docuseal_database_postgres_socket_enabled) and docuseal_database_type == 'postgres' }}"
+        when: "{{ docuseal_enabled and (docuseal_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and docuseal_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or docuseal_database_postgres_socket_enabled) and docuseal_database_type == 'postgres' }}"

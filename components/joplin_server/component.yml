@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -34,4 +34,4 @@ inject:
       - name: "{{ joplin_server_database_name }}"
         username: "{{ joplin_server_database_username }}"
         password: "{{ joplin_server_database_password }}"
-        when: "{{ joplin_server_enabled and (joplin_server_database_hostname == postgres_connection_hostname or joplin_server_database_socket_enabled) }}"
+        when: "{{ joplin_server_enabled and (joplin_server_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and joplin_server_database_hostname == pgbouncer_connection_hostname | default('')) or joplin_server_database_socket_enabled) }}"

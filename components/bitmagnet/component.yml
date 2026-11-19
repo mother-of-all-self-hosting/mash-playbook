@@ -26,7 +26,7 @@ inject:
       - name: "{{ bitmagnet_database_name }}"
         username: "{{ bitmagnet_database_username }}"
         password: "{{ bitmagnet_database_password }}"
-        when: "{{ bitmagnet_enabled and (bitmagnet_database_hostname == postgres_connection_hostname or bitmagnet_database_socket_enabled) }}"
+        when: "{{ bitmagnet_enabled and (bitmagnet_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and bitmagnet_database_hostname == pgbouncer_connection_hostname | default('')) or bitmagnet_database_socket_enabled) }}"
   traefik:
     entrypoints:
       - name: "{{ bitmagnet_container_labels_traefik_tcp_entrypoints }}"

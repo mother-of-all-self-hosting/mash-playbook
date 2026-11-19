@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
 # SPDX-FileCopyrightText: 2025 hooger
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -34,4 +35,4 @@ inject:
       - name: "{{ labelstudio_database_name }}"
         username: "{{ labelstudio_database_username }}"
         password: "{{ labelstudio_database_password }}"
-        when: "{{ labelstudio_enabled and labelstudio_database_hostname == postgres_connection_hostname and labelstudio_database_type == 'postgres' }}"
+        when: "{{ labelstudio_enabled and (labelstudio_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and labelstudio_database_hostname == pgbouncer_connection_hostname | default(''))) and labelstudio_database_type == 'postgres' }}"
