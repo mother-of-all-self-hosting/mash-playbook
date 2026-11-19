@@ -5,6 +5,11 @@
 
 ---
 
+description: PostgreSQL connection pooler
+docs:
+  name: PgBouncer
+  url: https://www.pgbouncer.org/
+  section: foss
 activation_prefix: pgbouncer_
 
 # Entries added to other components' lists, while those components are in use
