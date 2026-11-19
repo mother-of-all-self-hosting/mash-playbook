@@ -106,4 +106,5 @@ Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/
 
 ## Related services
 
+- [I2P](../i2p/README.md) — Reference Java implementation of I2P
 - [Standalone Snowflake proxy](../snowflake/README.md) — Help users connect to the Tor network in places where Tor is blocked

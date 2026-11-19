@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+description: Reference Java implementation of I2P
+docs:
+  name: I2P
+  url: https://i2p.net/
+  section: foss
+activation_prefix: i2p_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ i2p_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ i2p_restart_necessary | bool }}"
+        groups: [mash, i2p]
+        when: "{{ i2p_enabled }}"
