@@ -100,7 +100,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 ## Usage
 
-After running the command for installation, the Grafana instance becomes available at the URL specified with `grafana_hostname` and `grafana_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/grafana`.
+With the configuration above, Grafana is available at `https://mash.example.com/grafana`. Hubsite links to the public URL configured by `grafana_server_root_url`.
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
