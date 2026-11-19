@@ -7,7 +7,7 @@
 # Grafana
 mash_playbook_hubsite_service_grafana_enabled: "{{ grafana_enabled }}"
 mash_playbook_hubsite_service_grafana_name: Grafana
-mash_playbook_hubsite_service_grafana_url: "https://{{ grafana_hostname }}{{ grafana_path_prefix }}"
+mash_playbook_hubsite_service_grafana_url: "{{ grafana_server_root_url }}"
 mash_playbook_hubsite_service_grafana_logo_location: "{{ role_path }}/assets/grafana.png"
 mash_playbook_hubsite_service_grafana_description: "Check how your server is doing"
 mash_playbook_hubsite_service_grafana_priority: 1000
