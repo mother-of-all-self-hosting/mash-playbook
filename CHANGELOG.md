@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2026-11-20
+
+### APISIX 3.21 upgrade requires checking Admin API keys and backing up encrypted configuration
+
+Before rerunning the playbook, review any configured Admin API keys if key authentication is enabled. Give every entry an explicit `admin` or `viewer` role and quote numeric-looking keys in YAML. Check entries in traditional deployments even if the Admin API is disabled. APISIX can reject invalid entries at startup. See the [role's Admin API configuration example](https://github.com/mother-of-all-self-hosting/ansible-role-apisix/blob/v3.21.0-0/docs/configuring-apisix.md#adjusting-the-playbook-configuration).
+
+If you use encrypted plugin configuration or metadata, back up your APISIX etcd data before upgrading. During a rolling upgrade, pause Admin API writes until all instances are upgraded. If encrypted resources are saved after upgrading, restore the pre-upgrade backup before rolling back to a build that cannot read the encryption marker. The role leaves these checks and the backup to you. See the [APISIX 3.21.0 upgrade notes](https://github.com/apache/apisix/releases/tag/3.21.0#before-upgrading-from-3200).
+
 ## 2026-11-18
 
 ### Prowlarr 3 requires PostgreSQL 15 or later
