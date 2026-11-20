@@ -61,8 +61,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 calibre_web_enabled: true
 
-calibre_web_hostname: mash.example.com
-calibre_web_path_prefix: /calibre-web
+calibre_web_hostname: calibre-web.example.com
 
 ########################################################################
 #                                                                      #
@@ -204,6 +203,8 @@ syncthing_container_additional_volumes_custom:
 ## Usage
 
 After running the command for installation, the Calibre-Web instance becomes available at the URL specified with `calibre_web_hostname` and `calibre_web_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/calibre-web`.
+
+After running the command for installation, the Calibre-Web instance becomes available at the URL specified with `calibre_web_hostname`. With the configuration above, the service is hosted at `https://calibre-web.example.com`.
 
 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/docs/configuring-calibre-web.md#usage) for details about setting up the instance.
 
