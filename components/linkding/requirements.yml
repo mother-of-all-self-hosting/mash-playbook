@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-linkding.git
-  version: v1.47.0-5
+  version: v1.47.0-6
   name: linkding
