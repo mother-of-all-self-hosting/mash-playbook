@@ -61,8 +61,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 calibre_web_enabled: true
 
-calibre_web_hostname: mash.example.com
-calibre_web_path_prefix: /calibre-web
+calibre_web_hostname: calibre-web.example.com
 
 ########################################################################
 #                                                                      #
@@ -70,6 +69,8 @@ calibre_web_path_prefix: /calibre-web
 #                                                                      #
 ########################################################################
 ```
+
+Point the hostname's DNS record at your server. Traefik serves Calibre-Web at the root path (`/`).
 
 ### Mount a directory for loading Calibre database (optional)
 
@@ -203,7 +204,7 @@ syncthing_container_additional_volumes_custom:
 
 ## Usage
 
-After running the command for installation, the Calibre-Web instance becomes available at the URL specified with `calibre_web_hostname` and `calibre_web_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/calibre-web`.
+After installation, open `https://calibre-web.example.com`, using the hostname you set in `calibre_web_hostname`.
 
 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/docs/configuring-calibre-web.md#usage) for details about setting up the instance.
 
@@ -213,7 +214,7 @@ On Calibre-Web you can add configuration settings of a SMTP server to let the se
 
 As the Calibre-Web instance does not support configuring the mailer with environment variables, you can add default options for it on its UI. Refer to [this page](https://github.com/janeczku/calibre-web/wiki/Setup-Mailserver) on the official documentation as well about how to configure it.
 
-To set up with the default exim-relay settings, open `https://mash.example.com/calibre-web/admin/mailsettings` to add the following configuration:
+To set up with the default exim-relay settings, open `https://calibre-web.example.com/admin/mailsettings` to add the following configuration:
 
 - **Email Account Type**: Standard Email Account
 - **SMTP Hostname**: `mash-exim-relay`
