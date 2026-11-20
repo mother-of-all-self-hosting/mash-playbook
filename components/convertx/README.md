@@ -67,7 +67,7 @@ By deploying an authentication service like [Tinyauth](../tinyauth/README.md), y
 
 ## Usage
 
-After running the command for installation, the ConvertX instance becomes available at the URL specified with `convertx_hostname` and `convertx_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/convertx`.
+After running the command for installation, the ConvertX instance becomes available at the URL specified with `convertx_hostname` and `convertx_environment_variables_webroot`. With the configuration above, the service is hosted at `https://mash.example.com/convertx/`.
 
 To use it, open the URL on the browser and create an account.
 
