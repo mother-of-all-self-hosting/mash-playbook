@@ -50,7 +50,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 adminer_enabled: true
 
-adminer_hostname: adminer.example.com
+adminer_hostname: mash.example.com
+adminer_path_prefix: /adminer
 
 ########################################################################
 #                                                                      #
@@ -63,7 +64,7 @@ It is optionally possible to edit settings about the default server to connect, 
 
 ## Usage
 
-After running the command for installation, the Adminer instance becomes available at the URL specified with `adminer_hostname`. With the configuration above, the service is hosted at `https://adminer.example.com`.
+After running the command for installation, the Adminer instance becomes available at the URL specified with `adminer_hostname` and `adminer_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/adminer`.
 
 To get started, open the URL with a web browser to log in to the instance with the database's credentials specified on your `vars.yml` file.
 
