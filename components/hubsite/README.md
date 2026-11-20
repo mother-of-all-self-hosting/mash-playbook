@@ -35,7 +35,7 @@ For details about configuring the [Ansible role for Hubsite](https://github.com/
 
 This service requires the following other services:
 
-- [Traefik](../traefik/README.md) reverse-proxy server
+- (optional) [Traefik](../traefik/README.md) reverse-proxy server
 
 ## Configuration
 
