@@ -80,7 +80,7 @@ MediaWiki can use a MySQL compatible database, Postgres, or SQLite, and you need
 
 #### Setting up a dedicated MariaDB instance
 
-If you are going to use MariaDB, it is recommended to set up a dedicated MariaDB instance for MediaWiki to pin the MariaDB version for it, letting another instance on the latest version used by other services, as MariaDB 12.0.0+ is not supported by MediaWiki 1.44 due to [this bug](https://phabricator.wikimedia.org/T401570).
+You can use the playbook's shared MariaDB instance for MediaWiki. To run a separate MariaDB instance for MediaWiki, follow the steps below.
 
 To create a dedicated instance for MediaWiki, you can follow the steps below:
 
@@ -165,10 +165,6 @@ mariadb_enabled: true
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 mariadb_root_password: RANDOM_STRING_FOR_MARIADB_HERE
 
-# Pin the version because MariaDB 12.0.0+ is not supported by MediaWiki 1.44.
-# See: https://phabricator.wikimedia.org/T401570
-mariadb_container_image_latest: "{{ mariadb_container_image_v11_8 }}"
-
 # Create a database for the MediaWiki instance
 mariadb_managed_databases_custom:
   - name: "{{ mediawiki_database_name }}"
@@ -236,7 +232,7 @@ mediawiki_container_additional_networks_custom:
 ########################################################################
 ```
 
-After replacing strings with your values, running the installation command will create the dedicated MariaDB instance named `mash-mediawiki-mariadb`, and the MediaWiki instance will keep using the pinned MariaDB version.
+After replacing strings with your values, running the installation command will create the dedicated MariaDB instance named `mash-mediawiki-mariadb`, which MediaWiki will use.
 
 ### Set wiki's logos (recommended)
 
