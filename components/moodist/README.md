@@ -49,7 +49,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 moodist_enabled: true
 
-moodist_hostname: moodist.example.com
+moodist_hostname: mash.example.com
+moodist_path_prefix: /moodist
 
 ########################################################################
 #                                                                      #
@@ -57,8 +58,6 @@ moodist_hostname: moodist.example.com
 #                                                                      #
 ########################################################################
 ```
-
-**Note**: hosting Moodist under a subpath (by configuring the `moodist_path_prefix` variable) does not seem to be possible due to Moodist's technical limitations.
 
 ### Using the default Docker image (optional)
 
@@ -71,11 +70,13 @@ moodist_container_image_self_build: false
 ```
 
 >[!NOTE]
-> Adding the variable configures the playbook to run the service as a root user.
+>
+> - Adding the variable configures the playbook to run the service as a root user.
+> - Hosting Moodist under a subpath (by configuring the `moodist_path_prefix` variable) is not possible without building the Docker image.
 
 ## Usage
 
-After running the command for installation, the Moodist instance becomes available at the URL specified with `moodist_hostname`. With the configuration above, the service is hosted at `https://moodist.example.com`.
+After running the command for installation, the Moodist instance becomes available at the URL specified with `moodist_hostname` and `moodist_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/moodist`.
 
 ## Troubleshooting
 
