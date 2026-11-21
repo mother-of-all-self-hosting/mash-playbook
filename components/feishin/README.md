@@ -51,7 +51,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 feishin_enabled: true
 
-feishin_hostname: feishin.example.com
+feishin_hostname: mash.example.com
+feishin_path_prefix: /feishin
 
 ########################################################################
 #                                                                      #
@@ -66,7 +67,7 @@ By default one can have Feishin connect to any server as specified. Refer to [th
 
 ## Usage
 
-After running the command for installation, the Feishin instance becomes available at the URL specified with `feishin_hostname`. With the configuration above, the service is hosted at `https://feishin.example.com`.
+After running the command for installation, the Feishin instance becomes available at the URL specified with `feishin_hostname` and `feishin_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/feishin`.
 
 To get started, open the URL with a web browser to create an account.
 
