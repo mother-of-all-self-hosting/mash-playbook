@@ -22,6 +22,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # File Browser
 
+>[!WARNING]
+> The upstream project has been discontinued. There will not be security patches, bug fixes, or feature improvements. Refer to [this page](https://hacdias.com/2026/07/28/filebrowser/) for details and [the security advisories at GitHub](https://github.com/filebrowser/filebrowser/security/advisories) for a list of unfixed issues, respecitively.
+
 The playbook can install and configure [File Browser](https://filebrowser.org/) for you.
 
 File Browser is a free self-hosted web-based file manager.
@@ -52,8 +55,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 filebrowser_enabled: true
 
-filebrowser_hostname: filebrowser.example.com
-
 ########################################################################
 #                                                                      #
 # /filebrowser                                                         #
@@ -63,9 +64,13 @@ filebrowser_hostname: filebrowser.example.com
 
 **Note**: hosting File Browser under a subpath (by configuring the `filebrowser_path_prefix` variable) does not seem to be possible due to File Browser's technical limitations.
 
+### Exposing the service to the internet (unrecommended)
+
+By default File Browser is not configured to be exposed to the internet, as there might be undisclosed vulnerabilities which will never be fixed. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filebrowser.md#exposing-the-service-to-the-internet-unrecommended) on the role's documentation for details about how to expose it to the internet.
+
 ## Usage
 
-After running the command for installation, the File Browser instance becomes available at the URL specified with `filebrowser_hostname`. With the configuration above, the service is hosted at `https://filebrowser.example.com`.
+After running the command for installation, the File Browser instance becomes available.
 
 To get started, open the URL with a web browser to log in to the instance with the administrator account (`admin`).
 

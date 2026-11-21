@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2026-11-21
+
+### File Browser is no longer exposed to the internet
+
+The [File Browser](https://github.com/filebrowser/filebrowser/) project has been discontinued since 2026-09-01. As there will not be security patches, bug fixes, or feature improvements, File Browser is no longer exposed to the internet by default. Refer the [documentation](components/filebrowser/README.md) for details.
+
 ## 2026-11-18
 
 ### Prowlarr 3 requires PostgreSQL 15 or later
