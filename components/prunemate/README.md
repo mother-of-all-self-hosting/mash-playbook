@@ -71,7 +71,9 @@ The playbook by default enables authentication implemented by the service. It su
 
 ### Configuring Docker socket (optional)
 
-By default the service is configured to use [docker-socket-proxy](https://github.com/Tecnativa/docker-socket-proxy). If you wish to use the Docker socket at `/var/run/docker.sock` directly for some reason, make sure to adjust the `prunemate_docker_endpoint_is_unix_socket` variable to `true`.
+By default the service is configured to use the [docker-socket-proxy](https://github.com/Tecnativa/docker-socket-proxy) instance which this playbook installs and set its endpoint as the "local" host on PruneMate.
+
+If you wish to use the Docker socket at `/var/run/docker.sock` directly for some reason, make sure to adjust the `prunemate_docker_endpoint_is_unix_socket` and `prunemate_environment_variables_prunemate_docker_host` variables.
 
 ## Usage
 
@@ -82,10 +84,6 @@ To get started, open the URL with a web browser, and edit settings to enable a s
 ### Creating a user
 
 To enable authentication, refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#creating-a-user) on the role's documentation about how to create a user. Make sure to start the service first, before creating the user.
-
-### Configuring the Docker host URL
-
-Because the service is configured to use docker-socket-proxy which this playbook installs, you can set `tcp://mash-container-socket-proxy:2375` to the input area of the URL to add a new Docker host, unless the Docker socket at `/var/run/docker.sock` would be used instead of the proxy.
 
 ### Configuring notification providers
 
