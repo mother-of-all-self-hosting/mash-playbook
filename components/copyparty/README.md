@@ -50,7 +50,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 copyparty_enabled: true
 
-copyparty_hostname: copyparty.example.com
+copyparty_hostname: mash.example.com
+copyparty_path_prefix: /copyparty
 
 ########################################################################
 #                                                                      #
@@ -65,7 +66,7 @@ By default it is necessary to create an administrator account, whose default use
 
 ## Usage
 
-After running the command for installation, the Copyparty instance becomes available at the URL specified with `copyparty_hostname`. With the configuration above, the service is hosted at `https://copyparty.example.com`.
+After running the command for installation, the Copyparty instance becomes available at the URL specified with `copyparty_hostname` and `copyparty_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/copyparty`.
 
 By default uploading is limited to the administrator account only. If you want to allow others (with or without accounts) upload, move, or delete files, it is necessary to specify corresponding permissions by recreating the default settings specified to `copyparty_config_options_additional_configuration`.
 
