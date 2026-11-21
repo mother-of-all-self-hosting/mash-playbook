@@ -50,7 +50,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 mermaid_enabled: true
 
-mermaid_hostname: mermaid.example.com
+mermaid_hostname: mash.example.com
+mermaid_path_prefix: /mermaid
 
 ########################################################################
 #                                                                      #
@@ -74,7 +75,7 @@ mermaid_container_image_self_build: false
 
 ## Usage
 
-After running the command for installation, the Mermaid Live Editor instance becomes available at the URL specified with `mermaid_hostname`. With the configuration above, the service is hosted at `https://mermaid.example.com`.
+After running the command for installation, the Mermaid Live Editor instance becomes available at the URL specified with `mermaid_hostname` and `mermaid_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/mermaid`.
 
 ## Troubleshooting
 
