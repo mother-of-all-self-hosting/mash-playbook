@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-node-exporter.git
-  version: v1.13.1-0
+  version: v1.13.1-1
   name: prometheus_node_exporter
