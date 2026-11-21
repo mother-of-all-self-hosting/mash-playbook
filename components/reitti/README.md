@@ -55,7 +55,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 reitti_enabled: true
 
-reitti_hostname: reitti.example.com
+reitti_hostname: mash.example.com
+reitti_path_prefix: /reitti
 
 ########################################################################
 #                                                                      #
@@ -257,7 +258,7 @@ Refer to [this page](https://www.dedicatedcode.com/projects/reitti/latest/config
 
 ### Usage
 
-After running the command for installation, the Reitti instance becomes available at the URL specified with `reitti_hostname`. With the configuration above, the service is hosted at `https://reitti.example.com`.
+After running the command for installation, the Reitti instance becomes available at the URL specified with `reitti_hostname` and `reitti_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/reitti`.
 
 To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
