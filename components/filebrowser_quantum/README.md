@@ -53,7 +53,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 filebrowser_quantum_enabled: true
 
 filebrowser_quantum_hostname: mash.example.com
-filebrowser_quantum_path_prefix: /filebrowser
+filebrowser_quantum_path_prefix: /filebrowser-quantum
 
 ########################################################################
 #                                                                      #
@@ -76,7 +76,7 @@ You can integrate [Euro-Office](https://github.com/Euro-Office/DocumentServer) w
 
 ## Usage
 
-After running the command for installation, the FileBrowser Quantum instance becomes available at the URL specified with `filebrowser_quantum_hostname`. With the configuration above, the service is hosted at `https://filebrowser.example.com`.
+After running the command for installation, the FileBrowser Quantum instance becomes available at the URL specified with `filebrowser_quantum_hostname` and `filebrowser_quantum_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/filebrowser-quantum`.
 
 To get started, open the URL with a web browser to log in to the instance with the administrator account. The default username of the administrator account is `admin`.
 
