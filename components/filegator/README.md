@@ -52,7 +52,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 filegator_enabled: true
 
-filegator_hostname: filegator.example.com
+filegator_hostname: mash.example.com
+filegator_path_prefix: /filegator
 
 ########################################################################
 #                                                                      #
@@ -63,7 +64,7 @@ filegator_hostname: filegator.example.com
 
 ## Usage
 
-After running the command for installation, the FileGator instance becomes available at the URL specified with `filegator_hostname`. With the configuration above, the service is hosted at `https://filegator.example.com`.
+After running the command for installation, the FileGator instance becomes available at the URL specified with `filegator_hostname` and `filegator_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/filegator`.
 
 To get started, open the URL with a web browser, and log in to the instance with the administrator account credentials. The default login credentials can be checked at <https://github.com/filegator/filegator/blob/master/README.md>. **After logging in, make sure to change the credentials.**
 
