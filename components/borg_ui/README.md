@@ -53,7 +53,8 @@ To enable this service, add the following configuration to your `vars.yml` file:
 
 borg_ui_enabled: true
 
-borg_ui_hostname: borg-ui.example.com
+borg_ui_hostname: mash.example.com
+borg_ui_path_prefix: /borg-ui
 
 ########################################################################
 #                                                                      #
@@ -61,8 +62,6 @@ borg_ui_hostname: borg-ui.example.com
 #                                                                      #
 ########################################################################
 ```
-
-**Note**: hosting Borg UI under a subpath (by configuring the `borg_ui_path_prefix` variable) does not seem to be possible due to Borg UI's technical limitations.
 
 ### Configure Valkey (optional)
 
@@ -285,7 +284,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After running the command for installation, the Borg UI instance becomes available at the URL specified with `borg_ui_hostname`. With the configuration above, the service is hosted at `https://borg-ui.example.com`.
+After running the command for installation, the Borg UI instance becomes available at the URL specified with `borg_ui_hostname` and `borg_ui_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/borg-ui`.
 
 To get started, open the URL with a web browser to log in to the instance.
 
