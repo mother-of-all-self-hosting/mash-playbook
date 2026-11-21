@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-reactflux
-  version: v2025.6.2-15
+  version: v2025.6.2-16
   name: reactflux
