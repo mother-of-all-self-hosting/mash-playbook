@@ -39,7 +39,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 labelstudio_enabled: true
 
-labelstudio_hostname: labelstudio.example.com
+labelstudio_hostname: mash.example.com
+labelstudio_path_prefix: /labelstudio
 
 ########################################################################
 #                                                                      #
@@ -50,7 +51,7 @@ labelstudio_hostname: labelstudio.example.com
 
 ## Usage
 
-After running the command for installation, the Label Studio instance becomes available at the URL specified with `labelstudio_hostname`. With the configuration above, the service is hosted at `https://labelstudio.example.com`.
+After running the command for installation, the Label Studio instance becomes available at the URL specified with `labelstudio_hostname` and `labelstudio_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/labelstudio`.
 
 To get started, open the URL with a web browser to register new accounts, log in with them, and start working.
 
