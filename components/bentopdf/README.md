@@ -31,7 +31,7 @@ For details about configuring the [Ansible role for BentoPDF](https://radicle.ne
 - 📁 `roles/galaxy/bentopdf/docs/configuring-bentopdf.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
 
 >[!NOTE]
-> [This commit](https://github.com/alam00000/bentopdf/commit/2c85ca74e9476d2a2e1eb54e6f470d4a1312fd7a) on the upstream project has removed AGPL libraries due to "ensure clear legal boundaries" to provide the software as a dual-licensed one (AGPL 3.0 and a proprietary license). The fact that the author regards AGPL gives ["obligations"](https://github.com/alam00000/bentopdf/blob/7abb2195658bdd2cc4f5b93e2ec01d7a04613b86/README.md) which the author seems to think not all users of the software do not welcome is worth keeping in mind, if you commit to the software long-term.
+> [This commit](https://github.com/alam00000/bentopdf/commit/2c85ca74e9476d2a2e1eb54e6f470d4a1312fd7a) on the upstream project has removed AGPL libraries due to "ensure clear legal boundaries" to provide the software as a dual-licensed one (AGPL 3.0 and a proprietary license). The fact that the author regards AGPL gives ["obligations"](https://github.com/alam00000/bentopdf/blob/7abb2195658bdd2cc4f5b93e2ec01d7a04613b86/README.md) which the author seems to think not all users of the software would welcome is worth keeping in mind, if you commit to the software long-term.
 >
 > If it will ever enforce an Open Core license as well as [Stirling PDF v2](https://github.com/Stirling-Tools/Stirling-PDF/releases/tag/v2.0.0) does, you can check out [OmniTools](../omnitools/README.md).
 
