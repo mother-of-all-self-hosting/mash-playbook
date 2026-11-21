@@ -48,7 +48,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 freshrss_enabled: true
 
-freshrss_hostname: freshrss.example.com
+freshrss_hostname: mash.example.com
+freshrss_path_prefix: /freshrss
 
 ########################################################################
 #                                                                      #
@@ -57,15 +58,13 @@ freshrss_hostname: freshrss.example.com
 ########################################################################
 ```
 
-**Note**: hosting FreshRSS under a subpath (by configuring the `freshrss_path_prefix` variable) does not seem to be possible due to FreshRSS's technical limitations. Refer to [this issue](https://github.com/mother-of-all-self-hosting/mash-playbook/issues/116) for details.
-
 ### Select database to use
 
 FreshRSS can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freshrss/blob/main/docs/configuring-freshrss.md#specify-database) on the role's documentation for details.
 
 ## Usage
 
-After running the command for installation, the FreshRSS instance becomes available at the URL specified with `freshrss_hostname`. With the configuration above, the service is hosted at `https://freshrss.example.com`.
+After running the command for installation, the FreshRSS instance becomes available at the URL specified with `freshrss_hostname` and `freshrss_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/freshrss`.
 
 To get started, open the URL with a web browser, and follow the set up wizard. On the wizard, it is required to input database credentials to use a MySQL compatible database or Postgres. You can output its credentials by running the playbook as below:
 
