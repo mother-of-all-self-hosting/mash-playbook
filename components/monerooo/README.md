@@ -49,7 +49,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 monerooo_enabled: true
 
-monerooo_hostname: monerooo.example.com
+monerooo_hostname: mash.example.com
+monerooo_path_prefix: /monerooo
 
 ########################################################################
 #                                                                      #
@@ -58,11 +59,9 @@ monerooo_hostname: monerooo.example.com
 ########################################################################
 ```
 
-**Note**: hosting Moner.ooo under a subpath (by configuring the `monerooo_path_prefix` variable) does not seem to be possible due to Moner.ooo's technical limitations.
-
 ## Usage
 
-After running the command for installation, the Moner.ooo instance becomes available at the URL specified with `monerooo_hostname`. With the configuration above, the service is hosted at `https://monerooo.example.com`.
+After running the command for installation, the Moner.ooo instance becomes available at the URL specified with `monerooo_hostname` and `monerooo_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/monerooo`.
 
 ## Troubleshooting
 
