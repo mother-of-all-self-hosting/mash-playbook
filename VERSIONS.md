@@ -311,7 +311,7 @@
 * Wikimore: v0.1.27
 * Woodpecker Ci Agent: v3.20.1
 * Woodpecker Ci Server: v3.20.1
-* Wordpress: 7.1.4
+* Wordpress: 7.1.5
 * Writefreely: v0.17.3
 * Yacy: latest
 * Yggstack: 1.0.6
