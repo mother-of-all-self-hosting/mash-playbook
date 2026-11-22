@@ -191,7 +191,7 @@
 * Origamivault: 6816ac6d7f59628d56c9bc982431a15b7e727278
 * Ots: v1.23.1
 * Otterwiki: 2.26.3
-* Outline: 1.12.0
+* Outline: 1.13.0
 * Owncast: 0.3.0
 * Oxitraffic: v0.10.5
 * Paperless: 3.4.2
