@@ -69,15 +69,7 @@ neko_hostname: neko.example.com
 
 **Note**: hosting Neko under a subpath does not seem to be possible due to Neko's technical limitations.
 
-Refer the role's documentation for settings required to use the instance, such as [configuring authentication](https://github.com/mother-of-all-self-hosting/ansible-role-neko/blob/main/docs/configuring-neko.md#configuring-authentication).
-
-By default the instance is configured to authenticate administrators and regular users with passwords. To specify the passwords, add the following configuration to your `vars.yml` file. Make sure to replace `ADMIN_PASSWORD_HERE` and `USER_PASSWORD_HERE` with your own values.
-
-```yaml
-neko_environment_variables_neko_member_multiuser_admin_password: ADMIN_PASSWORD_HERE
-
-neko_environment_variables_neko_member_multiuser_user_password: USER_PASSWORD_HERE
-```
+Refer the role's documentation for settings required to use the instance, such as [configuring authentication](https://github.com/mother-of-all-self-hosting/ansible-role-neko/blob/main/docs/configuring-neko.md#configure-authentication).
 
 ### Integrating with Prometheus (optional)
 
