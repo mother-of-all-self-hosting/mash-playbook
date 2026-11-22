@@ -47,7 +47,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 qbittorrent_enabled: true
 
-qbittorrent_hostname: qbittorrent.example.com
+qbittorrent_hostname: mash.example.com
+qbittorrent_path_prefix: /qbittorrent
 
 ########################################################################
 #                                                                      #
@@ -60,7 +61,7 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 
 ## Usage
 
-After running the command for installation, the qBittorrent instance becomes available at the URL specified with `qbittorrent_hostname`. With the configuration above, the service is hosted at `https://qbittorrent.example.com`.
+After running the command for installation, the qBittorrent instance becomes available at the URL specified with `qbittorrent_hostname` and `qbittorrent_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/qbittorrent`.
 
 To get started, open the URL with a web browser to log in to the instance with a **temporary** randomly generated password. You can output the password by running the playbook as below:
 
