@@ -115,7 +115,7 @@
 * Inspircd: 4.12.1
 * Jackett: 0.24.3025
 * Jellyfin: 12.4
-* Jitsi: stable-11248
+* Jitsi: stable-11509
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 19b69e543cdb99b16a939eeed921d7ed1da57d44
 * Joplin Server: 3.7.3
