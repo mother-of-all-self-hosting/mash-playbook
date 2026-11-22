@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://progressiv.radicle.garden/z2zgHMDh4Pb8yr4DH8BVkMcdboBXd.git
-  version: v11.5.0-1
+  version: v11.6.0-0
   name: cyberchef
