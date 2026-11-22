@@ -50,8 +50,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 phpmyadmin_enabled: true
 
-phpmyadmin_hostname: phpmyadmin.example.com
-
 ########################################################################
 #                                                                      #
 # /phpmyadmin                                                          #
@@ -59,7 +57,12 @@ phpmyadmin_hostname: phpmyadmin.example.com
 ########################################################################
 ```
 
-**Note**: hosting phpMyAdmin under a subpath (by configuring the `phpmyadmin_path_prefix` variable) does not seem to be possible due to phpMyAdmin's technical limitations.
+### Exposing the service to the internet
+
+By default phpMyAdmin is not configured to be exposed to the internet, in order to prevent undisclosed vulnerabilities if any from being exploited. Refer to [this section](https://radicle.network/nodes/seed.progressiv.dev/rad:zby9EmMBhyNe8Nj4f66izwrmhk5g/tree/docs/configuring-phpmyadmin.md#exposing-the-service-to-the-internet-optional) on the role's documentation for details about how to expose it to the internet.
+
+>[!NOTE]
+> Since exposing the instance to the internet practically exposes the MariaDB database as well, it is important to set a proper method to restrict who can access to it, such as [two-factor authentication](https://docs.phpmyadmin.net/en/latest/two_factor.html). Protecting it with an Identity Provider (IdP) like [authentik](../authentik/README.md) is also worth considering.
 
 ### Enabling to specify the database server to connect (optional)
 
@@ -71,14 +74,12 @@ phpmyadmin_environment_variables_pma_arbitrary: "1"
 
 ## Usage
 
-After running the command for installation, the phpMyAdmin instance becomes available at the URL specified with `phpmyadmin_hostname`. With the configuration above, the service is hosted at `https://phpmyadmin.example.com`.
+After running the command for installation, the phpMyAdmin instance becomes available.
 
 To get started, open the URL with a web browser to log in to the instance with the database's credentials. By default its username is `root`, and the password is the one specified to `mariadb_root_password` on your `vars.yml` file.
 
 >[!NOTE]
->
-> - As some commands are destructive and cannot be undone, it is **highly recommended** to have a look at the [documentation](https://docs.phpmyadmin.net/en/latest/) to learn its usage before running them against the actual database.
-> - Since enabling phpMyAdmin with this playbook exposes the instance (thus practically the MariaDB database as well) to the internet, it is important to set a proper method to restrict who can access to it, such as [two-factor authentication](https://docs.phpmyadmin.net/en/latest/two_factor.html). Protecting it with an Identity Provider (IdP) like [authentik](../authentik/README.md) is also worth considering.
+> As some commands are destructive and cannot be undone, it is **highly recommended** to have a look at the [documentation](https://docs.phpmyadmin.net/en/latest/) to learn its usage before running them against the actual database.
 
 ## Troubleshooting
 
