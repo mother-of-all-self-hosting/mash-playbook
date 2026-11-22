@@ -50,7 +50,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 nodered_enabled: true
 
-nodered_hostname: nodered.example.com
+nodered_hostname: mash.example.com
+nodered_path_prefix: /nodered
 
 ########################################################################
 #                                                                      #
@@ -61,9 +62,7 @@ nodered_hostname: nodered.example.com
 
 ## Usage
 
-After running the command for installation, the Node-RED instance becomes available at the URL specified with `nodered_hostname`. With the configuration above, the service is hosted at `https://nodered.example.com`.
-
-To get started, open the URL with a web browser to create an account.
+After running the command for installation, the Node-RED instance becomes available at the URL specified with `nodered_hostname` and `nodered_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/nodered`.
 
 ## Troubleshooting
 
