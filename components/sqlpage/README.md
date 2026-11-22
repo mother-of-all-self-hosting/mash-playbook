@@ -35,6 +35,7 @@ For details about configuring the [Ansible role for SQLPage](https://radicle.net
 
 This service requires the following other services:
 
+- [Postgres](../postgres/README.md) / MySQL / [MariaDB](../mariadb/README.md) / [Microsoft SQL Server](https://www.microsoft.com/sql-server) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](../traefik/README.md) reverse-proxy server
 
 ## Configuration
@@ -50,7 +51,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 sqlpage_enabled: true
 
-sqlpage_hostname: sqlpage.example.com
+sqlpage_hostname: mash.example.com
+sqlpage_path_prefix: /sqlpage
 
 ########################################################################
 #                                                                      #
@@ -59,9 +61,13 @@ sqlpage_hostname: sqlpage.example.com
 ########################################################################
 ```
 
+### Select database to use
+
+SQLPage can use a MySQL compatible database, Postgres, SQLite, or Microsoft SQL Server, and you need to choose one. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2eyt9uovdZtjh8TL5qiyv2PqAYvP/tree/docs/configuring-sqlpage.md#specify-database) on the role's documentation for details.
+
 ## Usage
 
-After running the command for installation, the SQLPage instance becomes available at the URL specified with `sqlpage_hostname`. With the configuration above, the service is hosted at `https://sqlpage.example.com`.
+After running the command for installation, the SQLPage instance becomes available at the URL specified with `sqlpage_hostname` and `sqlpage_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/sqlpage`.
 
 Refer to [this page](https://sql-page.com/your-first-sql-website/) on the official documentation for details about how to create a website. By default the files to be served should be put in the directory specified with `sqlpage_data_path`.
 

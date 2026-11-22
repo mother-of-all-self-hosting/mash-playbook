@@ -21,3 +21,15 @@ inject:
         restart_necessary: "{{ sqlpage_restart_necessary | bool }}"
         groups: [mash, sqlpage]
         when: "{{ sqlpage_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ sqlpage_database_name }}"
+        username: "{{ sqlpage_database_mysql_username }}"
+        password: "{{ sqlpage_database_mysql_password }}"
+        when: "{{ sqlpage_enabled and (sqlpage_database_mysql_hostname == mariadb_connection_hostname or sqlpage_database_mysql_socket_enabled) and sqlpage_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ sqlpage_database_name }}"
+        username: "{{ sqlpage_database_postgres_username }}"
+        password: "{{ sqlpage_database_postgres_password }}"
+        when: "{{ sqlpage_enabled and (sqlpage_database_postgres_hostname == postgres_connection_hostname or sqlpage_database_postgres_socket_enabled) and sqlpage_database_type == 'postgres' }}"
