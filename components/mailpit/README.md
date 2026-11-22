@@ -53,7 +53,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 mailpit_enabled: true
 
-mailpit_hostname: mailpit.example.com
+mailpit_hostname: mash.example.com
+mailpit_path_prefix: /mailpit
 
 ########################################################################
 #                                                                      #
@@ -109,7 +110,7 @@ mailpit_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 
 ## Usage
 
-After running the command for installation, the Mailpit instance becomes available at the hostname `mash-mailpit`. Its web interface is hosted at `https://mailpit.example.com`, with the configuration above.
+After running the command for installation, the Mailpit instance becomes available at the hostname `mash-mailpit`. Its web interface is hosted at `https://mash.example.com/mailpit`, with the configuration above.
 
 ### Configuring SMTP server settings
 
