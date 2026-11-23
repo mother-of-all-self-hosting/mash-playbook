@@ -2,6 +2,7 @@
 SPDX-FileCopyrightText: 2026 MASH project contributors
 SPDX-FileCopyrightText: 2026 Suguru Hirahara
 SPDX-FileCopyrightText: 2026 spatterlight
+SPDX-FileCopyrightText: 2026 sudo-Tiz
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -59,7 +60,8 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 ## Related services
 
 - [Grafana](../grafana/README.md) — Web-based tool for visualizing your Prometheus metrics (time-series)
+- [Grafana Alloy](../alloy/README.md) — Agent which ships local logs to Grafana Loki
 - [Grafana Loki](../loki/README.md) — Log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner
 - [Prometheus](../prometheus/README.md) — Metrics collection and alerting monitoring solution
-- [Promtail](../promtail/README.md) — Agent which ships the contents of local logs to a private Grafana Loki instance
+- [Promtail](../promtail/README.md) — End-of-life log agent; migrate to Alloy
 - [Telegraf](../telegraf/README.md) — A server agent to help you collect metrics from your stacks, sensors, and systems

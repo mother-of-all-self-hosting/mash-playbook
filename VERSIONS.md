@@ -1,6 +1,7 @@
 * Actual: 26.11.0
 * Adguard Home: v1.0.0
 * Adminer: 6.3.0
+* Alloy: 1.18.0
 * Alpine: edge
 * Anki: 26.09.4
 * Anonymousoverflow: release

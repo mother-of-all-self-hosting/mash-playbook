@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: 2023, 2024 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 sudo-Tiz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+alloy_container_labels_traefik_metrics_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+alloy_container_labels_traefik_metrics_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"

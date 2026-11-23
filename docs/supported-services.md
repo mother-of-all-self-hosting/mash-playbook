@@ -119,6 +119,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Gotify](https://gotify.net/) | Send and receive messages in real-time per WebSocket | [Link](../components/gotify/README.md) |
 | [GoToSocial](https://gotosocial.org/) | ActivityPub federated microblogging platform | [Link](../components/gotosocial/README.md) |
 | [Grafana](https://grafana.com/) | Web-based tool for visualizing your Prometheus metrics (time-series) | [Link](../components/grafana/README.md) |
+| [Grafana Alloy](https://grafana.com/docs/alloy/latest/) | Agent for collecting and forwarding logs | [Link](../components/alloy/README.md) |
 | [Grafana Loki](https://grafana.com/docs/loki/latest/) | Scalable log aggregation system | [Link](../components/loki/README.md) |
 | [Headplane](https://headplane.net/) | Feature-complete Tailscale Web UI for Headscale | [Link](../components/headplane/README.md) |
 | [Headscale](https://headscale.net/) | A Tailscale-compatible control server for managing Tailscale devices | [Link](../components/headscale/README.md) |
