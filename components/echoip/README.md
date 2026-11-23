@@ -51,7 +51,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 echoip_enabled: true
 
-echoip_hostname: echoip.example.com
+echoip_hostname: mash.example.com
+echoip_path_prefix: /echoip
 
 ########################################################################
 #                                                                      #
@@ -62,7 +63,7 @@ echoip_hostname: echoip.example.com
 
 ## Usage
 
-After running the command for installation, the echoip instance becomes available at the URL specified with `echoip_hostname`. With the configuration above, the service is hosted at `https://echoip.example.com`.
+After running the command for installation, the echoip instance becomes available at the URL specified with `echoip_hostname` and `echoip_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/echoip`.
 
 You can use the echoip instance by running a command as below:
 
