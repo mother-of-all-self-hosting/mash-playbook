@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-crowdsec.git
+  version: v1.8.2-0
+  name: crowdsec

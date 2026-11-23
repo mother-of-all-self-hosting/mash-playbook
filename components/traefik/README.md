@@ -1,6 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2023, 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2026 Suguru Hirahara
+SPDX-FileCopyrightText: 2026 sudo-Tiz
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -14,6 +15,10 @@ Traefik is a container-aware reverse-proxy server.
 See the project's [documentation](https://doc.traefik.io/traefik/) to learn what Traefik does and why it might be useful to you.
 
 Many of the services installed by this playbook need to be exposed to the web (HTTP/HTTPS). This is handled by Traefik, which is installed by default if you have used the [example `vars.yml` file](../../examples/vars.yml). Enabling the Traefik service will automatically wire all other services to use it.
+
+Traefik access logs use the role's default `common` format, which the [CrowdSec](../crowdsec/README.md) Traefik parser supports alongside JSON. To use JSON, set `traefik_config_accessLog_format: json` in your inventory.
+
+When both managed Traefik and CrowdSec are enabled, the CrowdSec bouncer is attached to the HTTPS entrypoint and protects all routed services. If Traefik is behind another proxy, configure its trusted IP ranges before enabling the bouncer.
 
 ## Configuration
 

@@ -48,6 +48,7 @@
 * Convertx: v0.20.0
 * Copyparty: 1.20.24
 * Couchdb: 3.5.3
+* Crowdsec: v1.8.2
 * Cryptpad: 2026.10.1
 * Cyberchef: 11.6.0
 * Databasus: v3.64.0

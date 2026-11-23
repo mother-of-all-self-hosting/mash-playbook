@@ -1,0 +1,21 @@
+# SPDX-FileCopyrightText: 2026 sudo-Tiz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+description: Behavioral detection and remediation engine
+docs:
+  name: CrowdSec
+  url: https://www.crowdsec.net/
+  section: foss
+activation_prefix: crowdsec_
+
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ crowdsec_identifier }}.service"
+        priority: 240
+        restart_necessary: "{{ crowdsec_restart_necessary | bool }}"
+        groups: [mash, security, crowdsec]
+        when: "{{ crowdsec_enabled }}"

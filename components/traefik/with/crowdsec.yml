@@ -1,0 +1,44 @@
+# SPDX-FileCopyrightText: 2026 sudo-Tiz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+traefik_plugin_support_enabled: "{{ crowdsec_traefik_bouncer_enabled | bool }}"
+
+traefik_process_extra_arguments_auto: |
+  {{
+    ['--configFile=/config/traefik.yml']
+    + (
+      [
+        '--experimental.plugins.bouncer.modulename=github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin',
+        '--experimental.plugins.bouncer.version=' ~ crowdsec_traefik_bouncer_plugin_version,
+      ] if crowdsec_traefik_bouncer_enabled | bool else []
+    )
+  }}
+
+traefik_config_http_middlewares_auto: |
+  {{
+    ({
+      'crowdsec-bouncer': {
+        'plugin': {
+          'bouncer': {
+            'enabled': true,
+            'crowdsecMode': 'stream',
+            'crowdsecLapiScheme': 'http',
+            'crowdsecLapiHost': crowdsec_identifier ~ ':8080',
+            'crowdsecLapiPath': '/',
+            'crowdsecLapiKeyFile': '/config/crowdsec-bouncer-key',
+            'streamStartupBlock': crowdsec_traefik_bouncer_stream_startup_block_enabled | bool,
+            'forwardedHeadersTrustedIPs': traefik_config_entrypoint_web_secure_forwardedHeaders_trustedIPs,
+            'clientTrustedIPs': crowdsec_traefik_client_trusted_ips,
+          }
+        }
+      }
+    } if crowdsec_traefik_bouncer_enabled | bool else {})
+  }}
+
+traefik_config_entrypoint_web_secure_http_middlewares_auto: "{{ ['crowdsec-bouncer@file'] if crowdsec_traefik_bouncer_enabled | bool else [] }}"
+
+traefik_systemd_syslog_identifier: "{{ 'traefik' if crowdsec_traefik_bouncer_enabled | bool else traefik_identifier }}"
+traefik_systemd_wanted_services_list_auto: "{{ [crowdsec_identifier ~ '.service'] if crowdsec_traefik_bouncer_enabled | bool else [] }}"
