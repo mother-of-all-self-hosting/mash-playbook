@@ -51,7 +51,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 silverbullet_enabled: true
 
-silverbullet_hostname: silverbullet.example.com
+silverbullet_hostname: mash.example.com
+silverbullet_path_prefix: /silverbullet
 
 ########################################################################
 #                                                                      #
@@ -59,8 +60,6 @@ silverbullet_hostname: silverbullet.example.com
 #                                                                      #
 ########################################################################
 ```
-
-**Note**: hosting SilverBullet under a subpath (by configuring the `silverbullet_path_prefix` variable) does not seem to be possible due to SilverBullet's technical limitations.
 
 ### Set the username and password
 
@@ -105,7 +104,7 @@ silverbullet_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 
 ## Usage
 
-After running the command for installation, the SilverBullet instance becomes available at the URL specified with `silverbullet_hostname`. With the configuration above, the service is hosted at `https://silverbullet.example.com`.
+After running the command for installation, the SilverBullet instance becomes available at the URL specified with `silverbullet_hostname` and `silverbullet_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/silverbullet`.
 
 ## Troubleshooting
 
