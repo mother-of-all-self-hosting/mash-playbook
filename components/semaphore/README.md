@@ -53,7 +53,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 semaphore_enabled: true
 
-semaphore_hostname: semaphore.example.com
+semaphore_hostname: mash.example.com
+semaphore_path_prefix: /semaphore
 
 ########################################################################
 #                                                                      #
@@ -124,7 +125,7 @@ semaphore_environment_variables_semaphore_metrics_password: YOUR_PASSWORD_FOR_ME
 
 ## Usage
 
-After running the command for installation, the Semaphore UI instance becomes available at the URL specified with `semaphore_hostname`. With the configuration above, the service is hosted at `https://semaphore.example.com`.
+After running the command for installation, the Semaphore UI instance becomes available at the URL specified with `semaphore_hostname` and `semaphore_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/semaphore`.
 
 To get started, open the URL with a web browser to log in to the instance. Refer to [this official guide](https://docs.semaphoreui.com/user-guide/projects/) for details about how to use it.
 
