@@ -50,7 +50,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 transfersh_enabled: true
 
-transfersh_hostname: transfersh.example.com
+transfersh_hostname: mash.example.com
+transfersh_path_prefix: /transfersh
 
 ########################################################################
 #                                                                      #
@@ -61,12 +62,12 @@ transfersh_hostname: transfersh.example.com
 
 ## Usage
 
-After running the command for installation, the transfer.sh instance becomes available at the URL specified with `transfersh_hostname`. With the configuration above, the service is hosted at `https://transfersh.example.com`.
+After running the command for installation, the transfer.sh instance becomes available at the URL specified with `transfersh_hostname` and `transfersh_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/transfersh`.
 
 You can upload a file to the transfer.sh instance by running a command as below:
 
 ```sh
-curl -v --upload-file ./hello.txt https://transfersh.example.com/hello.txt
+curl -v --upload-file ./hello.txt https://mash.example.com/transfersh/hello.txt
 ```
 
 Refer to [this section](https://github.com/dutchcoders/transfer.sh/blob/main/README.md#usage) on the documentation for details about the usage.
