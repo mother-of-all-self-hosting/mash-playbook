@@ -68,7 +68,7 @@ After running the command for installation, the echoip instance becomes availabl
 You can use the echoip instance by running a command as below:
 
 ```sh
-curl https://echoip.example.com
+curl https://mash.example.com/echoip/
 ```
 
 ## Troubleshooting
