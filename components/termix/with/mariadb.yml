@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+termix_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled and not termix_database_mysql_socket_enabled else '' }}"
+termix_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+termix_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.termix.ma') | hash('sha512') | to_uuid }}"
+termix_database_mysql_socket_path_host: "{{ mariadb_run_path }}"

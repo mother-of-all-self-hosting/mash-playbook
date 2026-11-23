@@ -21,3 +21,15 @@ inject:
         restart_necessary: "{{ termix_restart_necessary | bool }}"
         groups: [mash, termix]
         when: "{{ termix_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ termix_database_name }}"
+        username: "{{ termix_database_mysql_username }}"
+        password: "{{ termix_database_mysql_password }}"
+        when: "{{ termix_enabled and (termix_database_mysql_hostname == mariadb_connection_hostname or termix_database_mysql_socket_enabled) and termix_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ termix_database_name }}"
+        username: "{{ termix_database_postgres_username }}"
+        password: "{{ termix_database_postgres_password }}"
+        when: "{{ termix_enabled and (termix_database_postgres_hostname == postgres_connection_hostname or termix_database_postgres_socket_enabled) and termix_database_type == 'postgres' }}"

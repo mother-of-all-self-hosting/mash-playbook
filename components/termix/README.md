@@ -35,6 +35,7 @@ For details about configuring the [Ansible role for Termix](https://radicle.netw
 
 This service requires the following other services:
 
+- [Postgres](../postgres/README.md) / MySQL / [MariaDB](../mariadb/README.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](../traefik/README.md) reverse-proxy server
 
 ## Configuration
@@ -59,6 +60,13 @@ termix_path_prefix: /termix
 #                                                                      #
 ########################################################################
 ```
+
+### Select database to use
+
+Termix can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az4TiZiqkm6MBmkPL2NTPMavni6LV/tree/docs/configuring-termix.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> The database for your existing installation is most likely to be `sqlite`.
 
 ## Usage
 
