@@ -12,9 +12,8 @@ termix_identifier: "{{ mash_playbook_service_identifier_prefix }}termix"
 
 termix_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}termix"
 
-# Termix runs as `node`
-termix_uid: 1000
-termix_gid: 1000
+termix_uid: "{{ mash_playbook_uid }}"
+termix_gid: "{{ mash_playbook_gid }}"
 
 termix_container_additional_networks_auto: |
   {{
