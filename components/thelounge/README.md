@@ -55,7 +55,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 thelounge_enabled: true
 
-thelounge_hostname: thelounge.example.com
+thelounge_hostname: mash.example.com
+thelounge_path_prefix: /thelounge
 
 ########################################################################
 #                                                                      #
@@ -64,18 +65,16 @@ thelounge_hostname: thelounge.example.com
 ########################################################################
 ```
 
-**Note**: hosting The Lounge under a subpath (by configuring the `thelounge_path_prefix` variable) does not seem to be possible due to The Lounge's technical limitations.
-
 Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md#adjusting-the-playbook-configuration) on the role's documentation for necessary configurations to enable functions like file upload and link previews.
 
 ## Usage
 
-After running the command for installation, the The Lounge instance becomes available at the URL specified with `thelounge_hostname`. With the configuration above, the service is hosted at `https://thelounge.example.com/`.
+After running the command for installation, The Lounge instance becomes available at the URL specified with `thelounge_hostname` and `thelounge_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/thelounge`.
 
 To get started, run the command below to create a first user:
 
 ```sh
-ansible-playbook -i inventory/hosts setup.yml --tags=add-thelounge -e username=USERNAME_HERE password=PASSWORD_HERE
+ansible-playbook -i inventory/hosts setup.yml --tags=create-user-thelounge -e username=USERNAME_HERE password=PASSWORD_HERE
 ```
 
 After the user is configured, it will be possible to log in to the instance.
