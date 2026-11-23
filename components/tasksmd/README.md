@@ -51,7 +51,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 tasksmd_enabled: true
 
-tasksmd_hostname: tasksmd.example.com
+tasksmd_hostname: mash.example.com
+tasksmd_path_prefix: /tasksmd
 
 ########################################################################
 #                                                                      #
@@ -66,7 +67,7 @@ The HTTP Basic authentication on Traefik is enabled for the web interface by def
 
 ## Usage
 
-After running the command for installation, the Tasks.md instance becomes available at the URL specified with `tasksmd_hostname`. With the configuration above, the service is hosted at `https://tasksmd.example.com`.
+After running the command for installation, the Tasks.md instance becomes available at the URL specified with `tasksmd_hostname` and `tasksmd_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/tasksmd`.
 
 ## Troubleshooting
 
