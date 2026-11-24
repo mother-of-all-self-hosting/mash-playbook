@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jackett.git
-  version: v0.25.24-0
+  version: v0.25.28-0
   name: jackett
