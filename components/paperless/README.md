@@ -56,7 +56,8 @@ To enable this service, add the following configuration to your `vars.yml` file:
 
 paperless_enabled: true
 
-paperless_hostname: paperless.example.com
+paperless_hostname: mash.example.com
+paperless_path_prefix: /paperless
 
 ########################################################################
 #                                                                      #
@@ -267,7 +268,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After running the command for installation, the Paperless-ngx instance becomes available at the URL specified with `paperless_hostname`. With the configuration above, the service is hosted at `https://paperless.example.com`.
+After running the command for installation, the Paperless-ngx instance becomes available at the URL specified with `paperless_hostname` and `paperless_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/paperless`.
 
 Refer to the [official documentation](https://docs.paperless-ngx.com/) to learn how to use Paperless-ngx.
 
