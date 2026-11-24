@@ -51,7 +51,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 audiobookshelf_enabled: true
 
-audiobookshelf_hostname: audiobookshelf.example.com
+audiobookshelf_hostname: mash.example.com
+audiobookshelf_path_prefix: /audiobookshelf
 
 ########################################################################
 #                                                                      #
@@ -60,7 +61,7 @@ audiobookshelf_hostname: audiobookshelf.example.com
 ########################################################################
 ```
 
-**Note**: hosting audiobookshelf under a subpath (by configuring the `audiobookshelf_path_prefix` variable) does not seem to be possible due to audiobookshelf's technical limitations.
+**Note**: hosting audiobookshelf under a subpath (by configuring the `audiobookshelf_path_prefix` variable) other than `/audiobookshelf` does not seem to be possible due to audiobookshelf's technical limitations.
 
 ### File management
 
@@ -169,7 +170,7 @@ syncthing_container_additional_volumes_custom:
 
 ## Usage
 
-After running the command for installation, the audiobookshelf instance becomes available at the URL specified with `audiobookshelf_hostname`. With the configuration above, the service is hosted at `https://audiobookshelf.example.com`.
+After running the command for installation, the audiobookshelf instance becomes available at the URL specified with `audiobookshelf_hostname` and `audiobookshelf_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/audiobookshelf`.
 
 To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
