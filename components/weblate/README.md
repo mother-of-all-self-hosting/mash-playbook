@@ -53,7 +53,8 @@ To enable this service, add the following configuration to your `vars.yml` file:
 
 weblate_enabled: true
 
-weblate_hostname: weblate.example.com
+weblate_hostname: mash.example.com
+weblate_path_prefix: /weblate
 
 ########################################################################
 #                                                                      #
@@ -61,8 +62,6 @@ weblate_hostname: weblate.example.com
 #                                                                      #
 ########################################################################
 ```
-
-**Note**: hosting Weblate under a subpath (by configuring the `weblate_path_prefix` variable) does not seem to be possible due to Weblate's technical limitations.
 
 ### Configure Valkey
 
@@ -270,7 +269,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After running the command for installation, the Weblate instance becomes available at the URL specified with `weblate_hostname`. With the configuration above, the service is hosted at `https://weblate.example.com`.
+After running the command for installation, the Weblate instance becomes available at the URL specified with `weblate_hostname` and `weblate_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/weblate`
 
 To get started, open the URL with a web browser to log in to the instance with the administrator account.
 
