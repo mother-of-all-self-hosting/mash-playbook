@@ -9,6 +9,10 @@
 # The role enables itself by default. It stays disabled, unless enabled in your inventory.
 tandoor_enabled: false
 
+# Tandoor 2.7.7 redirects signed-out users back to the login page in a loop.
+# Remove this override when the role defaults to 2.7.8 or newer.
+tandoor_version: "2.7.8"
+
 tandoor_identifier: "{{ mash_playbook_service_identifier_prefix }}tandoor"
 
 tandoor_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}tandoor"
