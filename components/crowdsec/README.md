@@ -10,7 +10,7 @@ The playbook can install [CrowdSec](https://www.crowdsec.net/) for behavioral de
 
 When playbook-managed Traefik is enabled, this component automatically joins its private Docker network, acquires Traefik and SSH journal logs, and enables the Traefik bouncer middleware on the HTTPS entrypoint. This protects HTTP services behind that Traefik without per-service configuration. CrowdSec's Local API is not published on a host port.
 
-Traefik access logs must remain enabled for HTTP detections; they are enabled by default by the playbook's Traefik role.
+Keep Traefik access logs enabled for HTTP detections; they are enabled by default and the role rejects disabling them while its bouncer is active.
 
 The CrowdSec Traefik parser supports both Traefik's default `common` access log format and JSON. This integration leaves the format unchanged; set `traefik_config_accessLog_format: json` if another log consumer requires it.
 
