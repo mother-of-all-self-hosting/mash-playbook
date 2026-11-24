@@ -66,10 +66,10 @@ To expose it publicly, add the following configuration to your `vars.yml` file (
 
 ```yaml
 # The hostname at which the Configuration Manager is served.
-apprise_hostname: "apprise.example.com"
-```
+apprise_hostname: mash.example.com
 
-**Note**: hosting the Configuration Manager under a subpath (by configuring the `apprise_path_prefix` variable) does not seem to be possible due to Apprise's technical limitations.
+apprise_path_prefix: /apprise
+```
 
 ### Integrating with Prometheus (optional)
 
@@ -110,7 +110,7 @@ apprise_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 
 ## Usage
 
-After running the command for installation, the Apprise API instance becomes available. If the Configuration Manager is configured to be exposed to the internet, it becomes available at the URL specified with `apprise_hostname`. With the configuration above, it is hosted at `https://apprise.example.com`.
+After running the command for installation, the Apprise API instance becomes available. If the Configuration Manager is configured to be exposed to the internet, it becomes available at the URL specified with `apprise_hostname` and `apprise_path_prefix`. With the configuration above, it is hosted at `https://mash.example.com/apprise`.
 
 You can check the list of notification services supported by Apprise at <https://github.com/caronc/apprise/wiki#notification-services>. The instruction to use the Apprise CLI is available at <https://github.com/caronc/apprise/wiki/CLI_Usage>.
 
