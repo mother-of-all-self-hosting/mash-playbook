@@ -50,7 +50,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 oxitraffic_enabled: true
 
-oxitraffic_hostname: oxitraffic.example.com
+oxitraffic_hostname: mash.example.com
+oxitraffic_path_prefix: /oxitraffic
 
 ########################################################################
 #                                                                      #
@@ -71,7 +72,7 @@ Replace `https://example.com` with the hostname of your website.
 
 ## Usage
 
-After running the command for installation, the OxiTraffic instance becomes available at the URL specified with `oxitraffic_hostname`. With the configuration above, the service is hosted at `https://oxitraffic.example.com`.
+After running the command for installation, the OxiTraffic instance becomes available at the URL specified with `oxitraffic_hostname` and `oxitraffic_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/oxitraffic`.
 
 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic/blob/main/docs/configuring-oxitraffic.md#usage) on the role's documentation for details about how to use the service.
 
