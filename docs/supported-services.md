@@ -149,6 +149,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Lago](https://www.getlago.com/) | Metering and usage-based billing | [Link](../components/lago/README.md) |
 | [LanguageTool](https://languagetool.org/) | An online grammar, style and spell checker | [Link](../components/languagetool/README.md) |
 | [LibreBooking](https://github.com/LibreBooking/librebooking) | Resource scheduling and booking application | [Link](../components/librebooking/README.md) |
+| [LibreSpeed](https://librespeed.org) | Speed test for measuring the connection to your server | [Link](../components/librespeed/README.md) |
 | [Lidarr](https://lidarr.audio/) | Music collection manager for Usenet and BitTorrent users | [Link](../components/lidarr/README.md) |
 | [LimeSurvey](https://www.limesurvey.org) | Web based forms and surveys | [Link](../components/limesurvey/README.md) |
 | [linkding](https://github.com/sissbruecker/linkding/) | Bookmark manager designed to be minimal and fast | [Link](../components/linkding/README.md) |
