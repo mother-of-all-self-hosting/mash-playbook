@@ -12,6 +12,7 @@ docs:
   section: foss
 activation_prefix: alloy_
 
+# Entries added to other components' lists, while those components are in use
 inject:
   systemd_service_manager:
     services:

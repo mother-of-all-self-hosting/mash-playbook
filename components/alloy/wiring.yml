@@ -6,10 +6,13 @@
 
 ---
 
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
 alloy_enabled: false
 
 alloy_identifier: "{{ mash_playbook_service_identifier_prefix }}alloy"
+
 alloy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}alloy"
+
 alloy_uid: "{{ mash_playbook_uid }}"
 alloy_gid: "{{ mash_playbook_gid }}"
 
