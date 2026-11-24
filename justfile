@@ -15,11 +15,11 @@ prek_home := env("PREK_HOME", justfile_directory() / "var/prek")
 
 # Shows help
 default:
-    @{{ just_executable() }} --list --justfile {{ justfile() }}
+    @{{ quote(just_executable()) }} --list --justfile {{ quote(justfile()) }}
 
 # Adds a new host to the inventory, creating the inventory files if necessary (e.g. `just add-inventory-host mash.example.com 1.2.3.4`)
 add-inventory-host host server_address:
-    @{{ justfile_directory() }}/bin/add-inventory-host.sh {{ quote(host) }} {{ quote(server_address) }}
+    @{{ quote(justfile_directory() / "bin/add-inventory-host.sh") }} {{ quote(host) }} {{ quote(server_address) }}
 
 run_directory_path := justfile_directory() + "/run"
 components_directory_path := justfile_directory() + "/components"
@@ -31,14 +31,14 @@ installed_roles_file_path := run_directory_path + "/installed-roles.yml"
 # Pulls external Ansible roles (--force also replaces roles with local changes)
 roles *flags: _prepare-files
     @echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
-    @{{ just_executable() }} --justfile {{ justfile() }} _install-roles {{ flags }}
+    @{{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} _install-roles {{ flags }}
 
 # Makes the playbook include only the roles of enabled services (the default)
 optimize-enable:
     #!/usr/bin/env sh
     set -eu
     rm -f {{ quote(optimization_disabled_file_path) }}
-    {{ just_executable() }} --justfile {{ justfile() }} _prepare-files
+    {{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} _prepare-files
 
 # Makes the playbook include all roles
 optimize-disable:
@@ -46,7 +46,7 @@ optimize-disable:
     set -eu
     mkdir -p {{ quote(run_directory_path) }}
     touch {{ quote(optimization_disabled_file_path) }}
-    {{ just_executable() }} --justfile {{ justfile() }} _prepare-files
+    {{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} _prepare-files
 
 # Updates the playbook and installs the necessary Ansible roles pinned in requirements.yml. If a -u flag is passed, also updates the requirements.yml file with new role versions (if available)
 update *flags:
@@ -65,23 +65,23 @@ update *flags:
         fi
     fi
 
-    {{ just_executable() }} --justfile {{ justfile() }} update-playbook-only
+    {{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} update-playbook-only
 
     if [ "{{ flags }}" = "-u" ]; then
         # Only updates the versions pinned in each component's requirements.yml. The roles are installed below.
         echo "Pinning new role versions in components/*/requirements.yml..."
         set --
-        for requirements_path in {{ components_directory_path }}/*/requirements.yml; do
+        for requirements_path in {{ quote(components_directory_path) }}/*/requirements.yml; do
             set -- "$@" -r "$requirements_path"
         done
         agru "$@" -p roles/galaxy/ -no-tui -i=false -u
-        {{ just_executable() }} --justfile {{ justfile() }} versions
-        {{ just_executable() }} --justfile {{ justfile() }} opml
+        {{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} versions
+        {{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} opml
     fi
 
     # Run these now, after the playbook update, so they use its new components (and justfile)
-    {{ just_executable() }} --justfile {{ justfile() }} _prepare-files
-    {{ just_executable() }} --justfile {{ justfile() }} _install-roles
+    {{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} _prepare-files
+    {{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} _install-roles
 
 # Updates the playbook without installing/updating Ansible roles
 update-playbook-only:
@@ -91,29 +91,29 @@ update-playbook-only:
 # Invokes mise with the project-local data directory
 mise *args: _ensure_mise_data_directory
     #!/bin/sh
-    export MISE_DATA_DIR="{{ mise_data_dir }}"
-    export MISE_TRUSTED_CONFIG_PATHS="{{ mise_trusted_config_paths }}"
+    export MISE_DATA_DIR={{ quote(mise_data_dir) }}
+    export MISE_TRUSTED_CONFIG_PATHS={{ quote(mise_trusted_config_paths) }}
     export MISE_YES=1
-    export PREK_HOME="{{ prek_home }}"
+    export PREK_HOME={{ quote(prek_home) }}
     mise {{ args }}
 
 # Runs prek (pre-commit hooks manager) with the given arguments
 prek *args: _ensure_mise_tools_installed
-    @{{ just_executable() }} --justfile {{ justfile() }} mise exec -- prek {{ args }}
+    @{{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} mise exec -- prek {{ args }}
 
 # Runs pre-commit hooks on staged files
 prek-run-on-staged *args: _ensure_mise_tools_installed
-    @{{ just_executable() }} --justfile {{ justfile() }} prek run {{ args }}
+    @{{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} prek run {{ args }}
 
 # Runs pre-commit hooks on all files
 prek-run-on-all *args: _ensure_mise_tools_installed
-    @{{ just_executable() }} --justfile {{ justfile() }} prek run --all-files {{ args }}
+    @{{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} prek run --all-files {{ args }}
 
 # Installs the git pre-commit hook
 prek-install-git-pre-commit-hook: _ensure_mise_tools_installed
     #!/usr/bin/env sh
     set -eu
-    {{ just_executable() }} --justfile {{ justfile() }} mise exec -- prek install
+    {{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} mise exec -- prek install
     # The installed git hooks run later under Git, outside this just/mise environment,
     # so they need to be told how to find their tooling:
     #
@@ -128,7 +128,7 @@ prek-install-git-pre-commit-hook: _ensure_mise_tools_installed
     #
     # Which hook files prek installs depends on `default_install_hook_types` in
     # .pre-commit-config.yaml, so patch every hook file that prek generated.
-    for hook in "{{ justfile_directory() }}"/.git/hooks/*; do
+    for hook in {{ quote(justfile_directory()) }}/.git/hooks/*; do
         [ -f "$hook" ] || continue
         grep -q 'generated by prek' "$hook" || continue
         grep -q '^export PREK_HOME=' "$hook" || sed -i '2iexport PREK_HOME="{{ prek_home }}"' "$hook"
@@ -140,19 +140,19 @@ prek-install-git-pre-commit-hook: _ensure_mise_tools_installed
 # dumps an OPML file with extracted git feeds for roles
 opml:
     @echo "generating opml..."
-    @{{ justfile_directory() }}/bin/ansible-python.sh bin/feeds.py . dump
+    @{{ quote(justfile_directory() / "bin/ansible-python.sh") }} bin/feeds.py . dump
 
 # dumps versions of the components found in the roles to the VERSIONS.md file
 versions:
     @echo "generating versions..."
-    @{{ justfile_directory() }}/bin/ansible-python.sh bin/versions.py
+    @{{ quote(justfile_directory() / "bin/ansible-python.sh") }} bin/versions.py
 
 # Runs the playbook with --tags=install-all,start and optional arguments
 install-all *extra_args: (run-tags "install-all,start" extra_args)
 
 # Runs installation tasks for a single service
 install-service service *extra_args:
-    {{ just_executable() }} --justfile {{ justfile() }} run \
+    {{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} run \
     --tags=install-{{ service }},start-group \
     --extra-vars=group={{ service }} {{ extra_args }}
 
@@ -167,7 +167,7 @@ setup-all *extra_args: (run-tags "setup-all,start" extra_args)
 
 # Runs setup tasks for a single service
 setup-service service *extra_args:
-    {{ just_executable() }} --justfile {{ justfile() }} run \
+    {{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} run \
     --tags=setup-{{ service }},start-group \
     --extra-vars=group={{ service }} {{ extra_args }}
 
@@ -207,7 +207,7 @@ run +extra_args: _prepare-files (_install-roles "--quiet")
 
 # Runs the playbook with the given list of comma-separated tags and optional arguments
 run-tags tags *extra_args:
-    {{ just_executable() }} --justfile {{ justfile() }} run --tags={{ tags }} {{ extra_args }}
+    {{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} run --tags={{ tags }} {{ extra_args }}
 
 # Lists the playbook tags of the services in use by your inventory
 list-tags: _prepare-files (_install-roles "--quiet")
@@ -221,14 +221,14 @@ start-all *extra_args: (run-tags "start-all" extra_args)
 
 # Starts a specific service group
 start-group group *extra_args:
-    @{{ just_executable() }} --justfile {{ justfile() }} run-tags start-group --extra-vars="group={{ group }}" {{ extra_args }}
+    @{{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} run-tags start-group --extra-vars="group={{ group }}" {{ extra_args }}
 
 # Stops all services
 stop-all *extra_args: (run-tags "stop-all" extra_args)
 
 # Stops a specific service group
 stop-group group *extra_args:
-    @{{ just_executable() }} --justfile {{ justfile() }} run-tags stop-group --extra-vars="group={{ group }}" {{ extra_args }}
+    @{{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} run-tags stop-group --extra-vars="group={{ group }}" {{ extra_args }}
 
 # Installs the roles in requirements.yml and deletes unused ones, keeping roles with local changes
 _install-roles *flags:
@@ -242,15 +242,15 @@ _install-roles *flags:
 
     # All roles the playbook and the inventory's components know about: installed ones which are no longer in use get deleted
     set --
-    for requirements_path in {{ components_directory_path }}/*/requirements.yml "$inventory_path"/components/*/requirements.yml; do
+    for requirements_path in {{ quote(components_directory_path) }}/*/requirements.yml "$inventory_path"/components/*/requirements.yml; do
         if [ -f "$requirements_path" ]; then
             set -- "$@" --all-requirements-path="$requirements_path"
         fi
     done
-    {{ justfile_directory() }}/bin/ansible-python.sh {{ justfile_directory() }}/bin/install-roles.py \
-    --requirements-path={{ justfile_directory() }}/requirements.yml \
+    {{ quote(justfile_directory() / "bin/ansible-python.sh") }} {{ quote(justfile_directory() / "bin/install-roles.py") }} \
+    --requirements-path={{ quote(justfile_directory() / "requirements.yml") }} \
     "$@" \
-    --roles-path={{ justfile_directory() }}/roles/galaxy \
+    --roles-path={{ quote(justfile_directory() / "roles/galaxy") }} \
     --state-path={{ quote(installed_roles_file_path) }} \
     {{ flags }}
 
@@ -261,13 +261,13 @@ _prepare-files:
     set -eu
     # Left over from older versions, which only regenerated these files when the templates changed,
     # and only optimized when enabled with these markers
-    rm -f {{ run_directory_path }}/*.srchash
+    rm -f {{ quote(run_directory_path) }}/*.srchash
     rm -f {{ quote(run_directory_path / "optimization-enabled") }} {{ quote(run_directory_path / "optimization-vars-files.state") }}
 
     if [ -f {{ quote(optimization_disabled_file_path) }} ]; then
-        {{ just_executable() }} --justfile {{ justfile() }} _optimize-files --all-components
+        {{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} _optimize-files --all-components
     else
-        {{ just_executable() }} --justfile {{ justfile() }} _optimize-files
+        {{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} _optimize-files
     fi
 
 # Generates requirements.yml, setup.yml and group_vars/mash_servers/ with the components in use by the inventory
@@ -281,20 +281,20 @@ _optimize-files *flags:
         inventory_path=$(dirname "$inventory_path")
     fi
 
-    {{ justfile_directory() }}/bin/ansible-python.sh {{ justfile_directory() }}/bin/optimize.py \
-    --components-path={{ components_directory_path }} \
+    {{ quote(justfile_directory() / "bin/ansible-python.sh") }} {{ quote(justfile_directory() / "bin/optimize.py") }} \
+    --components-path={{ quote(components_directory_path) }} \
     --inventory-path="$inventory_path" \
-    --playbook-path={{ justfile_directory() }} \
-    --dst-requirements-yml-path={{ justfile_directory() }}/requirements.yml \
-    --dst-setup-yml-path={{ justfile_directory() }}/setup.yml \
-    --dst-group-vars-path={{ justfile_directory() }}/group_vars/mash_servers \
+    --playbook-path={{ quote(justfile_directory()) }} \
+    --dst-requirements-yml-path={{ quote(justfile_directory() / "requirements.yml") }} \
+    --dst-setup-yml-path={{ quote(justfile_directory() / "setup.yml") }} \
+    --dst-group-vars-path={{ quote(justfile_directory() / "group_vars/mash_servers") }} \
     {{ flags }}
 
 # Internal - ensures var/mise and var/prek directories exist
 _ensure_mise_data_directory:
-    @mkdir -p "{{ mise_data_dir }}"
-    @mkdir -p "{{ prek_home }}"
+    @mkdir -p {{ quote(mise_data_dir) }}
+    @mkdir -p {{ quote(prek_home) }}
 
 # Internal - ensures mise tools are installed
 _ensure_mise_tools_installed: _ensure_mise_data_directory
-    @{{ just_executable() }} --justfile {{ justfile() }} mise install --quiet
+    @{{ quote(just_executable()) }} --justfile {{ quote(justfile()) }} mise install --quiet
