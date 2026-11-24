@@ -53,7 +53,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 opengist_enabled: true
 
-opengist_hostname: opengist.example.com
+opengist_hostname: mash.example.com
+opengist_path_prefix: /opengist
 
 ########################################################################
 #                                                                      #
@@ -61,8 +62,6 @@ opengist_hostname: opengist.example.com
 #                                                                      #
 ########################################################################
 ```
-
-**Note**: hosting Opengist under a subpath (by configuring the `opengist_path_prefix` variable) does not seem to be possible due to Opengist's technical limitations.
 
 ### Set random 32-byte hex digits for secret key
 
@@ -129,7 +128,7 @@ opengist_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 
 ## Usage
 
-After running the command for installation, the Opengist instance becomes available at the URL specified with `opengist_hostname`. With the configuration above, the service is hosted at `https://opengist.example.com`.
+After running the command for installation, the Opengist instance becomes available at the URL specified with `opengist_hostname` and `opengist_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/opengist`.
 
 To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
