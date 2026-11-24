@@ -51,7 +51,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 gotify_enabled: true
 
-gotify_hostname: gotify.example.com
+gotify_hostname: mash.example.com
+gotify_path_prefix: /gotify
 
 ########################################################################
 #                                                                      #
@@ -72,7 +73,7 @@ You also need to set an initial username and password for the first user. Refer 
 
 ## Usage
 
-After running the command for installation, the Gotify instance becomes available at the URL specified with `gotify_hostname`. With the configuration above, the service is hosted at `https://gotify.example.com`.
+After running the command for installation, the Gotify instance becomes available at the URL specified with `gotify_hostname` and `gotify_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/gotify`.
 
 To get started, open the URL with a web browser to log in to the instance. **Note that the first registered user becomes an administrator automatically.**
 
