@@ -15,6 +15,10 @@ and the `with/<role>.yml` files of other components: setting a variable the role
 has no effect, and nothing reports it.
 If the role handles its configuration changes, the playbook wiring and existing docs remain valid,
 and none of the changelog criteria below apply, the version pin alone is usually enough.
+Defer a role bump when a supported installation path needs an upstream ref or artifact that is
+missing or broken, such as a Git tag that a self-build checks out or an image architecture.
+Do not keep release-specific fallbacks (commit pins, `if version == '...'` conditionals, temporary
+overrides) in component wiring, unless the update fixes a security issue users should not wait for.
 Keep service docs (`components/<role>/README.md`) focused on current configuration and lasting procedures.
 Do not use service pages as another changelog for role releases.
 Correct stale playbook examples, but leave role-specific option details in the role's documentation.
