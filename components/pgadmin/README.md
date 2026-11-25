@@ -51,14 +51,19 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 pgadmin_enabled: true
 
-pgadmin_hostname: pgadmin.example.com
-
 ########################################################################
 #                                                                      #
 # /pgadmin                                                             #
 #                                                                      #
 ########################################################################
 ```
+
+### Exposing the service to the internet
+
+By default pgAdmin is not configured to be exposed to the internet, in order to prevent undisclosed vulnerabilities if any from being exploited. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Aztixjo2qUzCBLADieR3hKkYEk4eE/tree/docs/configuring-pgadmin.md#exposing-the-service-to-the-internet-optional) on the role's documentation for details about how to expose it to the internet.
+
+>[!NOTE]
+> Since enabling pgAdmin with this playbook exposes the instance (thus practically the Postgres database as well) to the internet, it is important to set a proper method to restrict who can access to it, such as [two-factor authentication](https://www.pgadmin.org/docs/pgadmin4/latest/mfa.html). Enabling [OAuth2 authentication](https://www.pgadmin.org/docs/pgadmin4/latest/oauth2.html) is also worth considering.
 
 ### Set administrator's account details
 
@@ -75,14 +80,12 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 ## Usage
 
-After running the command for installation, the pgAdmin instance becomes available at the URL specified with `pgadmin_hostname`. With the configuration above, the service is hosted at `https://pgadmin.example.com`.
+After running the command for installation, the pgAdmin instance becomes available.
 
 To get started, open the URL with a web browser to log in to the instance with the administrator account.
 
 >[!NOTE]
->
-> - As some commands are destructive and cannot be undone, it is **highly recommended** to have a look at the [documentation](https://www.pgadmin.org/docs/pgadmin4/latest/index.html) to learn its usage before running them against the actual database. The documentation is also available on the instance at `https://pgadmin.example.com/help/help/index.html`.
-> - Since enabling pgAdmin with this playbook exposes the instance (thus practically the Postgres database as well) to the internet, it is important to set a proper method to restrict who can access to it, such as [two-factor authentication](https://www.pgadmin.org/docs/pgadmin4/latest/mfa.html). Enabling [OAuth2 authentication](https://www.pgadmin.org/docs/pgadmin4/latest/oauth2.html) is also worth considering.
+> As some commands are destructive and cannot be undone, it is **highly recommended** to have a look at the [documentation](https://www.pgadmin.org/docs/pgadmin4/latest/index.html) to learn its usage before running them against the actual database. The documentation is also available on the instance at `https://pgadmin.example.com/help/help/index.html`.
 
 ### Connecting to the Postgres server managed by the MASH playbook
 

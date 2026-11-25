@@ -40,5 +40,6 @@ pgadmin_container_additional_networks_auto: |
     ([postgres_container_network] if postgres_enabled | default(false) and pgadmin_container_network != postgres_container_network else [])
   }}
 
-pgadmin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+# The service is by default not exposed to the internet with Traefik
+pgadmin_container_labels_traefik_enabled: false
 pgadmin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
