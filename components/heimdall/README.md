@@ -50,7 +50,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 heimdall_enabled: true
 
-heimdall_hostname: heimdall.example.com
+heimdall_hostname: mash.example.com
+heimdall_path_prefix: /heimdall
 
 ########################################################################
 #                                                                      #
@@ -61,7 +62,7 @@ heimdall_hostname: heimdall.example.com
 
 ## Usage
 
-After running the command for installation, the Heimdall instance becomes available at the URL specified with `heimdall_hostname`. With the configuration above, the service is hosted at `https://heimdall.example.com`.
+After running the command for installation, the Heimdall instance becomes available at the URL specified with `heimdall_hostname` and `heimdall_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/heimdall`.
 
 ## Troubleshooting
 
