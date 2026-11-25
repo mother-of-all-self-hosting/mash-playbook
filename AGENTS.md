@@ -14,16 +14,18 @@ For role bumps, check the affected wiring, especially the role's component (`com
 and the `with/<role>.yml` files of other components: setting a variable the role renamed or removed
 has no effect, and nothing reports it.
 If the role handles its configuration changes, the playbook wiring and existing docs remain valid,
-and no consequential manual migration is needed, the version pin alone is usually enough.
+and none of the changelog criteria below apply, the version pin alone is usually enough.
 Keep service docs (`components/<role>/README.md`) focused on current configuration and lasting procedures.
 Do not use service pages as another changelog for role releases.
 Correct stale playbook examples, but leave role-specific option details in the role's documentation.
 
 ## Changelog
 
-Use `CHANGELOG.md` for removed services, shared playbook behavior changes,
-or upgrades requiring concrete action by the system administrator running this playbook.
-Examples include a manual backup, data migration or inventory change that the role does not handle.
+Use `CHANGELOG.md` for removed services, shared playbook behavior changes, or role bumps where
+rerunning the playbook would break a service, lose data or weaken security in a default or documented
+setup, and the role neither handles it nor fails with an actionable error.
+Upstream's own upgrade steps (extension updates, reindexing, changes to user-created data or queries)
+do not qualify by themselves. They belong in upstream's or the role's docs.
 For a role bump, upstream application behavior alone does not warrant a playbook entry, even
 when disruptive or absent from role validation. Missing validation alone is not a reason for
 an entry. Explain narrower upstream risks and link release notes in the pull request instead.
