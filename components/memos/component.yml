@@ -32,4 +32,4 @@ inject:
       - name: "{{ memos_database_name }}"
         username: "{{ memos_database_postgres_username }}"
         password: "{{ memos_database_postgres_password }}"
-        when: "{{ memos_enabled and (memos_database_postgres_hostname == postgres_connection_hostname or memos_database_postgres_socket_enabled) and memos_database_type == 'postgres' }}"
+        when: "{{ memos_enabled and (memos_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and memos_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or memos_database_postgres_socket_enabled) and memos_database_type == 'postgres' }}"

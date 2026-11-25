@@ -40,4 +40,4 @@ inject:
       - name: "{{ etherpad_database_name }}"
         username: "{{ etherpad_database_postgres_username }}"
         password: "{{ etherpad_database_postgres_password }}"
-        when: "{{ etherpad_enabled and etherpad_database_postgres_hostname == postgres_connection_hostname and etherpad_database_type == 'postgres' }}"
+        when: "{{ etherpad_enabled and (etherpad_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and etherpad_database_postgres_hostname == pgbouncer_connection_hostname | default(''))) and etherpad_database_type == 'postgres' }}"

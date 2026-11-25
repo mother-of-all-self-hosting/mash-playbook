@@ -26,4 +26,4 @@ inject:
       - name: "{{ teable_database_name }}"
         username: "{{ teable_database_username }}"
         password: "{{ teable_database_password }}"
-        when: "{{ teable_enabled and teable_database_hostname == postgres_connection_hostname }}"
+        when: "{{ teable_enabled and (teable_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and teable_database_hostname == pgbouncer_connection_hostname | default(''))) }}"

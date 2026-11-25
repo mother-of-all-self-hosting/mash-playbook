@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -32,4 +32,4 @@ inject:
       - name: "{{ lldap_database_name }}"
         username: "{{ lldap_database_postgres_username }}"
         password: "{{ lldap_database_postgres_password }}"
-        when: "{{ lldap_enabled and (lldap_database_postgres_hostname == postgres_connection_hostname or lldap_database_postgres_socket_enabled) and lldap_database_type == 'postgres' }}"
+        when: "{{ lldap_enabled and (lldap_database_postgres_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and lldap_database_postgres_hostname == pgbouncer_connection_hostname | default('')) or lldap_database_postgres_socket_enabled) and lldap_database_type == 'postgres' }}"

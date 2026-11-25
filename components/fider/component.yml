@@ -26,4 +26,4 @@ inject:
       - name: "{{ fider_database_name }}"
         username: "{{ fider_database_username }}"
         password: "{{ fider_database_password }}"
-        when: "{{ fider_enabled and fider_database_hostname == postgres_connection_hostname }}"
+        when: "{{ fider_enabled and (fider_database_hostname == postgres_connection_hostname or (pgbouncer_enabled | default(false) and fider_database_hostname == pgbouncer_connection_hostname | default(''))) }}"
