@@ -38,7 +38,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 radarr_enabled: true
 
-radarr_hostname: radarr.example.com
+radarr_hostname: mash.example.com
+radarr_path_prefix: /radarr
 
 ########################################################################
 #                                                                      #
@@ -51,7 +52,7 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 
 ## Usage
 
-After running the command for installation, the Radarr instance becomes available at the URL specified with `radarr_hostname`. With the configuration above, the service is hosted at `https://radarr.example.com`.
+After running the command for installation, the Radarr instance becomes available at the URL specified with `radarr_hostname` and `radarr_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/radarr`.
 
 To get started, open the URL with a web browser to create an account.
 
