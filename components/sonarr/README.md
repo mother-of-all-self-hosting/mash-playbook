@@ -38,7 +38,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 sonarr_enabled: true
 
-sonarr_hostname: sonarr.example.com
+sonarr_hostname: mash.example.com
+sonarr_path_prefix: /sonarr
 
 ########################################################################
 #                                                                      #
@@ -51,7 +52,7 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 
 ## Usage
 
-After running the command for installation, the Sonarr instance becomes available at the URL specified with `sonarr_hostname`. With the configuration above, the service is hosted at `https://sonarr.example.com`.
+After running the command for installation, the Sonarr instance becomes available at the URL specified with `sonarr_hostname` and `sonarr_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/sonarr`.
 
 To get started, open the URL with a web browser to create an account.
 
