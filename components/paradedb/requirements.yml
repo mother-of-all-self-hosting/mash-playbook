@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-paradedb.git
-  version: v0.26.8-1
+  version: v0.27.1-0
   name: paradedb
