@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 2026-11-25
+
+### ParadeDB 0.27.1 requires a database extension upgrade
+
+If you already run ParadeDB through this playbook, schedule a maintenance window and back up your databases before rerunning the playbook. The role installs the new image for your existing PostgreSQL major version. After the new image starts, follow the [ParadeDB upgrade instructions](https://github.com/paradedb/paradedb/blob/v0.27.1/docs/operate/deploy/upgrading.mdx#upgrading-the-postgresql-catalog) to update and verify the `pg_search` extension in every database where it is installed. Role validation does not check the extension version or prompt you to upgrade it.
+
+If you use ParadeDB vector indexes, [rebuild them after the extension upgrade](https://github.com/paradedb/paradedb/blob/v0.27.1/docs/project/changelog/0.27.0.mdx#vector-index-format) before resuming vector searches. If you have database objects that depend on `paradedb.aggregate()`, [migrate them to `pdb.agg()`](https://github.com/paradedb/paradedb/blob/v0.27.1/docs/project/changelog/0.27.1.mdx#breaking-changes) before upgrading. The role leaves these database changes to the administrator.
+
 ## 2026-11-21
 
 ### File Browser is no longer exposed to the internet
