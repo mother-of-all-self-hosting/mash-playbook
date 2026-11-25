@@ -51,7 +51,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 prowlarr_enabled: true
 
-prowlarr_hostname: prowlarr.example.com
+prowlarr_hostname: mash.example.com
+prowlarr_path_prefix: /prowlarr
 
 ########################################################################
 #                                                                      #
@@ -72,7 +73,7 @@ If [FlareSolverr](../flaresolverr/README.md) is enabled as well, it can be added
 
 ## Usage
 
-After running the command for installation, the Prowlarr instance becomes available at the URL specified with `prowlarr_hostname`. With the configuration above, the service is hosted at `https://prowlarr.example.com`.
+After running the command for installation, the Prowlarr instance becomes available at the URL specified with `prowlarr_hostname` and `prowlarr_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/prowlarr`.
 
 To get started, open the URL with a web browser to create an account.
 
