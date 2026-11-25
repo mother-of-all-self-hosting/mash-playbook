@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/IUCCA/ansible-role-tandoor.git
-  version: v2.7.6-1
+  version: v2.7.8-0
   name: tandoor
