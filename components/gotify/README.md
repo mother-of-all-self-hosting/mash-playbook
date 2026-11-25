@@ -61,8 +61,6 @@ gotify_path_prefix: /gotify
 ########################################################################
 ```
 
-**Note**: hosting Gotify under a subpath (by configuring the `gotify_path_prefix` variable) does not seem to be possible due to Gotify's technical limitations.
-
 ### Select database to use
 
 Gotify can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#specify-database) on the role's documentation for details.
