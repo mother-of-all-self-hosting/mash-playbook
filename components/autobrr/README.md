@@ -64,7 +64,7 @@ autobrr_path_prefix: /autobrr
 
 ### Select database to use
 
-Autobrr can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-autobrr/blob/develop/docs/configuring-autobrr.md#specify-database) on the role's documentation for details.
+Autobrr can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-autobrr/blob/main/docs/configuring-autobrr.md#specify-database) on the role's documentation for details.
 
 >[!NOTE]
 > The database for your existing installation is most likely to be `sqlite`.
