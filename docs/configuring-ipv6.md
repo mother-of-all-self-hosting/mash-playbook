@@ -174,7 +174,7 @@ docker run --rm --network=traefik quay.io/curl/curl:latest curl -6 https://icanh
 
 Only containers that publish ports will be exposed (reachable) publicly on the server's own IPv6 address. Containers will not get their own individual public IPv6 address.
 
-For this playbook, a commonly exposed container is the Traefik reverse-proxy container (unless [you're using your own webserver](./configuring-playbook-own-webserver.md)).
+For this playbook, a commonly exposed container is the Traefik reverse-proxy container (unless [you're using your own webserver](./interoperability.md#disabling-traefik-installation)).
 
 You can either do something like `curl -6 https://mash.example.com` from an IPv6-enabled host (including the server itself) and see if it works.
 
