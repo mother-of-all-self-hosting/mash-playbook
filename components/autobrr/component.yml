@@ -21,3 +21,9 @@ inject:
         restart_necessary: "{{ autobrr_restart_necessary | bool }}"
         groups: [mash, autobrr]
         when: "{{ autobrr_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ autobrr_database_name }}"
+        username: "{{ autobrr_database_username }}"
+        password: "{{ autobrr_database_password }}"
+        when: "{{ autobrr_enabled and (autobrr_database_hostname == postgres_connection_hostname or autobrr_database_socket_enabled) and autobrr_database_type == 'postgres' }}"

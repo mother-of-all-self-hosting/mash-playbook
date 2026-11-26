@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+autobrr_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not autobrr_database_socket_enabled else '' }}"
+autobrr_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+autobrr_database_password: "{{ (mash_playbook_generic_secret_key + ':db.autobrr') | hash('sha512') | to_uuid }}"
+autobrr_database_sslmode: "{{ 'disable' if postgres_enabled and (autobrr_database_hostname == postgres_connection_hostname or autobrr_database_socket_enabled) else 'prefer' }}"
+autobrr_database_socket_path_host: "{{ postgres_run_path }}"

@@ -1,7 +1,20 @@
 <!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-FileCopyrightText: 2025 MASH project contributors
 SPDX-FileCopyrightText: 2025 spatterlight
-SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -23,6 +36,7 @@ For details about configuring the [Ansible role for Autobrr](https://github.com/
 
 This service requires the following other services:
 
+- [Postgres](../postgres/README.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](../traefik/README.md) reverse-proxy server
 
 ## Configuration
@@ -38,7 +52,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 autobrr_enabled: true
 
-autobrr_hostname: autobrr.example.com
+autobrr_hostname: mash.example.com
+autobrr_path_prefix: /autobrr
 
 ########################################################################
 #                                                                      #
@@ -47,12 +62,16 @@ autobrr_hostname: autobrr.example.com
 ########################################################################
 ```
 
-## Usage
+### Select database to use
 
-After running the command for installation, the Autobrr instance becomes available at the URL specified with `autobrr_hostname`. With the configuration above, the service is hosted at `https://autobrr.example.com`.
+Autobrr can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-autobrr/blob/develop/docs/configuring-autobrr.md#specify-database) on the role's documentation for details.
 
 >[!NOTE]
-> The `autobrr_path_prefix` variable can be adjusted to host under a subpath (e.g. `autobrr_path_prefix: /autobrr`), but this hasn't been tested yet.
+> The database for your existing installation is most likely to be `sqlite`.
+
+## Usage
+
+After running the command for installation, the Autobrr instance becomes available at the URL specified with `autobrr_hostname` and `autobrr_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/autobrr`.
 
 To get started, open the URL with a web browser to create an account.
 
