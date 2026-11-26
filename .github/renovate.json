@@ -53,6 +53,11 @@
       "matchDatasources": ["git-tags"]
     },
     {
+      "description": "ArtiDezi's orchestrator and workers must run the same release, so update both roles in one pull request",
+      "matchDepNames": ["artidezi_orchestrator", "artidezi_worker"],
+      "groupName": "ArtiDezi roles"
+    },
+    {
       "description": "Automerge updates of the self-hosted Renovate runner (via branch push - no PR) monthly",
       "matchManagers": ["custom.regex"],
       "matchDepNames": ["mash-renovate-runner"],
