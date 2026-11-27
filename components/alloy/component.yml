@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2023, 2024 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 sudo-Tiz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+description: Agent for collecting and forwarding logs
+docs:
+  name: Grafana Alloy
+  url: https://grafana.com/docs/alloy/latest/
+  section: foss
+activation_prefix: alloy_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ alloy_identifier }}.service"
+        priority: 500
+        restart_necessary: "{{ alloy_restart_necessary | bool }}"
+        groups: [mash, logs, alloy]
+        when: "{{ alloy_enabled }}"

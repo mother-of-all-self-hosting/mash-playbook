@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2026 sudo-Tiz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+alloy_enabled: false
+
+alloy_identifier: "{{ mash_playbook_service_identifier_prefix }}alloy"
+
+alloy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}alloy"
+
+alloy_uid: "{{ mash_playbook_uid }}"
+alloy_gid: "{{ mash_playbook_gid }}"
+
+alloy_container_additional_networks_auto: |
+  {{
+    (
+      ([loki_container_network] if (loki_enabled | default(false) and loki_container_network | default('') != alloy_container_network) else [])
+      +
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    ) | unique
+  }}
+
+alloy_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+alloy_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+alloy_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+alloy_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+alloy_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ alloy_identifier }}"
+alloy_container_labels_traefik_metrics_traefik_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+alloy_container_labels_traefik_metrics_traefik_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"

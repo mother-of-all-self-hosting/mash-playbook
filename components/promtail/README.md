@@ -1,6 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2026 Suguru Hirahara
+SPDX-FileCopyrightText: 2026 sudo-Tiz
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -8,7 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 # Promtail
 
 >[!WARNING]
-> Promtail has reached end-of-life status on March 2, 2026. If you are currently using Promtail, you should plan your [migration to Alloy](https://grafana.com/docs/loki/latest/setup/migrate/migrate-to-alloy/).
+> Promtail reached end of life on March 2, 2026. If you are currently using it, plan your [migration to Alloy](https://grafana.com/docs/loki/latest/setup/migrate/migrate-to-alloy/), which the playbook can [install](../alloy/README.md).
 
 The playbook can install and configure [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) for you.
 

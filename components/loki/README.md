@@ -13,6 +13,7 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024, 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2026 sudo-Tiz
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -33,7 +34,7 @@ For details about configuring the [Ansible role for Loki](https://github.com/mot
 >[!NOTE]
 > As Loki is just a log storage system, you would need at least two other components in order to make use of it:
 >
-> - an agent such as Promtail to send logs to Loki
+> - an agent such as Alloy to send logs to Loki
 > - a system such as Grafana to read the logs out of Loki and display them nicely
 
 ## Dependencies
@@ -42,7 +43,8 @@ This service requires the following other services:
 
 - (optional) [Traefik](../traefik/README.md) — Reverse-proxy server for exposing Loki publicly
 - (optional; recommended) [Grafana](../grafana/README.md) — Web-based tool for visualizing your Prometheus metrics (time-series)
-- (optional; recommended) [Promtail](../promtail/README.md) — Agent which ships the contents of local logs to a private Grafana Loki instance
+- (optional; recommended) [Grafana Alloy](../alloy/README.md) — Agent which ships local logs to Loki
+- (optional; legacy) [Promtail](../promtail/README.md) — End-of-life log agent; migrate to Alloy
 
 ## Configuration
 
@@ -66,7 +68,7 @@ loki_enabled: true
 
 ### Exposing the web interface
 
-By setting a hostname with `loki_hostname` and optionally a path prefix with `loki_path_prefix`, you can expose Loki publicly. You may wish to do this, if you'd like to be able to push logs from remote agents (e.g. Promtail installed on remote machines, etc.) and query logs from remote systems (e.g. Grafana installed elsewhere).
+By setting a hostname with `loki_hostname` and optionally a path prefix with `loki_path_prefix`, you can expose Loki publicly. You may wish to do this, if you'd like to push logs from remote agents (e.g. Alloy installed on remote machines) and query logs from remote systems (e.g. Grafana installed elsewhere).
 
 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-loki/blob/main/docs/configuring-loki.md#set-the-hostname-to-expose-the-web-interface-optional) on the role's documentation for details about configuring it.
 
