@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+haben_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+haben_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+haben_database_username: "{{ haben_identifier }}"
+haben_database_password: "{{ (mash_playbook_generic_secret_key + ':haben.db') | hash('sha512') | to_uuid }}"

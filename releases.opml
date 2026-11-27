@@ -92,6 +92,7 @@
     <outline text="gotify" title="gotify" type="rss" htmlUrl="https://github.com/gotify/server" xmlUrl="https://github.com/gotify/server/releases.atom" />
     <outline text="gotosocial" title="gotosocial" type="rss" htmlUrl="https://codeberg.org/superseriousbusiness/gotosocial" xmlUrl="https://codeberg.org/superseriousbusiness/gotosocial/releases.atom" />
     <outline text="grafana" title="grafana" type="rss" htmlUrl="https://github.com/grafana/grafana" xmlUrl="https://github.com/grafana/grafana/releases.atom" />
+    <outline text="haben" title="haben" type="rss" htmlUrl="https://github.com/firsttris/haben" xmlUrl="https://github.com/firsttris/haben/releases.atom" />
     <outline text="headplane" title="headplane" type="rss" htmlUrl="https://github.com/tale/headplane" xmlUrl="https://github.com/tale/headplane/releases.atom" />
     <outline text="headscale" title="headscale" type="rss" htmlUrl="https://github.com/juanfont/headscale" xmlUrl="https://github.com/juanfont/headscale/releases.atom" />
     <outline text="healthchecks" title="healthchecks" type="rss" htmlUrl="https://github.com/healthchecks/healthchecks" xmlUrl="https://github.com/healthchecks/healthchecks/releases.atom" />

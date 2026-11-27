@@ -98,6 +98,7 @@
 * Gotify: 3.1.1
 * Gotosocial: 0.22.3
 * Grafana: 13.0.2
+* Haben: 0.9.0
 * Headplane: 0.8.2
 * Headscale: v0.29.7
 * Healthchecks: v5.0
