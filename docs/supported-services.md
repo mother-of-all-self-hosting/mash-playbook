@@ -71,6 +71,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [ConvertX](https://github.com/C4illin/ConvertX) | Online file converter for images, video, documents, etc. | [Link](../components/convertx/README.md) |
 | [Copyparty](https://copyparty.eu/) | Portable file server with many features | [Link](../components/copyparty/README.md) |
 | [CouchDB](https://couchdb.apache.org/) | Document-oriented NoSQL database which uses JSON to store data | [Link](../components/couchdb/README.md) |
+| [CrowdSec](https://www.crowdsec.net/) | Behavioral detection and remediation engine | [Link](../components/crowdsec/README.md) |
 | [CryptPad](https://cryptpad.org/) | End-to-end encrypted collaborative office suite | [Link](../components/cryptpad/README.md) |
 | [CyberChef](https://github.com/gchq/CyberChef) | Web app for encryption, encoding, compression and data analysis | [Link](../components/cyberchef/README.md) |
 | [Databasus](https://databasus.com/) | PostgreSQL, MySQL, MariaDB, and MongoDB database backup | [Link](../components/databasus/README.md) |

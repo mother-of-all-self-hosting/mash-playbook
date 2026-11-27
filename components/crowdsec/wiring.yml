@@ -1,0 +1,44 @@
+# SPDX-FileCopyrightText: 2026 sudo-Tiz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+crowdsec_enabled: false
+
+crowdsec_identifier: "{{ mash_playbook_service_identifier_prefix }}crowdsec"
+crowdsec_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}crowdsec"
+crowdsec_traefik_bouncer_key_file_group: "{{ mash_playbook_gid }}"
+crowdsec_traefik_bouncer_key_file_path: "{{ (traefik_config_dir_path ~ '/crowdsec-bouncer-key') if traefik_enabled | default(false) else (crowdsec_base_path ~ '/traefik-bouncer-key') }}"
+
+crowdsec_container_additional_networks_auto: |
+  {{
+    (
+      ([traefik_container_network] if (traefik_enabled | default(false) and traefik_container_network | default('') != crowdsec_container_network) else [])
+      +
+      ([mash_playbook_reverse_proxyable_services_additional_network] if (not (traefik_enabled | default(false)) and mash_playbook_reverse_proxyable_services_additional_network and mash_playbook_reverse_proxyable_services_additional_network != crowdsec_container_network) else [])
+    ) | unique
+  }}
+
+crowdsec_traefik_bouncer_enabled: "{{ (crowdsec_enabled | bool) and (traefik_enabled | default(false) | bool) }}"
+crowdsec_bouncer_key: "{{ ((mash_playbook_generic_secret_key + ':crowdsec.traefik-bouncer') | hash('sha512') | to_uuid) if crowdsec_traefik_bouncer_enabled | bool else '' }}"
+
+crowdsec_collections_auto: |
+  {{
+    ['crowdsecurity/linux', 'crowdsecurity/sshd']
+    + (['crowdsecurity/traefik'] if traefik_enabled | default(false) else [])
+  }}
+
+crowdsec_acquisitions_auto: |
+  {{
+    ([{
+      'source': 'journalctl',
+      'journalctl_filter': ['SYSLOG_IDENTIFIER=sshd'],
+      'labels': {'type': 'syslog'},
+    }])
+    + ([{
+      'source': 'journalctl',
+      'journalctl_filter': ['SYSLOG_IDENTIFIER=traefik'],
+      'labels': {'type': 'traefik'},
+    }] if traefik_enabled | default(false) else [])
+  }}
