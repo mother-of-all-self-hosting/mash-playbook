@@ -10,6 +10,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Soft Serve
 
+>[!WARNING]
+> The upstream project has been discontinued. There will not be security patches, bug fixes, or feature improvements. Refer to [the security advisories at GitHub](https://github.com/charmbracelet/soft-serve/security/advisories/) for a list of unfixed issues.
+
 The playbook can install and configure [Soft Serve](https://github.com/charmbracelet/soft-serve) for you.
 
 Soft Serve is a self-hostable [Git](https://git-scm.com/) server for the command line.
