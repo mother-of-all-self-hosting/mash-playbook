@@ -80,6 +80,10 @@ Homarr can use Postgres or SQLite, and you need to choose one. Refer to [this se
 >[!NOTE]
 > If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
+### Trust a reverse proxy for client IPs (optional)
+
+The playbook leaves Homarr's trusted proxy list empty because its Docker networks can contain other services. If Homarr needs the original client IP for per-client OAuth rate limits, allowlist the proxy's exact address or a dedicated proxy-only subnet in your inventory. See [the role's proxy configuration](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md#configuring-trusted-reverse-proxies-optional) and [Homarr's forwarding requirements](https://homarr.dev/docs/advanced/proxy/#trusted-request-identity).
+
 ## Usage
 
 After running the command for installation, the Homarr instance becomes available at the URL specified with `homarr_hostname`. With the configuration above, the service is hosted at `https://homarr.example.com`.
